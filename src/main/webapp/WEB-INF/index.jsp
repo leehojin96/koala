@@ -15,7 +15,7 @@
             "black"
         ];
 
-        let next = 0;
+        let next = 0;S
         function left(){
             let slide =  document.querySelector("#slide");
             next--;
