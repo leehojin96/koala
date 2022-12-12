@@ -72,7 +72,7 @@ function kakaoLogin() {
 			$('#form-kakao-login input[name=gender]').val(gender);
           	
   			// 사용자 정보가 포함된 폼을 서버로 제출한다.
-  			//document.querySelector('#form-kakao-login').submit();
+  			document.querySelector('#form-kakao-login').submit();
   			
           },
           fail: function (error) {
@@ -87,22 +87,7 @@ function kakaoLogin() {
   }
   
   
-//카카오로그아웃  
- 
-function kakaoLogout() {
-    if (Kakao.Auth.getAccessToken()) {
-      Kakao.API.request({
-        url: '/v1/user/unlink',
-        success: function (response) {
-        	console.log(response)
-        },
-        fail: function (error) {
-          console.log(error)
-        },
-      })
-      Kakao.Auth.setAccessToken(undefined)
-    }
-  }   
+
 </script>
 
 
@@ -289,6 +274,7 @@ main .password_img{
                                     <li><a href="#">비밀번호 찾기</a></li>
                                 </ul>
                              </div>
+                             <input type="hidden" name="login_type" value="0">
                          </form>
    
                              <div class="sns_login">
@@ -309,6 +295,7 @@ main .password_img{
 		    			<input type="hidden" name="email"/>
 		    			<input type="hidden" name="nickname"/>
 		    			<input type="hidden" name="gender"/>
+		    			<input type="hidden" name="login_type" value="1">
 		    	</form>
                 
 	<%@ include file ="footer.jsp" %>

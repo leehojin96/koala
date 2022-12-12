@@ -31,22 +31,27 @@ public class KoalaController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index( HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		
 		String userid = (String) session.getAttribute("id");
+		String logintype = (String) session.getAttribute("type");
 		
 		request.setAttribute("userid", userid);
+		request.setAttribute("logintype", logintype);
 		return "index";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request) {
-	
+		
+		
 		return "login";
 	}
 	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login2(String id, String pw, boolean rememberId, HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
+	public String login2(String id, String pw, String login_type, boolean rememberId, HttpServletResponse response, HttpServletRequest request) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
+		
 		
 		LoginService service = new LoginService(dao);
 		int result = service.loginUser(id, pw);
@@ -56,6 +61,7 @@ public class KoalaController {
 		if(result == 1 ){	
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
+			session.setAttribute("type", login_type);
 			
 			if(rememberId) {
 				//쿠키생성, 저장
@@ -92,7 +98,7 @@ public class KoalaController {
 		
 		PrintWriter script = response.getWriter();
 		script.println("<script>alert('로그아웃 되었습니다.'); </script>");
-		script.println("<script>location.href = '/koalas/index'; </script>");
+		script.println("<script>location.href = '/koala/index'; </script>");
 		script.flush();	// 얘 하니까 안뜨던 alert가 뜨지만 return이 안먹어서 location.hrtf로 보냄..
 
 		return null;
@@ -100,13 +106,27 @@ public class KoalaController {
 	}
 	
 	@RequestMapping(value = "/kakaoLogin", method = RequestMethod.POST)
-	public String kakaoLogin(String id, String email, String nickname, String gender) {
-		System.out.println(id +"/"+ email + "/"+ nickname + "/"+ gender  );
+	public String kakaoLogin(String id, String email, String nickname, String gender, String login_type, HttpServletRequest request) {
+		System.out.println(id +"/"+ email + "/"+ nickname + "/"+ gender  + "/"+ login_type );
 		
+		LoginService service = new LoginService(dao);
+		int result = service.kakaoCheck(id);
 		// 가입 후 세션에 id 등록
+		if(result == 0) {
+			service.kakaoJoin(id, email, nickname, gender);
+			HttpSession session = request.getSession();
+			session.setAttribute("id", id);
+			session.setAttribute("logintype", login_type);
+			
+		} else if(result == 1) {
+			// 가입 이미 되어있다면 세션에 id 등록
+			HttpSession session = request.getSession();
+			session.setAttribute("id", id);
+			session.setAttribute("logintype", login_type);
+		}
 		
 		
-		// 가입 이미 되어있다면 세션에 id 등록
+		
 		
 		
 		
@@ -114,7 +134,13 @@ public class KoalaController {
 		
 	}
 	
-	
-	
+	@RequestMapping(value = "/kakaoLogout", method = RequestMethod.GET)
+	public String kakaoLogout( HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		return "index";
+		
+	}
 	
 }

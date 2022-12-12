@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -51,7 +52,26 @@ $(document).ready(function(){
 		
 		
 });
+Kakao.init('cd19a2be4e5a00bdbf0cb07a178907dc');
+
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+        	location.href="/koalas/kakaoLogout";
+        	
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+      Kakao.Auth.setAccessToken(undefined);
+    }
+  }  
+
 </script>
+
 <style>
 @import url('https://fonts.googleapis.com/css?family=Jua:400');
 	*{
@@ -114,6 +134,7 @@ $(document).ready(function(){
 		color:gray;
 		font-size:11px;
 		font-weight:bold;
+		font-family:Jua;
 	}
 	
 	header .header_section .header_login span a{
@@ -204,8 +225,12 @@ $(document).ready(function(){
 								<span><a href="#">회원가입 </a></span>
 							</c:when>
 							
-							<c:when test="${userid != null }">
+							<c:when test="${userid != null && logintype == '0' }">
 								<span><a href="/koalas/logout">로그아웃</a></span>
+							</c:when>
+							
+							<c:when test="${userid != null && logintype == '1' }">
+								<span><a style="cursor:pointer" onclick="kakaoLogout()">카카오 로그아웃</a></span>
 							</c:when>
 						</c:choose>
 						<span>|</span>
