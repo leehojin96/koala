@@ -1,14 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-      <%@ include file ="header.jsp" %>
+	<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script>
+
         let imgNames =[
         	"blue",
             "green",
@@ -61,49 +65,7 @@
         
        
     	
-    	$(document).ready(function(){
-    		$(".menu").mouseenter(function(){
-    			$(".menu").stop().animate(
-    				{height:"280px"},300,'swing'		
-    			);
-    			$(".header_sl").stop().animate(
-        				{height:"280px"},300		
-        			);
-    			$(".header_section").stop().animate(
-        				{height:"280px"},300		
-        			);
-    			$(".header_wrap").stop().animate(
-        				{height:"280px"},300		
-        			);
-    			$("header").stop().animate(
-        				{height:"280px"},300		
-        			);
-    			$(".submenu").show();
-    		});
-    			
-    			
-    		$(".header_sl").mouseleave(function(){
-    			$(".menu").stop().animate(
-        				{height:"65px"},500	
-        			);
-        			$(".header_sl").stop().animate(
-            				{height:"80px"},300		
-            			);
-        			$(".header_section").stop().animate(
-            				{height:"160px"},300		
-            			);
-        			$(".header_wrap").stop().animate(
-            				{height:"160px"},300		
-            			);
-        			$("header").stop().animate(
-            				{height:"160px"},300
-            			);
-        			$(".submenu").hide();
-    		});
-    			
-    			
-    			
-    	});
+
 
     </script>
 
@@ -162,6 +124,9 @@
 </style>
 </head>
 <body>
+
+
+
 	<section>
 	
 	<div class="right_menu">
@@ -184,4 +149,7 @@
 
 	<%@ include file ="footer.jsp" %>
 </body>
+
+
+
 </html>

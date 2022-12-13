@@ -10,6 +10,7 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
 <script>
 let password_hide=1;
@@ -55,7 +56,6 @@ function kakaoLogin() {
         Kakao.API.request({
           url: '/v2/user/me',
           success: function (response) {
-        	  console.log(response)
           	
           	var account = response.kakao_account;
         	  
@@ -86,9 +86,50 @@ function kakaoLogin() {
     })
   }
   
-  
+ 
+ // 네이버로그인
+var naverLogin = new naver.LoginWithNaverId(
+		{
+			clientId: "a8aA2wlSgmuntljovu6o", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
+			callbackUrl: "http://localhost:8090/koalas/login", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+			isPopup: false,
+			callbackHandle: true
+		}
+	);	
+naverLogin.init();
+function nav_Login(){
+	
+	naverLogin.init();
+		naverLogin.getLoginStatus(function(status){
+				if (status){
+					let id = naverLogin.user.getId();
+					let name = naverLogin.user.getName();
+					let email = naverLogin.user.getEmail();
+					let gender = naverLogin.user.getGender();
+					let birthday = naverLogin.user.getBirthday();
+					let birthyear = naverLogin.user.getBirthyear();
+					let mobile = naverLogin.user.getMobile();
+		
+					$('#form-naver-login input[name=id]').val(id);
+					$('#form-naver-login input[name=name]').val(name);
+					$('#form-naver-login input[name=email]').val(email);
+					$('#form-naver-login input[name=gender]').val(gender);
+					$('#form-naver-login input[name=birthday]').val(birthday);
+					$('#form-naver-login input[name=birthyear]').val(birthyear);
+					$('#form-naver-login input[name=mobile]').val(mobile);
+					
+					document.querySelector('#form-naver-login').submit();
+					
+					
+				} else {
+					console.log("callback 처리에 실패하였습니다.");
+				}
+			
+		});
+};
 
 </script>
+
 
 
 
@@ -205,6 +246,7 @@ main .login_wrap .login_inner .idpw ul{
     margin-top:3px;
     
 }
+
 main .login_wrap .login_inner .idpw a, main .login_wrap .login_inner .idpw span{
     text-decoration: none;
     color: #929292;
@@ -238,6 +280,7 @@ main .login_wrap .login_inner .sns_login img{
     width: 85px;
     height: 85px;
     margin: 0 10px;
+    cursor:pointer;
 }
 main .password_img{
     cursor: pointer;
@@ -278,7 +321,7 @@ main .password_img{
                          </form>
    
                              <div class="sns_login">
-                                <a href="#"><img class="naver_btn" src="https://www.greatbooks.co.kr/images/member/ico_login_sns01@2x.png" alt=""></a>
+                                <img id="naverIdLogin_loginButton" onclick="nav_Login()" class="naver_btn" src="https://www.greatbooks.co.kr/images/member/ico_login_sns01@2x.png" alt="">
                                 <a href="#"><img class="kakao_btn" id="btn-kakao-login" src="https://www.greatbooks.co.kr/images/member/ico_login_sns02@2x.png" alt="" onclick="kakaoLogin()"></a>
                              </div>
                              
@@ -297,7 +340,19 @@ main .password_img{
 		    			<input type="hidden" name="gender"/>
 		    			<input type="hidden" name="login_type" value="1">
 		    	</form>
+		    	
+		    	<form id="form-naver-login" method="post" action="naverLogin">
+               			<input type="hidden" name="id"/>
+		    			<input type="hidden" name="name"/>
+		    			<input type="hidden" name="email"/>
+		    			<input type="hidden" name="gender"/>
+		    			<input type="hidden" name="birthday"/>
+		    			<input type="hidden" name="birthyear"/>
+		    			<input type="hidden" name="mobile"/>
+		    			<input type="hidden" name="login_type" value="2">
+		    	</form>
                 
 	<%@ include file ="footer.jsp" %>
+	
 </body>
 </html>

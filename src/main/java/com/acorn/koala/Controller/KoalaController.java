@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -98,7 +99,7 @@ public class KoalaController {
 		
 		PrintWriter script = response.getWriter();
 		script.println("<script>alert('로그아웃 되었습니다.'); </script>");
-		script.println("<script>location.href = '/koala/index'; </script>");
+		script.println("<script>location.href = '/koalas/index'; </script>");
 		script.flush();	// 얘 하니까 안뜨던 alert가 뜨지만 return이 안먹어서 location.hrtf로 보냄..
 
 		return null;
@@ -125,22 +126,62 @@ public class KoalaController {
 			session.setAttribute("logintype", login_type);
 		}
 		
-		
-		
-		
-		
-		
 		return "redirect:index";
-		
 	}
 	
 	@RequestMapping(value = "/kakaoLogout", method = RequestMethod.GET)
-	public String kakaoLogout( HttpServletRequest request) {
+	public String kakaoLogout( HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=utf-8");
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		return "index";
+		PrintWriter script = response.getWriter();
+		script.println("<script>alert('로그아웃 되었습니다.'); </script>");
+		script.println("<script>location.href = '/koalas/index'; </script>");
+		script.flush();	// 얘 하니까 안뜨던 alert가 뜨지만 return이 안먹어서 location.hrtf로 보냄..
 		
+		return "index";
 	}
 	
+	
+	@RequestMapping(value = "/naverLogin", method = RequestMethod.POST)
+	public String naverLogin(String id, String name, String email, String gender, String birthday, String birthyear, String mobile, String login_type, HttpServletRequest request, Model m ) {
+		
+		System.out.println(id + "/" + name + "/" + email + "/" + gender + "/" + birthday + "/" + birthyear + "/" + mobile + "/" + login_type);
+		
+		LoginService service = new LoginService(dao);
+		int result = service.naverCheck(id);
+		// 가입 후 세션에 id 등록
+		if(result==0) {
+			service.naverJoin(id, name, email, gender, birthday, birthyear, mobile);
+			HttpSession session = request.getSession();
+			session.setAttribute("id", id);
+			session.setAttribute("logintype", login_type);
+			return "redirect:index";
+			
+		} else {
+			// 가입 이미 되어있다면 세션에 id 등록
+			HttpSession session = request.getSession();
+			session.setAttribute("id", id);
+			session.setAttribute("logintype", login_type);
+			
+		}
+		return "redirect:index";
+	}
+	
+	@RequestMapping(value = "/naverLogout", method = RequestMethod.GET)
+	public String naverLogout( HttpServletRequest request,  HttpServletResponse response) throws IOException {
+		response.setContentType("text/html;charset=utf-8");
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		PrintWriter script = response.getWriter();
+		script.println("<script>alert('로그아웃 되었습니다.'); </script>");
+		script.println("<script>location.href = '/koalas/index'; </script>");
+		script.flush();	// 얘 하니까 안뜨던 alert가 뜨지만 return이 안먹어서 location.hrtf로 보냄..
+		
+		return "index";
+	}
+	
+
 }

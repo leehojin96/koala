@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script>
 $(document).ready(function(){
 	$(".menu").mouseenter(function(){
@@ -219,18 +220,22 @@ function kakaoLogout() {
 						<span><a href="/koalas/index"><img src="https://www.data4library.kr/resources/img/background/g_home_icon.gif" class="home_icon">home</a> </span>
 						<span>|</span>
 						<c:choose>
-							<c:when test="${userid == null }">
+							<c:when test="${id == null }">
 								<span><a href="/koalas/login">로그인</a></span>
 								<span>|</span>
 								<span><a href="#">회원가입 </a></span>
 							</c:when>
 							
-							<c:when test="${userid != null && logintype == '0' }">
+							<c:when test="${id != null && logintype == '0' }">
 								<span><a href="/koalas/logout">로그아웃</a></span>
 							</c:when>
 							
-							<c:when test="${userid != null && logintype == '1' }">
+							<c:when test="${id != null && logintype == '1' }">
 								<span><a style="cursor:pointer" onclick="kakaoLogout()">카카오 로그아웃</a></span>
+							</c:when>
+							
+							<c:when test="${id != null && logintype == '2' }">
+								<span><a style="cursor:pointer" onclick="naverLogout()" id="btn_logout" >네이버 로그아웃</a></span>
 							</c:when>
 						</c:choose>
 						<span>|</span>
@@ -282,4 +287,23 @@ function kakaoLogout() {
 		</div>
 	</header>
 </body>
+<script>
+var testPopUp;
+function openPopUp() {
+    testPopUp= window.open("https://nid.naver.com/nidlogin.logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
+}
+function closePopUp(){
+    testPopUp.close();
+}
+
+function naverLogout() {
+	openPopUp();
+	setTimeout(function() {
+		closePopUp();
+		location.href="/koalas/naverLogout";
+		}, 10);
+	
+	
+}
+</script>
 </html>
