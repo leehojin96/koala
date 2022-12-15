@@ -212,22 +212,22 @@ function kakaoLogout() {
 	<header>
 		<div class="header_wrap">
 			<div class="header_logo" >
-				<a href="/koalas/index"><img src="https://ifh.cc/g/BKg92h.jpg"></a>
+				<a href="/koala/index"><img src="https://ifh.cc/g/BKg92h.jpg"></a>
 			</div>
 			
 			<div class="header_section">
 				<div class="header_login">
-						<span><a href="/koalas/index"><img src="https://www.data4library.kr/resources/img/background/g_home_icon.gif" class="home_icon">home</a> </span>
+						<span><a href="/koala/index"><img src="https://www.data4library.kr/resources/img/background/g_home_icon.gif" class="home_icon">home</a> </span>
 						<span>|</span>
 						<c:choose>
 							<c:when test="${id == null }">
-								<span><a href="/koalas/login">로그인</a></span>
+								<span><a href="/koala/login">로그인</a></span>
 								<span>|</span>
 								<span><a href="#">회원가입 </a></span>
 							</c:when>
 							
 							<c:when test="${id != null && logintype == '0' }">
-								<span><a href="/koalas/logout">로그아웃</a></span>
+								<span><a href="/koala/logout">로그아웃</a></span>
 							</c:when>
 							
 							<c:when test="${id != null && logintype == '1' }">
@@ -300,7 +300,7 @@ function naverLogout() {
 	openPopUp();
 	setTimeout(function() {
 		closePopUp();
-		location.href="/koalas/naverLogout";
+		location.href="/koala/naverLogout";
 		}, 10);
 	
 	

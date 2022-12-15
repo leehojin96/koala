@@ -1,11 +1,11 @@
 package com.acorn.koala.service;
 
-import com.acorn.koala.dao.Dao;
+import com.acorn.koala.dao.UserDao;
 
 public class LoginService {
-		Dao dao;
+		UserDao dao;
 
-		public LoginService(Dao dao) {
+		public LoginService(UserDao dao) {
 			this.dao = dao;
 		}
 
@@ -19,20 +19,6 @@ public class LoginService {
 			
 		}
 		
-		public int kakaoCheck(String id) {
-			int result = dao.kakaoidCheck(id);
-			return result;
-		}
 		
-		public void kakaoJoin(String id, String email, String nickname, String gender) {
-			dao.KakaoJoin(id, email, nickname, gender);
-		}
 		
-		public int naverCheck(String id) {
-			int result = dao.naveridCheck(id);
-			return result;
-		}
-		public void naverJoin(String id, String name, String email, String gender, String birthday, String birthyear, String mobile) {
-			dao.NaverJoin(id, name, email, gender, birthday, birthyear, mobile);
-		}
 }
