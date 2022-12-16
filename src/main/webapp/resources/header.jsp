@@ -1,44 +1,95 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$(".menu").mouseenter(function(){
+		$(".menu").stop().animate(
+			{height:"280px"},300,'swing'		
+		);
+		$(".header_sl").stop().animate(
+				{height:"280px"},300		
+			);
+		$(".header_section").stop().animate(
+				{height:"280px"},300		
+			);
+		$(".header_wrap").stop().animate(
+				{height:"280px"},300		
+			);
+		$("header").stop().animate(
+				{height:"280px"},300		
+			);
+		$(".submenu").show();
+	});
+		
+		
+	$(".header_sl").mouseleave(function(){
+		$(".menu").stop().animate(
+				{height:"65px"},500	
+			);
+			$(".header_sl").stop().animate(
+    				{height:"80px"},300		
+    			);
+			$(".header_section").stop().animate(
+    				{height:"160px"},300		
+    			);
+			$(".header_wrap").stop().animate(
+    				{height:"160px"},300		
+    			);
+			$("header").stop().animate(
+    				{height:"160px"},300
+    			);
+			$(".submenu").hide();
+	});
+		
+		
+		
+});
+</script>
 <style>
-
+@import url('https://fonts.googleapis.com/css?family=Jua:400');
+	*{
+		margin:0px;
+		padding:0px;
+	}
 	header{
 		width:1250px;
-		height:159px;
+		height:160px;
 		margin:0 auto; 
-		padding-bottom:30px;
+		padding-bottom:10px;
 		border-bottom: 1px solid green;
+
 	}
 	.header_wrap{
 		display:flex;
 	}
 	.header_logo{
-		width:222px;
-		height:82px;
+		width:300px;
+		height:160px;
 		/*border:1px solid black; */
-		margin-top:77px;
 		
 		
 	}
 	.header_logo img{
-		width:222px;
-		height:82px;
+		width:300px;
+		height:160px;
 		
 		
 	}
 	.header_login {
-		width:1026px;
+		width:948px;
 		height:45px;
 		/*border:1px solid black; */
 	}
 	
 	header .header_sl {
-		width:1026px;
+		width:948px;
 		height:80px;
 		/*border:1px solid black; */
 		margin-top:30px;
@@ -74,9 +125,9 @@
 	}
 
 	header .header_section .header_sl .searchbar{
-		width:240px;
-		height:45px;
-		margin:10px 0 0 220px;
+		width:210px;
+		height:35px;
+		margin:13px 0 0 295px;
 		display:flex;
 		border: 2px solid lightgray;
 		border-radius: 20px;
@@ -85,8 +136,8 @@
 		
 	}
 	header .header_section .header_sl .searchbar input{
-		height:37px;
-		width:170px;
+		height:27px;
+		width:140px;
 		border: none;
         outline: 0;
  		font-size:15px;
@@ -96,13 +147,14 @@
 		width:730px;
 	}
 	header .header_section .header_sl .searchbar img{
-		height:37px;
-		weight:37px;
-		padding-left:10px;
+		height:27px;
+		weight:27px;
+		padding-left:20px;
 	}
 
 	header .menu{
 		margin-top:15px;
+
 	}
 	header .header_sl .menu ul{
             list-style: none;
@@ -112,10 +164,9 @@
             display: none;
     }
 	header .menu .menu_wrap .mainmenu:hover .submenu{
-            display:block;
+            //display:block;
     }
 	header .menu .menu_wrap{
-            margin-left: 20px;
             display: flex;
     }
 	header .menu .menu_wrap .mainmenu{
@@ -130,25 +181,33 @@
             width: 100px;
             font-weight:lighter;
             font-size:18px;
-            padding: 0 10px;
             font-family:Jua;
     }
+
 </style>
 </head>
 <body>
-<header>
+	<header>
 		<div class="header_wrap">
 			<div class="header_logo" >
-				<a href="#"><img src="logo"></a>
+				<a href="/koalas/index"><img src="https://ifh.cc/g/BKg92h.jpg"></a>
 			</div>
 			
 			<div class="header_section">
 				<div class="header_login">
-						<span><a href="#"><img src="https://www.data4library.kr/resources/img/background/g_home_icon.gif" class="home_icon">home</a> </span>
+						<span><a href="/koalas/index"><img src="https://www.data4library.kr/resources/img/background/g_home_icon.gif" class="home_icon">home</a> </span>
 						<span>|</span>
-						<span><a href="#">로그인</a></span>
-						<span>|</span>
-						<span><a href="#">회원가입 </a></span>
+						<c:choose>
+							<c:when test="${userid == null }">
+								<span><a href="/koalas/login">로그인</a></span>
+								<span>|</span>
+								<span><a href="#">회원가입 </a></span>
+							</c:when>
+							
+							<c:when test="${userid != null }">
+								<span><a href="/koalas/logout">로그아웃</a></span>
+							</c:when>
+						</c:choose>
 						<span>|</span>
 						<span><a href="#">고객센터</a></span>
 				</div>
@@ -161,6 +220,7 @@
 				                    <ul class="submenu">
 				                        <li><a href="#">서브메뉴1</a></li>
 				                        <li><a href="#">서브메뉴2</a></li>
+				                        <li><a href="#">서브메뉴3</a></li>
 				                    </ul>
 				                </li>
 				              
@@ -196,6 +256,5 @@
 			</div>
 		</div>
 	</header>
-	
 </body>
 </html>

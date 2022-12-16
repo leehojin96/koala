@@ -5,16 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+</head>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Jua:400');
-	*{
-		margin:0px;
-		padding:0px;
+	 footer{
+		width:1250px;
+		height:300px;
+		margin:0 auto;
+		padding-top: 30px;
+		border-top:1px solid lightgray;
+
 	}
- footer ul{
-        	list-style: none;
-        	width: 200px;
-        }
+        
+        
+        
+    footer ul{
+		list-style: none;
+		width: 200px;
+    }
     footer a {
 		text-decoration: none;    
 		color : gray;
@@ -29,7 +36,7 @@
 
 	.footer1{
 		display: flex;
-		font-size: 16px;
+		font-size: 12px;
 	}
 	.footer1 span{
 		font-weight: bold;
@@ -50,14 +57,16 @@
 	}
 	
 	.footer2{
-		height : 200px;
-		margin-top: 50px;
+		height : 100px;
+		margin-top: 15px;
 		margin-bottom: 100px;
 	}
+	.footer1_1 li{
 	
+	}
 	.footer1_1 li a{
 		display: flex;
-		height : 40px;
+		height : 30px;
 		padding: auto;
 		line-height: 40px;
 		margin-bottom: 10px;
@@ -66,7 +75,7 @@
 	
 	}
 	.footer1_2 li {
-		height: 40px;
+		height: 30px;
 	}
 	
 	
@@ -77,19 +86,18 @@
 	}
 	
 	.footer2 span{
-		font-size: 14px;
+		font-size: 12px;
 		color: gray;
-		line-height: 30px;
+		line-height: 20px;
 	}
        
     .footer1_3 img{
-    	width: 50px;
-    	height: 50px;
+    	width: 35px;
+    	height: 35px;
     }
 </style>
-</head>
 <body>
-<footer>
+	<footer>
 		<div class = "footer1">
 			
 				<ul class ="footer1_1">
@@ -141,6 +149,5 @@
 		
 		
 	</footer>
-
 </body>
 </html>
