@@ -19,7 +19,7 @@ $(document).ready(function(){
 				url:"/koala/books/popular",
 				success : function(data) {
 					let dataHtml = toHtml(data);
-		    		$("#title-5").html(dataHtml);
+		    		$("#bookEmpty").html(dataHtml);
 				},
 				error: function() {
 					alert(arror);
@@ -28,7 +28,7 @@ $(document).ready(function(){
 }
 
 	function toHtml(data) {
-	//alert("toHtml" + data);yy
+	//alert("toHtml" + data);
 	let str = "";
 	for( let i=0 ; i< data.length; i++){
 		let item = data[i]; 
@@ -37,12 +37,12 @@ $(document).ready(function(){
 				+"onmouseenter='zoomIn(event)' onmouseleave='zoomOut(event)'>" // 마우스 호버 애니메이션
 				+"<div id='book'>"
 			 	+"<div id='bookImg'>"
-				+"<img src='" +item.coverLargeUrl + "'>"
+				+"<img id='cover' src='" +item.cover + "'>"
 				+"</div>"
 				+"<div id='bookInfo'>"
-				+"<div id='bookRanking'>"+item.title+"</div>"
-				+"<div id='bookName'>"+item.author+"</div>"
-				+"<div id='bookAuthors'>"+item.priceStandard+"</div>"
+				+"<div id='title'>"+item.title+"</div>"
+				+"<div id='author'>"+item.author+"</div>"
+				+"<div id='priceStandard'>"+item.priceStandard+" 원</div>"
 				+"</div> </div> </a>"
 				;
 	}
@@ -70,79 +70,99 @@ $(document).ready(function(){
 section {
 	display: bolck;
 	margin: 0px auto;
-	width: 1250px;
+	width: 1810px;
 	font-family: Jua;
 }
 
-#select-list-type {
+#selectType {
 	padding: 20px;
 	text-align: right;
 }
 
-#select-btn button {
+#selectBtn button {
 	outline: none;
 	background-color:
 }
 
-#bookFindList a {
+#bookEmpty a {
 	text-decoration: none;
 	color: black;
 }
 
-#bookFindList a:visited {
+#bookEmpty a:visited {
 	color: black;
 }
 
-#bookFindList a:active {
+#bookEmpty a:active {
 	color: black;
 }
 
-#title-5 {
+#bookEmpty {
 	display: flex;
 	flex-flow: wrap;
-	width: 1200px;
+	width: 1810px;
 }
 
 #book {
-	padding: 20px;
+	padding : 30px;
 	width: 200px;
 }
 
-#book img {
+#bookImg{
+	
 	width: 200px;
 	height: 300px;
+	border-radius: 20px 5px 5px 20px;
+	
+    overflow: hidden;
+	box-shadow: 5px 5px #333333;
+	
+	margin-bottom:20px; 
 }
+#book img {
+	
+	width: 200px;
+	height: 300px;
+	object-fit: cover;
+	
+}
+
+
 </style>
 </head>
 <body>
 	<section>
 
 		<!-- 도서 리스트 -->
-		<div id="bookFindList">
+		<div id="bookList">
 
-			<div id="select-list-type">
+			<div id="selectType">
 
-				<div id="select-btn">
+				<div id="selectBtn">
 					<span><a href="#">최신순</a></span> <span> | </span> <span><a
 						href="#">인기순</a></span>
 				</div>
 
 			</div>
 
-			<div id="title-5">
-
+			<div id="bookEmpty">
+				
 
 			</div>
+			
 			<div id="paging">
 			<input id ="page1" type="button" value="1">
 			<input id ="page2" type="button" value="2">
 			<input id ="page3" type="button" value="3">
 			</div>
+			
 		</div>
 	</section>
+	
+	<!-- 책 마우스 확대/축소 애니메이션 -->
 	<script>
 		function zoomIn(event) {
-			event.target.style.transform = "scale(1.2)";
+			event.target.style.transform = "scale(1.1)";
 			event.target.style.zIndex = 1;
 			event.target.style.transition = "all 0.5s";
 		}

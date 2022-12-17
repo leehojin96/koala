@@ -20,16 +20,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Component
-public class ApiPopularBooks {
+public class ApiPopularBooks2 {
 
-	public static String getList() {
+	public static String getList(int start,int CategoryId) {
 		
 		
-		String apiURL = "https://book.interpark.com/api/recommend.api"
+		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
 				+ "?"
-				+ "key=343AB15B7F090C8F8A9EC2EF8355620A89FF4F1DEC75F26F611165DCC7C98ED7"
+				+ "ttbkey=ttbst20352313001"
 				+ "&"
-				+ "categoryId=100";
+				+ "QueryType=Bestseller"
+				+ "&"
+				+ "MaxResults=100"
+				+ "&"
+				+ "start="+start
+				+ "&"
+				+ "SearchTarget=Book"
+				+ "&"
+				+ "output=xml"
+				+ "&"
+				+ "Version=20131101"
+				+ "&"
+				+ "Cover=Big"
+				+ "&"
+				+ "CategoryId="+CategoryId
+				;
 						
 		// JSON 결과
 		Map<String, String> requestHeaders = new HashMap<String, String>();
@@ -41,7 +56,7 @@ public class ApiPopularBooks {
 		//System.out.println("result=" + resultObj.toString());
 		
 		// "response" key를 JSONObjext 객체로 생성
-		JSONObject result = resultObj.getJSONObject("channel");
+		JSONObject result = resultObj.getJSONObject("object");
 		//System.out.println(result);
 		
 		return result.toString();
@@ -105,7 +120,7 @@ public class ApiPopularBooks {
 		//System.out.println("rjson = "+ rjson);
 		
 		JSONArray item = rjson.getJSONArray("item");
-		System.out.println("item = "+ item);
+		//System.out.println("item = "+ item);
 		
 		
 		ArrayList<BooksDto> booksDtoList = new ArrayList<BooksDto>();
@@ -120,7 +135,7 @@ public class ApiPopularBooks {
 	}
 	
 	public static void main(String[] args) {
-		String result = getList();
-		fromJSONtoItems(result);
+		//String result = getList();
+		//fromJSONtoItems(result);
 	}
 }

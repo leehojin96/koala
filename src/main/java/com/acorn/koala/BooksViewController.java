@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class BooksViewController {
 	
 	@Autowired
-	ApiPopularBooks apiPopularBooks;
+	ApiPopularBooks2 apiPopularBooks;
 	
 	@RequestMapping(value="/books",method=RequestMethod.GET)
 	public String  popularbooks1() {
@@ -23,9 +23,9 @@ public class BooksViewController {
 	
 	@ResponseBody
 	@RequestMapping(value="/books/popular",method=RequestMethod.GET)
-	public ArrayList<BooksDto>  popularbooks2() {
+	public ArrayList<BooksDto>  popularbooks2(int start,int CategoryId) {
 		
-		String result = apiPopularBooks.getList();
+		String result = apiPopularBooks.getList(start,CategoryId);
 		
 		ArrayList<BooksDto> list = apiPopularBooks.fromJSONtoItems(result);
 		      
