@@ -12,9 +12,9 @@ public class BooksDto {
 
 	public BooksDto(JSONObject json) {
 		this.title = json.getString("title");
-		this.title = json.getString("author");
-		this.title = json.getString("coverLargeUrl");
-		this.title = json.getInt("priceStandard");
+		this.author = json.getString("author");
+		this.coverLargeUrl = json.getString("coverLargeUrl");
+		this.priceStandard = json.getInt("priceStandard");
 	}
 	
 	

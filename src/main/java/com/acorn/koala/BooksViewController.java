@@ -23,9 +23,9 @@ public class BooksViewController {
 	
 	@ResponseBody
 	@RequestMapping(value="/books/popular",method=RequestMethod.GET)
-	public ArrayList<BooksDto>  popularbooks2(int page) {
+	public ArrayList<BooksDto>  popularbooks2() {
 		
-		String result = apiPopularBooks.getList(page);
+		String result = apiPopularBooks.getList();
 		
 		ArrayList<BooksDto> list = apiPopularBooks.fromJSONtoItems(result);
 		      

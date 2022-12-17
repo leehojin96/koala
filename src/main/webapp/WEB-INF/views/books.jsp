@@ -10,15 +10,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-	let page = 1;
 	
-	function showList(page) {
+	function showList() {
 	//alert("showList() 실행");
 	$.ajax(
 			{
 				type:"GET",
 				url:"/koala/books/popular",
-				data:{page:page},
 				success : function(data) {
 					let dataHtml = toHtml(data);
 		    		$("#title-5").html(dataHtml);
@@ -39,32 +37,20 @@ $(document).ready(function(){
 				+"onmouseenter='zoomIn(event)' onmouseleave='zoomOut(event)'>" // 마우스 호버 애니메이션
 				+"<div id='book'>"
 			 	+"<div id='bookImg'>"
-				+"<img src='" +item.bookImageURL + "'>"
+				+"<img src='" +item.coverLargeUrl + "'>"
 				+"</div>"
 				+"<div id='bookInfo'>"
-				+"<div id='bookRanking'>"+item.ranking+"</div>"
-				+"<div id='bookName'>"+item.bookname+"</div>"
-				+"<div id='bookAuthors'>"+item.authors+"</div>"
+				+"<div id='bookRanking'>"+item.title+"</div>"
+				+"<div id='bookName'>"+item.author+"</div>"
+				+"<div id='bookAuthors'>"+item.priceStandard+"</div>"
 				+"</div> </div> </a>"
 				;
 	}
 	return  str;
 }
 	
-	showList(page);
+	showList();
 	
-	$("#page1").click(function (){
-		page = 1;
-		showList(page);
-	});
-	$("#page2").click(function (){
-		page = 2;
-		showList(page);
-	});
-	$("#page3").click(function (){
-		page = 3;
-		showList(page);
-	});
 	
 	
 });
