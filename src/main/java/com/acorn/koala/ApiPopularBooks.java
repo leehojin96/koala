@@ -22,18 +22,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Component
 public class ApiPopularBooks {
 
-	public static String getList(int page) {
+	public static String getList() {
 		
 		
-		String apiURL = "http://data4library.kr"
-						+ "/api/loanItemSrch"
-						+ "?authKey=" + "6221aa689f5b5381bb1d6d47cd2856bd6ed253d9dc00571134bf2ee128da686a" 	//key
-						+ "&startDt=2022-01-01" //조회 기간 시작일
-						+ "&endDt=2022-12-08" //조회 기간 종료일
-						//+ "&kdc=2" //카테고리 분류
-						+ "&pageNo="+page //페이지 넘버
-						+ "&pageSize=50" //페이지 크기
-						;
+		String apiURL = "https://book.interpark.com/api/bestSeller.api"
+				+ "?"
+				+ "key=343AB15B7F090C8F8A9EC2EF8355620A89FF4F1DEC75F26F611165DCC7C98ED7"
+				+ "&"
+				+ "categoryId=100";
+						
 		// JSON 결과
 		Map<String, String> requestHeaders = new HashMap<String, String>();
 		String responseBody = get(apiURL, requestHeaders);
@@ -44,13 +41,10 @@ public class ApiPopularBooks {
 		//System.out.println("result=" + resultObj.toString());
 		
 		// "response" key를 JSONObjext 객체로 생성
-		JSONObject result = resultObj.getJSONObject("response");
+		JSONObject result = resultObj.getJSONObject("channel");
 		//System.out.println(result);
 		
-		// "docs" key를 JSONObject 객체로 생성 
-		JSONObject docs = result.getJSONObject("docs");
-		//System.out.println("docs=" + docs);
-		return docs.toString();
+		return result.toString();
 	}
 
 	//
@@ -110,13 +104,13 @@ public class ApiPopularBooks {
 		JSONObject rjson = new JSONObject(result);
 		//System.out.println("rjson = "+ rjson);
 		
-		JSONArray doc = rjson.getJSONArray("doc");
-		System.out.println("docs = "+ doc);
+		JSONArray item = rjson.getJSONArray("item");
+		System.out.println("item = "+ item);
 		
 		
 		ArrayList<BooksDto> booksDtoList = new ArrayList<BooksDto>();
-		for(int i = 0 ; i < doc.length();i++) {
-			JSONObject docJson = doc.getJSONObject(i);
+		for(int i = 0 ; i < item.length();i++) {
+			JSONObject docJson = item.getJSONObject(i);
 			//System.out.println("doc = " + docJson );
 			
 			BooksDto booksDto = new BooksDto(docJson);
@@ -126,7 +120,7 @@ public class ApiPopularBooks {
 	}
 	
 	public static void main(String[] args) {
-		//String result = getList();
-		//fromJSONtoItems(result);
+		String result = getList();
+		fromJSONtoItems(result);
 	}
 }
