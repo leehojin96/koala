@@ -9,12 +9,12 @@ public class BooksDto {
 	String coverLargeUrl;
 	int priceStandard;
 	
+
 	public BooksDto(JSONObject json) {
-		super();
-		this.title = json.title;
-		this.author = author;
-		this.coverLargeUrl = coverLargeUrl;
-		this.priceStandard = priceStandard;
+		this.title = json.getString("title");
+		this.title = json.getString("author");
+		this.title = json.getString("coverLargeUrl");
+		this.title = json.getInt("priceStandard");
 	}
 	
 	
