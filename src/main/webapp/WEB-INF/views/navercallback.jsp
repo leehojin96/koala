@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +28,7 @@
 		var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "a8aA2wlSgmuntljovu6o",
-				callbackUrl: "http://localhost:8090/koalas/navercallback",
+				callbackUrl: "http://localhost:8090/<c:url value='/navercallback' />",
 				isPopup: false,
 				callbackHandle: true
 				/* callback 페이지가 분리되었을 경우에 callback 페이지에서는 callback처리를 해줄수 있도록 설정합니다. */

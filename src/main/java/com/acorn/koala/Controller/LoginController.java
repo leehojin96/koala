@@ -24,8 +24,6 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request) {
-		
-		
 		return "login";
 	}
 	
@@ -80,7 +78,7 @@ public class LoginController {
 		
 		PrintWriter script = response.getWriter();
 		script.println("<script>alert('로그아웃 되었습니다.'); </script>");
-		script.println("<script>location.href = '/koalas/index'; </script>");
+		script.println("<script>location.href = '/koala/index'; </script>");
 		script.flush();	// 얘 하니까 안뜨던 alert가 뜨지만 return이 안먹어서 location.hrtf로 보냄..
 
 		return null;

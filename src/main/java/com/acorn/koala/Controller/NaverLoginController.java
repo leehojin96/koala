@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -23,7 +22,7 @@ public class NaverLoginController {
 	
 	
 	@RequestMapping(value = "/naverLogin", method = RequestMethod.POST)
-	public String naverLogin(String id, String name, String email, String gender, String birthday, String birthyear, String mobile, String login_type, HttpServletRequest request, Model m ) {
+	public String naverLogin(String id, String name, String email, String gender, String birthday, String birthyear, String mobile, String login_type, HttpServletRequest request) throws IOException {
 		
 		System.out.println(id + "/" + name + "/" + email + "/" + gender + "/" + birthday + "/" + birthyear + "/" + mobile + "/" + login_type);
 		
@@ -35,6 +34,8 @@ public class NaverLoginController {
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
 			session.setAttribute("logintype", login_type);
+			
+			
 			
 			return "redirect:index";
 			
@@ -57,7 +58,7 @@ public class NaverLoginController {
 		
 		PrintWriter script = response.getWriter();
 		script.println("<script>alert('로그아웃 되었습니다.'); </script>");
-		script.println("<script>location.href = '/koalas/index'; </script>");
+		script.println("<script>location.href = '/koala/index'; </script>");
 		script.flush();	// 얘 하니까 안뜨던 alert가 뜨지만 return이 안먹어서 location.hrtf로 보냄..
 		
 		return "index";

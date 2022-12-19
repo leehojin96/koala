@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file ="header.jsp" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html>
 <html>
@@ -57,7 +58,7 @@ function kakaoLogin() {
           url: '/v2/user/me',
           success: function (response) {
           	
-          	var account = response.kakao_account;
+          	let account = response.kakao_account;
         	  
         	let id = response.id;
         	let email = account.email;
@@ -239,6 +240,9 @@ main .login_wrap .login_inner .sns_login img{
     margin: 0 10px;
     cursor:pointer;
 }
+
+
+
 main .password_img{
     cursor: pointer;
 }
@@ -254,7 +258,7 @@ main .password_img{
                         <div class="login_inner">
                         
                         
-                        <form method="post" action="/koala/login" name="frm" onsubmit="return check()">
+                        <form method="post" action="<c:url value='/login' />" name="frm" onsubmit="return check()">
                             <div class="login">
 	                                <input type="text" placeholder="Enter ID" name="id" value="${cookie.id.value}" id="id">
 	                                
@@ -269,16 +273,16 @@ main .password_img{
 	                                <p class="check_p">&nbsp;&nbsp;아이디 저장</p>
 	                                
                                 <ul>
-                                    <li><a href="#">아이디 찾기</a></li>
+                                    <li><a href="<c:url value='/finder' />">아이디 찾기</a></li>
                                     <li><span> | </span></li>
-                                    <li><a href="#">비밀번호 찾기</a></li>
+                                    <li><a href="<c:url value='/finder' />">비밀번호 찾기</a></li>
                                 </ul>
                              </div>
                              <input type="hidden" name="login_type" value="0">
                          </form>
    
                              <div class="sns_login">
-                                <div id="naverIdLogin"></div>
+                                <div id="naverIdLogin" class="naver_btn"></div>
                                 <a href="#"><img class="kakao_btn" id="btn-kakao-login" src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" alt="" onclick="kakaoLogin()"></a>
                              </div>
                              
@@ -308,9 +312,9 @@ main .password_img{
 	var naverLogin = new naver.LoginWithNaverId(
 			{
 				clientId: "a8aA2wlSgmuntljovu6o", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-				callbackUrl: "http://localhost:8090/koalas/navercallback", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+				callbackUrl: "http://localhost:8090/<c:url value='/navercallback' />", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
 				isPopup: false,
-				loginButton: {color: "green", type: 3, height: 45} /* 로그인 버튼의 타입을 지정 */
+				loginButton: {color: "green", type: 3, width:183 , height: 45} /* 로그인 버튼의 타입을 지정 */
 			}
 		);	
 	naverLogin.init();

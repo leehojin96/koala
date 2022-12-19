@@ -60,7 +60,7 @@ function kakaoLogout() {
       Kakao.API.request({
         url: '/v1/user/unlink',
         success: function (response) {
-        	location.href="/koalas/kakaoLogout";
+        	location.href="<c:url value='/kakaoLogout' />";
         	
         },
         fail: function (error) {
@@ -212,22 +212,22 @@ function kakaoLogout() {
 	<header>
 		<div class="header_wrap">
 			<div class="header_logo" >
-				<a href="/koala/index"><img src="https://ifh.cc/g/BKg92h.jpg"></a>
+				<a href="<c:url value='/index'/>"><img src="https://ifh.cc/g/BKg92h.jpg"></a>
 			</div>
 			
 			<div class="header_section">
 				<div class="header_login">
-						<span><a href="/koala/index"><img src="https://www.data4library.kr/resources/img/background/g_home_icon.gif" class="home_icon">home</a> </span>
+						<span><a href="<c:url value='/index'/>"><img src="https://www.data4library.kr/resources/img/background/g_home_icon.gif" class="home_icon">home</a> </span>
 						<span>|</span>
 						<c:choose>
 							<c:when test="${id == null }">
-								<span><a href="/koala/login">로그인</a></span>
+								<span><a href="<c:url value='/login'/>">로그인</a></span>
 								<span>|</span>
 								<span><a href="#">회원가입 </a></span>
 							</c:when>
 							
 							<c:when test="${id != null && logintype == '0' }">
-								<span><a href="/koala/logout">로그아웃</a></span>
+								<span><a href="<c:url value='/logout'/>">로그아웃</a></span>
 							</c:when>
 							
 							<c:when test="${id != null && logintype == '1' }">
@@ -300,7 +300,7 @@ function naverLogout() {
 	openPopUp();
 	setTimeout(function() {
 		closePopUp();
-		location.href="/koala/naverLogout";
+		location.href="<c:url value='/naverLogout'/>";
 		}, 10);
 	
 	
