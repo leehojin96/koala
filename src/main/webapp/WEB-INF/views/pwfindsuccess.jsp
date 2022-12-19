@@ -28,6 +28,7 @@ function check(){
 		$(".newpwdok").focus();
 		return false;
 	} else{
+		alert("변경되었습니다.");
 		return true;
 	}
 	

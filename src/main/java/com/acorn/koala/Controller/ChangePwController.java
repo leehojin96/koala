@@ -27,11 +27,8 @@ public class ChangePwController {
 		service.pwChangeService(newpwd, id);
 		
 		PrintWriter script = response.getWriter();
-		script.println("<script>alert('비밀번호가 변경되었습니다'); </script>");
-		script.println("<script>location.href = '/koala/index'; </script>");
-		script.close();
 		
 		
-		return "index";
+		return "redirect:index";
 	}
 }
