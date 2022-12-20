@@ -22,7 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Component
 public class ApiPopularBooks2 {
 
-	public static String getList(int start,int CategoryId) {
+	//베스트셀러 API
+	public static String getBestsellerList(int start,int categoryId) {
 		
 		
 		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
@@ -31,7 +32,97 @@ public class ApiPopularBooks2 {
 				+ "&"
 				+ "QueryType=Bestseller"
 				+ "&"
-				+ "MaxResults=100"
+				+ "MaxResults=50"
+				+ "&"
+				+ "start="+start
+				+ "&"
+				+ "SearchTarget=Book"
+				+ "&"
+				+ "output=xml"//xml or json
+				+ "&"
+				+ "Version=20131101"
+				+ "&"
+				+ "Cover=Big"
+				+ "&"
+				+ "CategoryId="+categoryId
+				;
+				
+		
+		// 결과
+		Map<String, String> requestHeaders = new HashMap<String, String>();
+		String responseBody = get(apiURL, requestHeaders);
+
+		//XML -> JSONObecjt
+		JSONObject resultObj = XML.toJSONObject(responseBody);
+		 //System.out.println(responseBody);
+		//System.out.println("result=" + resultObj.toString());
+		
+		// "response" key를 JSONObjext 객체로 생성
+		JSONObject result = resultObj.getJSONObject("object");
+		// System.out.println(result);
+		 //
+		 
+		
+		return result.toString();
+	}
+	
+	//신간 도서 api
+	public static String getItemNewAll(int start,int categoryId) {
+		
+		
+		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
+				+ "?"
+				+ "ttbkey=ttbst20352313001"
+				+ "&"
+				+ "QueryType=ItemNewAll"
+				+ "&"
+				+ "MaxResults=50"
+				+ "&"
+				+ "start="+start
+				+ "&"
+				+ "SearchTarget=Book"
+				+ "&"
+				+ "output=xml"//xml or json
+				+ "&"
+				+ "Version=20131101"
+				+ "&"
+				+ "Cover=Big"
+				+ "&"
+				+ "CategoryId="+categoryId
+				;
+				
+		
+		// 결과
+		Map<String, String> requestHeaders = new HashMap<String, String>();
+		String responseBody = get(apiURL, requestHeaders);
+
+		//XML -> JSONObecjt
+		JSONObject resultObj = XML.toJSONObject(responseBody);
+		 //System.out.println(responseBody);
+		//System.out.println("result=" + resultObj.toString());
+		
+		// "response" key를 JSONObjext 객체로 생성
+		JSONObject result = resultObj.getJSONObject("object");
+		// System.out.println(result);
+		 //
+		 
+		
+		return result.toString();
+	}
+	
+	//도서 검색 api
+	public static String getSearch(int start,String query) {
+		
+		
+		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx"
+				+ "?"
+				+ "ttbkey=ttbst20352313001"
+				+ "&"
+				+ "Query="+query
+				+ "&"
+				+ "QueryType=Title"
+				+ "&"
+				+ "MaxResults=50"
 				+ "&"
 				+ "start="+start
 				+ "&"
@@ -42,11 +133,10 @@ public class ApiPopularBooks2 {
 				+ "Version=20131101"
 				+ "&"
 				+ "Cover=Big"
-				+ "&"
-				+ "CategoryId="+CategoryId
 				;
-						
-		// JSON 결과
+				
+		
+		// 결과
 		Map<String, String> requestHeaders = new HashMap<String, String>();
 		String responseBody = get(apiURL, requestHeaders);
 
@@ -114,28 +204,36 @@ public class ApiPopularBooks2 {
         }
     }
 	
-	public static ArrayList<BooksDto> fromJSONtoItems(String result){
+	public static HashMap<String , Object> fromJSONtoItems(String result){
 		
 		JSONObject rjson = new JSONObject(result);
-		//System.out.println("rjson = "+ rjson);
-		
+		 System.out.println("rjson = "+ rjson);
+	 
+		 int count  =rjson.getInt("totalResults");
+		 //System.out.println("count = "+ count);
+		 
 		JSONArray item = rjson.getJSONArray("item");
 		//System.out.println("item = "+ item);
 		
+		HashMap<String , Object>  map = new HashMap<>();
 		
 		ArrayList<BooksDto> booksDtoList = new ArrayList<BooksDto>();
 		for(int i = 0 ; i < item.length();i++) {
-			JSONObject docJson = item.getJSONObject(i);
-			//System.out.println("doc = " + docJson );
+			JSONObject Json = item.getJSONObject(i);
 			
-			BooksDto booksDto = new BooksDto(docJson);
+			BooksDto booksDto = new BooksDto(Json);
+			
 			booksDtoList.add(booksDto);
 		}
-		return booksDtoList;		
+		
+		map.put("list", booksDtoList);
+		map.put("totalCnt" , count);
+		
+		return map;		
 	}
 	
 	public static void main(String[] args) {
-		//String result = getList();
-		//fromJSONtoItems(result);
+		String result = getBestsellerList(1,53471);
+		fromJSONtoItems(result);
 	}
 }

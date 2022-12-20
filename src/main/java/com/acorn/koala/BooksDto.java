@@ -17,6 +17,17 @@ public class BooksDto {
 		this.priceStandard = json.getInt("priceStandard");
 	}
 
+	
+
+	public BooksDto(String title, String author, String cover, int priceStandard) {
+		super();
+		this.title = title;
+		this.author = author;
+		this.cover = cover;
+		this.priceStandard = priceStandard;
+	}
+
+
 
 	public String getTitle() {
 		return title;

@@ -9,6 +9,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
+	
+	let start = 1;
+	
 	$(".menu").mouseenter(function(){
 		$(".menu").stop().animate(
 			{height:"280px"},300,'swing'		
@@ -48,7 +51,13 @@ $(document).ready(function(){
 			$(".submenu").hide();
 	});
 		
+	$("#searchEnter").click(function() {
 		
+		let searchWord = $("#searchInput").val();
+		//alert(searchWord);
+		
+		
+	});
 		
 });
 </script>
@@ -249,8 +258,8 @@ $(document).ready(function(){
 					
 					
 					<div class="searchbar">
-						<input type="text">
-						<a href="#"><img src="https://thumb.ac-illust.com/61/61843482164d65671d718c86101fa2a7_t.jpeg"></a>
+						<input id="searchInput" type="text">
+						<a id = "searchEnter" ><img src="https://thumb.ac-illust.com/61/61843482164d65671d718c86101fa2a7_t.jpeg"></a>
 					</div>
 				</div>
 			</div>
