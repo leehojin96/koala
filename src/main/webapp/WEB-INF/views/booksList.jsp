@@ -103,18 +103,22 @@ to{opacity: 1;}}
 	-webkit-box-orient: vertical;
 }
 
-#pagingBox {
-	width: 200px;
-	margin: 0px auto;
+#pagingBox1 {
 	display: flex;
 	margin-top: 50px;
 	margin-bottom: 100px;
+	
+}
+
+#pagingBox2{
+display : flex;
+margin: 0px auto;
 }
 #paging{
 	display: flex;
 }
 
-#pagingBox input {
+#pagingBox1 input {
 	padding: 10px 5px 10px 5px;
 	margin-right: 20px;
 	border-style: none;
@@ -239,7 +243,7 @@ input[type=radio]:checked+label {
 					for="selectInput30">고등학교 참고서</label></li>
 			</ul>
 			<ul id="selectMiddle">
-
+				
 			</ul>
 		</div>
 
@@ -265,14 +269,14 @@ input[type=radio]:checked+label {
 
 
 		</div>
-		<div id="pagingBox">
-		<input class="pageBtn1" type="button" value="<<">
-		<input class="pageBtn2" type="button" value="<">
+		<div id="pagingBox1">
+		<div id ="pagingBox2">
+		<input class="pageBtn1" type="button" value="<">
 		<div id="paging">
 		<!-- 페이지 번호 빈칸 -->
 		</div>
-		<input class="pageBtn3" type="button" value=">">
-		<input class="pageBtn4" type="button" value=">>">
+		<input class="pageBtn2" type="button" value=">">
+		</div>
 		</div>
 	</section>
 

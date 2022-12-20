@@ -100,7 +100,7 @@
 						//첫 로드
 						showList(start,categoryId);
 						 
-						//페이지 클릭시 
+						//페이지 번호 클릭시 
 						$(document).on('click', '.pageBtn', function() {
 							start = this.value;
 							window.scrollTo(0, 0);
@@ -114,8 +114,13 @@
 							start = 1;
 							window.scrollTo(0,0);
 							showList(start,categoryId);
+							
 						});
 						
+						
+						function MiddleList(categoryId) {
+							let middleList = [{name:"",categoryId:""},{name:"",categoryId:""}]
+						}
 					});
 	
 </script>
