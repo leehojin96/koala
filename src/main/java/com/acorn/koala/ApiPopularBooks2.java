@@ -207,7 +207,7 @@ public class ApiPopularBooks2 {
 	public static HashMap<String , Object> fromJSONtoItems(String result){
 		
 		JSONObject rjson = new JSONObject(result);
-		 System.out.println("rjson = "+ rjson);
+		 //System.out.println("rjson = "+ rjson);
 	 
 		 int count  =rjson.getInt("totalResults");
 		 //System.out.println("count = "+ count);
@@ -233,7 +233,7 @@ public class ApiPopularBooks2 {
 	}
 	
 	public static void main(String[] args) {
-		String result = getBestsellerList(1,53471);
-		fromJSONtoItems(result);
+		//String result = getBestsellerList(1,53471);
+		//fromJSONtoItems(result);
 	}
 }

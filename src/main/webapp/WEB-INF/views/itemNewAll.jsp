@@ -15,6 +15,7 @@
 						
 						//페이지 번호
 						let start = 1;
+						let startSector = 0;
 						
 						//카테고리 번호
 						let categoryId = 0;
@@ -56,6 +57,7 @@
 							for (let i = 0; i < data.length; i++) {
 								let item = data[i];
 								str += "<a href="
+										+ "''"
 										+ "onmouseenter='zoomIn(event)' onmouseleave='zoomOut(event)'>" // 마우스 호버 애니메이션
 										+ "<div id='book'>"
 										+ "<div id='bookImg'>"
@@ -73,27 +75,36 @@
 						
 						//권수에 따라 페이지 번호 생성
 						function pageNumberCreate(data_totalBooks) {
-							let totalPage = data_totalBooks/50;
+							let totalPage = data_totalBooks / 50;
 							console.log(totalPage);
-							if(totalPage%1 != 0)
-							totalPage++;
+							if (totalPage % 1 != 0)
+								totalPage++;
 							console.log(totalPage);
-							let str="";
-							for (let i = 1 ; i <= totalPage ; i++){
-								str += "<input class='pageBtn' type='button' value='"+i+"'/>";
+							
+							
+							let str = "";
+							
+							
+							if((startSector+1)*6 <= totalPage){				
+								for (let i = 1+(startSector*6); i <= 6+(startSector*6) ; i++) {
+									str += "<input class='pageBtn' type='button' value='"+i+"'/>";
+									}
+							}else{
+								for (let i = 1+(startSector*6); i <= totalPage ; i++) {
+									str += "<input class='pageBtn' type='button' value='"+i+"'/>";
+									}
 							}
 							return str;
-						}
+							}
 						
 						//첫 로드
 						showList(start,categoryId);
 						 
 						//페이지 클릭시 
-						$(".pageBtn").on('click',function() {
-							alert(this.value);
+						$(document).on('click', '.pageBtn', function() {
 							start = this.value;
-							window.scrollTo(0,0);
-							showList(start,categoryId);
+							window.scrollTo(0, 0);
+							showList(start, categoryId);
 						});
 							
 						
@@ -116,10 +127,6 @@
 	
 	<%@ include file="booksList.jsp"%>
 	
-			<div id="paging">
-			</div>
-			<input class="pageBtn" type="button"value="1">
-			</section>
 
 	<%@ include file="footer.jsp"%>
 
