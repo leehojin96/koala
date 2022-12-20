@@ -210,6 +210,7 @@ input[type=radio]:checked+label {
 							for (let i = 0; i < data.length; i++) {
 								let item = data[i];
 								str += "<a href="
+										+ "''"
 										+ "onmouseenter='zoomIn(event)' onmouseleave='zoomOut(event)'>" // 마우스 호버 애니메이션
 										+ "<div id='book'>"
 										+ "<div id='bookImg'>"
