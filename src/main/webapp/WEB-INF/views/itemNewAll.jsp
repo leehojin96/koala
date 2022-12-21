@@ -16,6 +16,7 @@
 						//페이지 번호
 						let start = 1;
 						let startPart = 0;
+						let totalPage;
 						
 						//카테고리 번호
 						let categoryId = 0;
@@ -75,22 +76,29 @@
 						
 						//권수에 따라 페이지 번호 생성
 						function pageNumberCreate(data_totalBooks) {
-							let totalPage = data_totalBooks / 50;
-							console.log(totalPage);
+							totalPage = data_totalBooks / 50;
 							if (totalPage % 1 != 0)
 								totalPage++;
+							
+							totalPage = totalPage/1;
 							console.log(totalPage);
 							
 							
 							let str = "";
 							
-							
+							// 한 파트에 6개 이상 페이지 보일 수 있는 경우
 							if((startPart+1)*6 <= totalPage){				
 								for (let i = 1+(startPart*6); i <= 6+(startPart*6) ; i++) {
+									if(start==i)
+									str += "<input class='pageBtn' type='button' style='font-weight : 900 ;' value='"+i+"'/>";
+									else
 									str += "<input class='pageBtn' type='button' value='"+i+"'/>";
 									}
-							}else{
+							}else{ // 한 파트에 6개 미만 페이지 보일 수 있는 경우 : 마지막 파트를 위한 코드
 								for (let i = 1+(startPart*6); i <= totalPage ; i++) {
+									if(start==i)
+									str += "<input class='pageBtn' type='button' style='font-weight : 900 ;' value='"+i+"'/>";
+									else
 									str += "<input class='pageBtn' type='button' value='"+i+"'/>";
 									}
 							}
@@ -103,24 +111,39 @@
 						//페이지 번호 클릭시 
 						$(document).on('click', '.pageBtn', function() {
 							start = this.value;
-							window.scrollTo(0, 0);
 							showList(start, categoryId);
+							window.scrollTo(0, 0);
 						});
 						
 						//partBtn 클릭시
 						$(document).on('click', '.partBtn', function() {
-							if(startPart == 0){
-								if(this.value == '<'){
+							
+							if(this.value == '<'){
+								//첫번째 part일 경우 1페이지로								
+								if(startPart == 0){
 									start=1;
 									window.scrollTo(0, 0);
 									showList(start, categoryId);
-								}else if(this.value == '>'){
-									if(1 > totalPage/6 - startPart){										
-									start = totalPage;
-									window.scrollTo(0, 0);
+									
+								}else{ //그 외 이전 파트의 첫번째 페이지로
+									startPart--;
+									start = startPart*6 + 1;
 									showList(start, categoryId);
-									}else{
+									window.scrollTo(0, 0);
+								}
+							}else{
+								if(this.value == '>'){
+									//마지막 part일 경우 마지막 페이지로
+									if(1 > totalPage/6 - startPart){
+										start = totalPage;
+										showList(start, categoryId);
+										window.scrollTo(0, 0);
 										
+									}else{ // 그 외 다음 파트의 첫번째 페이지로
+										startPart++;
+										start = startPart*6 + 1;
+										showList(start, categoryId);
+										window.scrollTo(0, 0);
 									}
 								}
 							}

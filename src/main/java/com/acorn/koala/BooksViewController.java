@@ -79,5 +79,4 @@ public class BooksViewController {
 		return map;
 	}
 
-
 }
