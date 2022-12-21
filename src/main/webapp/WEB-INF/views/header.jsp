@@ -280,7 +280,7 @@ function kakaoLogout() {
 					
 					<div class="searchbar">
 						<input id="searchInput" type="text">
-						<a id = "searchEnter"  href="javascript:search();" ><img src="https://thumb.ac-illust.com/61/61843482164d65671d718c86101fa2a7_t.jpeg"></a>
+						<a href="javascript:search();" id = "searchEnter"   ><img src="https://thumb.ac-illust.com/61/61843482164d65671d718c86101fa2a7_t.jpeg"></a>
 					</div>
 				</div>
 			</div>

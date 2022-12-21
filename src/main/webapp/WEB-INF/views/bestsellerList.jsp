@@ -155,44 +155,25 @@
 						});
 							
 						
-						//카테고리 클릭시
+						//대분류 카테고리 클릭시
 						$(document).on('click', ".selectInput", function() {
+							$(".Middle").hide();
 							categoryId = this.value;
 							start = 1;
 							window.scrollTo(0,0); 	
 							showList(start,categoryId);
-							let middleCategory =  MiddleList(this.value);
-							$("#selectMiddle").html(middleCategory);
+							$("."+this.value).show();
+						});
+						
+						//소분류 카테고리 클릭시
+						$(document).on('click', ".selectMiddle", function() {
+							categoryId = this.value;
+							start = 1;
+							window.scrollTo(0,0); 	
+							showList(start,categoryId);
 							
 						});
 						
-						
-						function MiddleList(categoryId) {
-							let middleCategory = "";
-							let i = 1;
-							switch (categoryId) {
-							case '55890':
-							let middleList = [{name:"건강운동",categoryId:"53516"},{name:"건강정보",categoryId:"53521"}];
-							for(let i = 0 ; i < middleList.length ; i++){
-								
-								middleCategory += "<li class='selectBtn'><input type='radio' class='selectInput' id='selectMiddle"
-								+i
-								+"' name='middle' value='"
-								+middleList[i].categoryId
-								+"'/> <label	for='selectMiddle"
-								+i
-								+"'>"
-								+middleList[i].name
-								+"</label></li>"
-								
-							}
-								break;
-
-							default:
-								break;
-							}
-							return middleCategory;
-						}
 					});
 	
 </script>

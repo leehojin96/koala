@@ -150,27 +150,24 @@
 						});
 							
 						
-						//카테고리 클릭시
-						$(".selectInput").click(function() {
-							categoryId = this.value;;
+						//대분류 카테고리 클릭시
+						$(document).on('click', ".selectInput", function() {
+							$(".Middle").hide();
+							categoryId = this.value;
 							start = 1;
-							window.scrollTo(0,0);
+							window.scrollTo(0,0); 	
+							showList(start,categoryId);
+							$("."+this.value).show();
+						});
+						
+						//소분류 카테고리 클릭시
+						$(document).on('click', ".selectMiddle", function() {
+							categoryId = this.value;
+							start = 1;
+							window.scrollTo(0,0); 	
 							showList(start,categoryId);
 							
 						});
-						
-						
-						function MiddleList(categoryId) {
-							switch (categoryId) {
-							case 55890:
-							let middleList = [{name:"",categoryId:""},{name:"",categoryId:""}]
-								
-								break;
-
-							default:
-								break;
-							}
-						}
 					});
 	
 </script>
