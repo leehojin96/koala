@@ -57,24 +57,27 @@ public class BooksViewController {
 	}
 	
 	
-	/*
+	
 	
 	@RequestMapping(value="/Search",method=RequestMethod.GET)
-	public String  booksSearch(Model m) {
-		return "search";
+	public String  booksSearch(String query,Model m) {
+		
+	// m.addAttribute("query",query);
+		
+		return "booksSearch";  // view 이름
 	}
 	
 	@ResponseBody
 	@RequestMapping(value="/books/BooksSearch",method=RequestMethod.GET)
-	public ArrayList<BooksDto> getSearch(String query,int start) {
+	public HashMap<String, Object> getSearch(int start,int categoryId,String query) {
 		
-		String result = apiPopularBooks.getSearch(start,query);
+		String result = apiPopularBooks.getSearch(start,categoryId,query);
 		
-		ArrayList<BooksDto> list = apiPopularBooks.fromJSONtoItems(result);
+		HashMap<String, Object> map = apiPopularBooks.fromJSONtoItems(result);
 		      
 		
-		return list;
+		return map;
 	}
 
-*/
+
 }

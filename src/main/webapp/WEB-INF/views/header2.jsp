@@ -6,11 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 <script>
 $(document).ready(function(){
+	
+	let start = 1;
+	
 	$(".menu").mouseenter(function(){
 		$(".menu").stop().animate(
 			{height:"280px"},300,'swing'		
@@ -50,29 +51,16 @@ $(document).ready(function(){
 			$(".submenu").hide();
 	});
 		
+	$("#searchEnter").click(function() {
 		
+		let searchWord = $("#searchInput").val();
+		//alert(searchWord);
+		
+		
+	});
 		
 });
-Kakao.init('cd19a2be4e5a00bdbf0cb07a178907dc');
-
-function kakaoLogout() {
-    if (Kakao.Auth.getAccessToken()) {
-      Kakao.API.request({
-        url: '/v1/user/unlink',
-        success: function (response) {
-        	location.href="<c:url value='/kakaoLogout' />";
-        	
-        },
-        fail: function (error) {
-          console.log(error)
-        },
-      })
-      Kakao.Auth.setAccessToken(undefined);
-    }
-  }  
-
 </script>
-
 <style>
 @import url('https://fonts.googleapis.com/css?family=Jua:400');
 	*{
@@ -135,7 +123,6 @@ function kakaoLogout() {
 		color:gray;
 		font-size:11px;
 		font-weight:bold;
-		font-family:Jua;
 	}
 	
 	header .header_section .header_login span a{
@@ -212,30 +199,22 @@ function kakaoLogout() {
 	<header>
 		<div class="header_wrap">
 			<div class="header_logo" >
-				<a href="<c:url value='/index'/>"><img src="https://ifh.cc/g/BKg92h.jpg"></a>
+				<a href="/koala/index"><img src="https://ifh.cc/g/BKg92h.jpg"></a>
 			</div>
 			
 			<div class="header_section">
 				<div class="header_login">
-						<span><a href="<c:url value='/index'/>"><img src="https://www.data4library.kr/resources/img/background/g_home_icon.gif" class="home_icon">home</a> </span>
+						<span><a href="/koalas/index"><img src="https://www.data4library.kr/resources/img/background/g_home_icon.gif" class="home_icon">home</a> </span>
 						<span>|</span>
 						<c:choose>
-							<c:when test="${id == null }">
-								<span><a href="<c:url value='/login'/>">로그인</a></span>
+							<c:when test="${userid == null }">
+								<span><a href="/koalas/login">로그인</a></span>
 								<span>|</span>
 								<span><a href="#">회원가입 </a></span>
 							</c:when>
 							
-							<c:when test="${id != null && logintype == '0' }">
-								<span><a href="<c:url value='/logout'/>">로그아웃</a></span>
-							</c:when>
-							
-							<c:when test="${id != null && logintype == '1' }">
-								<span><a style="cursor:pointer" onclick="kakaoLogout()">카카오 로그아웃</a></span>
-							</c:when>
-							
-							<c:when test="${id != null && logintype == '2' }">
-								<span><a style="cursor:pointer" onclick="naverLogout()" id="btn_logout" >네이버 로그아웃</a></span>
+							<c:when test="${userid != null }">
+								<span><a href="/koalas/logout">로그아웃</a></span>
 							</c:when>
 						</c:choose>
 						<span>|</span>
@@ -246,11 +225,11 @@ function kakaoLogout() {
 					
 						<div class="menu">
 				            <ul class="menu_wrap">
-				                <li class="mainmenu"><a href="/koala/books">도서</a>
+				                <li class="mainmenu"><a href="#">메뉴1</a>
 				                    <ul class="submenu">
-				                        <li><a href="/koala/BestsellerList">베스트셀러</a></li>
-				                        <li><a href="/koala/ItemNewAll">신간 도서</a></li>
-				                        <li><a href="/koala/ItemNewSpecial">신간 인기 도서</a></li>
+				                        <li><a href="#">서브메뉴1</a></li>
+				                        <li><a href="#">서브메뉴2</a></li>
+				                        <li><a href="#">서브메뉴3</a></li>
 				                    </ul>
 				                </li>
 				              
@@ -282,32 +261,17 @@ function kakaoLogout() {
 						<input id="searchInput" type="text">
 						<a id = "searchEnter"  href="javascript:search();" ><img src="https://thumb.ac-illust.com/61/61843482164d65671d718c86101fa2a7_t.jpeg"></a>
 					</div>
+					
+					
+					<script>
+					function search(){
+						let query = document.getElementById("searchInput").value;
+					    window.location.href="/koala/Search?query=" + query;
+					}
+					</script>
 				</div>
 			</div>
 		</div>
 	</header>
 </body>
-<script>
-var testPopUp;
-function openPopUp() {
-    testPopUp= window.open("https://nid.naver.com/nidlogin.logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
-}
-function closePopUp(){
-    testPopUp.close();
-}
-
-function naverLogout() {
-	openPopUp();
-	setTimeout(function() {
-		closePopUp();
-		location.href="<c:url value='/naverLogout'/>";
-		}, 10);
-	
-	
-}
-function search(){
-	let query = document.getElementById("searchInput").value;
-    window.location.href="/koala/Search?query=" + query;
-}
-</script>
 </html>

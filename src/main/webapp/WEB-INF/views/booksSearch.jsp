@@ -13,6 +13,9 @@
 	$(document).ready(
 					function() {
 						
+						//검색 String						
+						let query = '${param.query}' ;
+						
 						//페이지 번호
 						let start = 1;
 						let startPart = 0;
@@ -25,8 +28,8 @@
 							//alert("showList() 실행");
 							$.ajax({
 								type : "GET",
-								url : "/koala/books/ItemNewAll",
-								data : {start : start, categoryId : categoryId},
+								url : "/koala/books/BooksSearch",
+								data : {start : start, categoryId : categoryId, query:query},
 								success : function(data) {
 									
 									//console.log(data);
@@ -136,7 +139,7 @@
 							
 						});
 						
-						
+						//소분류
 						function MiddleList(categoryId) {
 							let middleList = [{name:"",categoryId:""},{name:"",categoryId:""}]
 						}

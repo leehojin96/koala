@@ -66,7 +66,7 @@ public class ApiPopularBooks2 {
 		return result.toString();
 	}
 	
-	//신간 도서 api
+	//신간 도서 API
 	public static String getItemNewAll(int start,int categoryId) {
 		
 		
@@ -111,7 +111,7 @@ public class ApiPopularBooks2 {
 	}
 	
 	//도서 검색 api
-	public static String getSearch(int start,String query) {
+	public static String getSearch(int start,int categoryId,String query) {
 		
 		
 		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx"
@@ -133,6 +133,8 @@ public class ApiPopularBooks2 {
 				+ "Version=20131101"
 				+ "&"
 				+ "Cover=Big"
+				+ "&"
+				+ "CategoryId="+categoryId
 				;
 				
 		

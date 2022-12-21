@@ -271,11 +271,11 @@ input[type=radio]:checked+label {
 		</div>
 		<div id="pagingBox1">
 		<div id ="pagingBox2">
-		<input class="pageBtn1" type="button" value="<">
+		<input class="partBtn" type="button" value="<">
 		<div id="paging">
 		<!-- 페이지 번호 빈칸 -->
 		</div>
-		<input class="pageBtn2" type="button" value=">">
+		<input class="partBtn" type="button" value=">">
 		</div>
 		</div>
 	</section>
