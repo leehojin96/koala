@@ -21,38 +21,68 @@ $(document).ready(function($) {
 
 });
 
-//클래스가 scroll_move인 a 태그를 눌렀을때 발생되게 하는 이벤트
-
-//$(this.hash) a태그에 있는 해쉬 값으로 스크롤링 되며 이동
-
-//500 은 스크롤 속도
 
 </script>
+
+<style>
+	#test{
+		width: 500px;
+		height: 300px;
+		background-color: red;
+		opacity: 0.5;
+		position: relative;
+		
+	}
+	#test02{
+		width: 400px;
+		height: 100px;
+		position: absolute;
+		top:30px;
+		right: 30px;
+	}
+	
+	#test h1{
+		//font-size:100px;
+	}
+</style>
 </head>
 <body>
 
-<div class="scroll-moveBox flex flex-br-c">
-  <ul>
-    <li><a href="#div1" id="scroll_move">div1로 이동</a></li>
-    <li><a href="#div2" id="scroll_move">div2로 이동</a></li>
-    <li><a href="#div3" id="scroll_move">div3로 이동</a></li>
-    <li><a href="#div4" id="scroll_move">div4로 이동</a></li>
-  </ul>
+<div id ="test">
+	<div id ="test02">
+	<h1>TEST!!!</h1>
+	
+	
+	
+
+</div>
+
 </div>
 
 
-<div id="div1" style="background-color: gray; width: 1250px; height: 1000px;">div1</div>
 
-
-<div id="div2" style="background-color: black; width: 1250px; height: 1000px;">div2</div>
-
-
-<div id="div3" style="background-color: red; width: 1250px; height: 1000px;">div3</div>
-
-
-<div id="div4" style="background-color: blue; width: 1250px; height: 1000px;">div4</div>
-
-
+<input type="button">
+<input type="checkbox">
+<input type="color">
+<input type="date">
+<input type="datetime-local">
+<input type="email">
+<input type="file">
+<input type="hidden">
+<input type="image">
+<input type="month">
+<input type="number">
+<input type="password">
+<input type="radio">
+<input type="range">
+<input type="reset">
+<input type="search">
+<input type="submit">
+<input type="tel">
+<input type="text">
+<input type="time">
+<input type="url">
+<input type="week">
 
 </body>
 </html>
