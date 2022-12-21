@@ -132,13 +132,14 @@ margin: 0px auto;
 	padding: 30px;
 }
 
-#selectTop {
+#selectTop , #selectMiddle {
 	list-style: none;
 	display: flex;
 	text-align: center;
 	width: 1300px;
 	flex-flow: wrap;
 }
+
 
 .selectBtn {
 	margin-right: 15px;
@@ -165,7 +166,24 @@ input[type=radio]:checked+label {
 	color: white;
 }
 </style>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+/*
+$(document).ready(function() {
+		$("#categoryDiv").mouseenter(function() {
+			$("#categoryDiv").stop().animate(
+					{height:"150px"},300,'swing'		
+				);
+		});
+		
+		$("#categoryDiv").mouseleave(function(){
+			$("#categoryDiv").stop().animate(
+					{height:"50px"},500	
+				);
+		});
+});
+*/
+</script>
 </head>
 <body>
 	
@@ -242,8 +260,8 @@ input[type=radio]:checked+label {
 					id="selectInput30" name="top" value="76001" /><label
 					for="selectInput30">고등학교 참고서</label></li>
 			</ul>
-			<ul id="selectMiddle">
-				
+			<ul id = "selectMiddle">
+			
 			</ul>
 		</div>
 

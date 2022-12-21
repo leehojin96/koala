@@ -18,6 +18,7 @@ public class BooksViewController {
 	
 	@RequestMapping(value="/BestsellerList",method=RequestMethod.GET)
 	public String  bestsellerListView() {
+		System.out.println("af");
 		return "bestsellerList"; // views/books.jsp 이동
 	}
 	

@@ -161,7 +161,15 @@
 						
 						
 						function MiddleList(categoryId) {
+							switch (categoryId) {
+							case 55890:
 							let middleList = [{name:"",categoryId:""},{name:"",categoryId:""}]
+								
+								break;
+
+							default:
+								break;
+							}
 						}
 					});
 	
