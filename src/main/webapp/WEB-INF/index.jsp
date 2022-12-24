@@ -391,7 +391,6 @@
 				            </ul>
        					</div>
 					
-					
 					<div class="searchbar">
 						<input type="text">
 						<a href="#"><img src="https://thumb.ac-illust.com/61/61843482164d65671d718c86101fa2a7_t.jpeg"></a>
