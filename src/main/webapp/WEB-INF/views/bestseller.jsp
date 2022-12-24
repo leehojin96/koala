@@ -7,56 +7,58 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-	$(document).ready(
+	$(document)
+			.ready(
 					function() {
-						
-						//검색 String						
-						let query = '${param.query}' ;
-						
+
 						//페이지 번호
 						let start = 1;
 						let startPart = 0;
 						let totalPage;
-						
+
 						//카테고리 번호
 						let categoryId = 0;
 
 						//메인 함수
-						function showList(start,categoryId) {
+						function showList(start, categoryId) {
 							//alert("showList() 실행");
-							$.ajax({
-								type : "GET",
-								url : "/koala/books/Search",
-								data : {start : start, categoryId : categoryId, query:query},
-								success : function(data) {
-									
-									//console.log(data);
-									
-									let data_item = data.list;
-									let data_totalBooks = data.totalCnt;
-									
-									let dataHtml = toHtml(data_item);
+							$
+									.ajax({
+										type : "GET",
+										url : "/koala/books/Bestseller",
+										data : {
+											start : start,
+											categoryId : categoryId
+										},
+										success : function(data) {
 
-									$("#bookEmpty").html(dataHtml);
-									
-									let dataPageHtml = pageNumberCreate(data_totalBooks);
-									
-									$("#paging").html(dataPageHtml);
-								},
-								error : function() {
-									alert(arror);
-								}
-							});
+											//console.log(data);
+
+											let data_item = data.list;
+											let data_totalBooks = data.totalCnt;
+
+											let dataHtml = toHtml(data_item);
+
+											$("#bookEmpty").html(dataHtml);
+
+											let dataPageHtml = pageNumberCreate(data_totalBooks);
+
+											$("#paging").html(dataPageHtml);
+										},
+										error : function() {
+											alert(arror);
+										}
+									});
 						}
 
-						
 						//ArrayList<BooksDto> 타입 -> 반복분 통해 한권씩 데이터 뽑아내고 html 형식으로 변환
 						function toHtml(data) {
 							//alert("toHtml" + data);
-							
+
 							let str = "";
 							for (let i = 0; i < data.length; i++) {
 								let item = data[i];
@@ -76,7 +78,7 @@
 							}
 							return str;
 						}
-						
+
 						//권수에 따라 페이지 번호 생성
 						function pageNumberCreate(data_totalBooks) {
 							totalPage = data_totalBooks / 50;
@@ -175,8 +177,8 @@
 							let a = $("input[id="+this.value+"Middle]:checked").next().text();
 							$("#selectState2").html(""+a);
 						});
+						
 					});
-	
 	
 </script>
 
@@ -184,9 +186,10 @@
 </head>
 <body>
 
+
 	
+
 	<%@ include file="booksList.jsp"%>
-	
 
 	<%@ include file="footer.jsp"%>
 

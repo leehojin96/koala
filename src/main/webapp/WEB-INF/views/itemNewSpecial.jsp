@@ -29,14 +29,13 @@
 							$
 									.ajax({
 										type : "GET",
-										url : "/koala/books/BestsellerList",
+										url : "/koala/books/ItemNewSpecial",
 										data : {
 											start : start,
 											categoryId : categoryId
 										},
 										success : function(data) {
 
-											//console.log(data);
 
 											let data_item = data.list;
 											let data_totalBooks = data.totalCnt;
@@ -163,6 +162,9 @@
 							window.scrollTo(0,0); 	
 							showList(start,categoryId);
 							$("."+this.value).show();
+							$("#"+this.value+"Middle").prop('checked',true);
+							$("#selectState1").html($("#"+this.value+"Top").next().text()+" >");
+							$("#selectState2").html("전체");
 						});
 						
 						//소분류 카테고리 클릭시
@@ -171,9 +173,9 @@
 							start = 1;
 							window.scrollTo(0,0); 	
 							showList(start,categoryId);
-							
+							let a = $("input[id="+this.value+"Middle]:checked").next().text();
+							$("#selectState2").html(""+a);
 						});
-						
 					});
 	
 </script>

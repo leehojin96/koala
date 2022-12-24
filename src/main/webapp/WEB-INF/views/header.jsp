@@ -248,7 +248,7 @@ function kakaoLogout() {
 				            <ul class="menu_wrap">
 				                <li class="mainmenu"><a href="/koala/books">도서</a>
 				                    <ul class="submenu">
-				                        <li><a href="/koala/BestsellerList">베스트셀러</a></li>
+				                        <li><a href="/koala/Bestseller">베스트셀러</a></li>
 				                        <li><a href="/koala/ItemNewAll">신간 도서</a></li>
 				                        <li><a href="/koala/ItemNewSpecial">신간 인기 도서</a></li>
 				                    </ul>

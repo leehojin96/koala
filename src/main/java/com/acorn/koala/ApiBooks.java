@@ -20,10 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Component
-public class ApiPopularBooks2 {
+public class ApiBooks {
 
 	//베스트셀러 API
-	public static String getBestsellerList(int start,int categoryId) {
+	public static String getBestseller(int start,int categoryId) {
 		
 		
 		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
@@ -54,13 +54,9 @@ public class ApiPopularBooks2 {
 
 		//XML -> JSONObecjt
 		JSONObject resultObj = XML.toJSONObject(responseBody);
-		 //System.out.println(responseBody);
-		//System.out.println("result=" + resultObj.toString());
 		
-		// "response" key를 JSONObjext 객체로 생성
+		// "object" key를 JSONObjext 객체로 생성
 		JSONObject result = resultObj.getJSONObject("object");
-		// System.out.println(result);
-		 //
 		 
 		
 		return result.toString();
@@ -98,17 +94,53 @@ public class ApiPopularBooks2 {
 
 		//XML -> JSONObecjt
 		JSONObject resultObj = XML.toJSONObject(responseBody);
-		 //System.out.println(responseBody);
-		//System.out.println("result=" + resultObj.toString());
 		
-		// "response" key를 JSONObjext 객체로 생성
+		// "object" key를 JSONObjext 객체로 생성
 		JSONObject result = resultObj.getJSONObject("object");
-		// System.out.println(result);
-		 //
 		 
 		
 		return result.toString();
 	}
+	
+	//신간 인기 도서 API
+		public static String getItemNewSpecial(int start,int categoryId) {
+			
+			
+			String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
+					+ "?"
+					+ "ttbkey=ttbst20352313001"
+					+ "&"
+					+ "QueryType=ItemNewSpecial"
+					+ "&"
+					+ "MaxResults=50"
+					+ "&"
+					+ "start="+start
+					+ "&"
+					+ "SearchTarget=Book"
+					+ "&"
+					+ "output=xml"//xml or json
+					+ "&"
+					+ "Version=20131101"
+					+ "&"
+					+ "Cover=Big"
+					+ "&"
+					+ "CategoryId="+categoryId
+					;
+					
+			
+			// 결과
+			Map<String, String> requestHeaders = new HashMap<String, String>();
+			String responseBody = get(apiURL, requestHeaders);
+
+			//XML -> JSONObecjt
+			JSONObject resultObj = XML.toJSONObject(responseBody);
+			
+			// "object" key를 JSONObjext 객체로 생성
+			JSONObject result = resultObj.getJSONObject("object");
+			 
+			
+			return result.toString();
+		}
 	
 	//도서 검색 api
 	public static String getSearch(int start,int categoryId,String query) {
@@ -144,12 +176,9 @@ public class ApiPopularBooks2 {
 
 		//XML -> JSONObecjt
 		JSONObject resultObj = XML.toJSONObject(responseBody);
-		//System.out.println(responseBody);
-		//System.out.println("result=" + resultObj.toString());
 		
-		// "response" key를 JSONObjext 객체로 생성
+		// "object" key를 JSONObjext 객체로 생성
 		JSONObject result = resultObj.getJSONObject("object");
-		//System.out.println(result);
 		
 		return result.toString();
 	}
@@ -176,7 +205,6 @@ public class ApiPopularBooks2 {
 		}
 	}
 
-	// apiurl 작업
 	private static HttpURLConnection connect(String apiUrl) {
 		try {
 			URL url = new URL(apiUrl);
@@ -206,6 +234,7 @@ public class ApiPopularBooks2 {
         }
     }
 	
+	//도서권수량 , 도서List -> map에 넣어서 return
 	public static HashMap<String , Object> fromJSONtoItems(String result){
 		
 		JSONObject rjson = new JSONObject(result);
