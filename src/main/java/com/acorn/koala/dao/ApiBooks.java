@@ -1,4 +1,4 @@
-package com.acorn.koala;
+package com.acorn.koala.dao;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +18,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.acorn.koala.dto.BooksDto;
 
 @Component
 public class ApiBooks {

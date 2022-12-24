@@ -1,4 +1,4 @@
-package com.acorn.koala;
+package com.acorn.koala.dto;
 
 import org.json.JSONObject;
 
