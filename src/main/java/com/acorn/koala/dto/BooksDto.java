@@ -7,6 +7,7 @@ public class BooksDto {
 	String title;
 	String author;
 	String cover;
+	Object isbn13;
 	int priceStandard;
 	
 
@@ -14,18 +15,29 @@ public class BooksDto {
 		this.title = json.getString("title");
 		this.author = json.getString("author");
 		this.cover = json.getString("cover");
+		this.isbn13 = json.get("isbn13");
 		this.priceStandard = json.getInt("priceStandard");
 	}
 
-	
 
-	public BooksDto(String title, String author, String cover, int priceStandard) {
+
+
+	public BooksDto(String title, String author, String cover, Object isbn13, int priceStandard) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.cover = cover;
+		this.isbn13 = isbn13;
 		this.priceStandard = priceStandard;
 	}
+
+
+
+	public BooksDto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 
 
 
@@ -69,11 +81,37 @@ public class BooksDto {
 	}
 
 
+
+
+
+	public Object getIsbn() {
+		return isbn13;
+	}
+
+
+
+
+	public void setIsbn(Object isbn13) {
+		this.isbn13 = isbn13;
+	}
+
+
+
+
 	@Override
 	public String toString() {
-		return "BooksDto [title=" + title + ", author=" + author + ", cover=" + cover + ", priceStandard="
-				+ priceStandard + "]";
+		return "BooksDto [title=" + title + ", author=" + author + ", cover=" + cover + ", isbn13=" + isbn13
+				+ ", priceStandard=" + priceStandard + "]";
 	}
+
+
+
+
+	
+
+
+
+
 	
 	
 	

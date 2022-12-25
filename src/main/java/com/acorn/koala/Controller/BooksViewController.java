@@ -1,6 +1,7 @@
 package com.acorn.koala.Controller;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.acorn.koala.dao.ApiBooks;
+import com.acorn.koala.dto.BooksDetailDto;
+import com.acorn.koala.dto.BooksDetailDto;
 
 @Controller
 public class BooksViewController {
@@ -93,5 +96,32 @@ public class BooksViewController {
 
 		return map;
 	}
+
+	// 도서 디테일 뷰
+	@RequestMapping(value = "/books/Detail", method = RequestMethod.GET)
+	public String booksDetailView(String isbn13, Model m) {
+		
+		String result = apiBooks.getDetail(isbn13);
+		
+		BooksDetailDto booksDetail = apiBooks.fromJSONtoItems2(result);
+		
+		m.addAttribute("title", booksDetail.getTitle());
+		m.addAttribute("link", booksDetail.getLink());
+		m.addAttribute("author", booksDetail.getAuthor());
+		m.addAttribute("pubDate", booksDetail.getPubDate());
+		m.addAttribute("description", booksDetail.getDescription());
+		m.addAttribute("priceSales", booksDetail.getPriceSales());
+		m.addAttribute("priceStandard", booksDetail.getPriceStandard());
+		m.addAttribute("mileage", booksDetail.getMileage());
+		m.addAttribute("cover", booksDetail.getCover());
+		m.addAttribute("categoryId", booksDetail.getCategoryId());
+		m.addAttribute("categoryName", booksDetail.getCategoryName());
+		m.addAttribute("publisher", booksDetail.getPublisher());
+		
+		
+		return "detail"; // view 이름
+	}
+
+	
 
 }

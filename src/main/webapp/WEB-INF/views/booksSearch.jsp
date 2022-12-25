@@ -61,7 +61,7 @@
 							for (let i = 0; i < data.length; i++) {
 								let item = data[i];
 								str += "<a href="
-										+ "''"
+										+ "'javascript:detail("+item.isbn+");'"
 										+ "onmouseenter='zoomIn(event)' onmouseleave='zoomOut(event)'>" // 마우스 호버 애니메이션
 										+ "<div id='book'>"
 										+ "<div id='bookImg'>"
@@ -177,6 +177,9 @@
 						});
 					});
 	
+	function detail(isbn13) {
+		window.location.href = "/koala/books/Detail?isbn13=" + isbn13;
+	}
 	
 </script>
 

@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.acorn.koala.dto.BooksDetailDto;
 import com.acorn.koala.dto.BooksDto;
+import com.fasterxml.jackson.annotation.JsonAlias;
 
 @Component
 public class ApiBooks {
@@ -27,7 +29,7 @@ public class ApiBooks {
 	//베스트셀러 API
 	public static String getBestseller(int start,int categoryId) {
 		
-		
+		//http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbst20352313001&QueryType=Bestseller&MaxResults=50&start=1&SearchTarget=Book&output=xml&Version=20131101&Cover=Big&CategoryId=0;
 		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
 				+ "?"
 				+ "ttbkey=ttbst20352313001"
@@ -67,7 +69,7 @@ public class ApiBooks {
 	//신간 도서 API
 	public static String getItemNewAll(int start,int categoryId) {
 		
-		
+		//http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbst20352313001&QueryType=ItemNewAll&MaxResults=50&start=1&SearchTarget=Book&output=xml&Version=20131101&Cover=Big&CategoryId=0;
 		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
 				+ "?"
 				+ "ttbkey=ttbst20352313001"
@@ -91,17 +93,17 @@ public class ApiBooks {
 				
 		
 		// 결과
-		Map<String, String> requestHeaders = new HashMap<String, String>();
-		String responseBody = get(apiURL, requestHeaders);
+				Map<String, String> requestHeaders = new HashMap<String, String>();
+				String responseBody = get(apiURL, requestHeaders);
 
-		//XML -> JSONObecjt
-		JSONObject resultObj = XML.toJSONObject(responseBody);
-		
-		// "object" key를 JSONObjext 객체로 생성
-		JSONObject result = resultObj.getJSONObject("object");
-		 
-		
-		return result.toString();
+				//XML -> JSONObecjt
+				JSONObject resultObj = XML.toJSONObject(responseBody);
+				
+				// "object" key를 JSONObjext 객체로 생성
+				JSONObject result = resultObj.getJSONObject("object");
+				 
+				
+				return result.toString();
 	}
 	
 	//신간 인기 도서 API
@@ -184,6 +186,41 @@ public class ApiBooks {
 		
 		return result.toString();
 	}
+	
+	//도서 상세 페이지
+		public static String getDetail(String isbn13) {
+			
+			
+			String apiURL = "http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx"
+					+ "?"
+					+ "ttbkey=ttbst20352313001"
+					+ "&"
+					+ "itemIdType=ISBN"
+					+ "&"
+					+ "ItemId="+isbn13
+					+ "&"
+					+ "output=xml"
+					+ "&"
+					+ "Version=20131101"
+					+ "&"
+					+ "OptResult=ebookList,usedList,reviewList"
+					+ "&"
+					+ "Cover=Big"
+					;
+					
+			
+			// 결과
+			Map<String, String> requestHeaders = new HashMap<String, String>();
+			String responseBody = get(apiURL, requestHeaders);
+
+			//XML -> JSONObecjt
+			JSONObject resultObj = XML.toJSONObject(responseBody);
+			
+			// "object" key를 JSONObjext 객체로 생성
+			JSONObject result = resultObj.getJSONObject("object");
+			
+			return result.toString();
+		}
 
 	//
 	private static String get(String apiUrl, Map<String, String> requestHeaders) {
@@ -253,7 +290,6 @@ public class ApiBooks {
 		ArrayList<BooksDto> booksDtoList = new ArrayList<BooksDto>();
 		for(int i = 0 ; i < item.length();i++) {
 			JSONObject Json = item.getJSONObject(i);
-			
 			BooksDto booksDto = new BooksDto(Json);
 			
 			booksDtoList.add(booksDto);
@@ -265,8 +301,21 @@ public class ApiBooks {
 		return map;		
 	}
 	
+	public BooksDetailDto fromJSONtoItems2(String result){
+		
+		JSONObject rjson = new JSONObject(result);
+		
+		JSONObject item = rjson.getJSONObject("item");
+		//System.out.println(item);
+		
+		BooksDetailDto booksDetail = new BooksDetailDto(item);
+		
+		return booksDetail;
+		
+	}
+	
 	public static void main(String[] args) {
-		//String result = getBestsellerList(1,53471);
+		//String result = getItemNewSpecial(1,0);
 		//fromJSONtoItems(result);
 	}
 }
