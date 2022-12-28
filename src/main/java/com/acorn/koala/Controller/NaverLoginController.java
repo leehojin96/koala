@@ -23,7 +23,7 @@ public class NaverLoginController {
 	
 	
 	@RequestMapping(value = "/naverLogin", method = RequestMethod.POST)
-	public String naverLogin(String id, String name, String email, String gender, String birthday, String birthyear, String mobile, String login_type, HttpServletRequest request, Model m ) {
+	public String naverLogin(String id, String name, String email, String gender, String birthday, String birthyear, String mobile, String login_type, HttpServletRequest request) throws IOException {
 		
 		System.out.println(id + "/" + name + "/" + email + "/" + gender + "/" + birthday + "/" + birthyear + "/" + mobile + "/" + login_type);
 		
@@ -34,7 +34,9 @@ public class NaverLoginController {
 			service.naverJoin(id, name, email, gender, birthday, birthyear, mobile);
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
-			session.setAttribute("logintype", login_type);
+			session.setAttribute("type", login_type);
+			
+			
 			
 			return "redirect:index";
 			
@@ -42,7 +44,7 @@ public class NaverLoginController {
 			// 가입 이미 되어있다면 세션에 id 등록
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
-			session.setAttribute("logintype", login_type);
+			session.setAttribute("type", login_type);
 			
 		}
 		return "redirect:index";
@@ -57,7 +59,7 @@ public class NaverLoginController {
 		
 		PrintWriter script = response.getWriter();
 		script.println("<script>alert('로그아웃 되었습니다.'); </script>");
-		script.println("<script>location.href = '/koalas/index'; </script>");
+		script.println("<script>location.href = '/koala/index'; </script>");
 		script.flush();	// 얘 하니까 안뜨던 alert가 뜨지만 return이 안먹어서 location.hrtf로 보냄..
 		
 		return "index";

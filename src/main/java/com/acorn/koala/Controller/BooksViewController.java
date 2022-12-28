@@ -21,16 +21,16 @@ public class BooksViewController {
 	@Autowired
 	ApiBooks apiBooks;
 	
-	// 베스트셀러 뷰
+	// 도서 종합 이동
 		@RequestMapping(value = "/books", method = RequestMethod.GET)
 		public String booksView() {
-			return "books"; 
+			return "/books/books"; 
 		}
 
-	// 베스트셀러 뷰
+	// 베스트셀러 이동
 	@RequestMapping(value = "/Bestseller", method = RequestMethod.GET)
 	public String bestsellerView() {
-		return "bestseller";
+		return "/books/bestseller";
 	}
 
 	// 베스트셀러 리스트
@@ -46,10 +46,10 @@ public class BooksViewController {
 		return map;
 	}
 
-	// 신간도서 뷰
+	// 신간도서 이동
 	@RequestMapping(value = "/ItemNewAll ", method = RequestMethod.GET)
 	public String itemNewAllView() {
-		return "itemNewAll"; 
+		return "/books/itemNewAll"; 
 	}
 
 	// 신간도서 리스트
@@ -65,10 +65,10 @@ public class BooksViewController {
 		return map;
 	}
 
-	// 신간 인기 도서 뷰
+	// 신간 인기 도서 이동
 	@RequestMapping(value = "/ItemNewSpecial", method = RequestMethod.GET)
 	public String itemNewSpecialView() {
-		return "itemNewSpecial"; 
+		return "/books/itemNewSpecial"; 
 	}
 
 	// 신간 인기 도서 리스트
@@ -84,11 +84,11 @@ public class BooksViewController {
 		return map;
 	}
 
-	// 검색 도서 뷰
+	// 검색 도서 이동
 	@RequestMapping(value = "/Search", method = RequestMethod.GET)
 	public String booksSearchView(String query, Model m) {
 
-		return "booksSearch"; 
+		return "/books/booksSearch"; 
 	}
 
 	// 검색 도서 리스트
@@ -103,7 +103,7 @@ public class BooksViewController {
 		return map;
 	}
 
-	// 도서 디테일 뷰
+	// 도서 상세 이동
 	@RequestMapping(value = "/books/Detail", method = RequestMethod.GET)
 	public String booksDetailView(String isbn, Model m) {
 		
@@ -128,8 +128,9 @@ public class BooksViewController {
 		m.addAttribute("publisher", booksDetail.getPublisher());
 		
 		
-		return "detail"; 
+		return "/books/detail"; 
 	}
+	
 
 	
 

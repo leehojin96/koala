@@ -34,13 +34,13 @@ public class KaKaoLoginController {
 			service.kakaoJoin(id, email, nickname, gender);
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
-			session.setAttribute("logintype", login_type);
+			session.setAttribute("type", login_type);
 			
 		} else if(result == 1) {
 			// 가입 이미 되어있다면 세션에 id 등록
 			HttpSession session = request.getSession();
 			session.setAttribute("id", id);
-			session.setAttribute("logintype", login_type);
+			session.setAttribute("type", login_type);
 		}
 		
 		return "redirect:index";
@@ -54,7 +54,7 @@ public class KaKaoLoginController {
 		
 		PrintWriter script = response.getWriter();
 		script.println("<script>alert('로그아웃 되었습니다.'); </script>");
-		script.println("<script>location.href = '/koalas/index'; </script>");
+		script.println("<script>location.href = '/koala/index'; </script>");
 		script.flush();	// 얘 하니까 안뜨던 alert가 뜨지만 return이 안먹어서 location.hrtf로 보냄..
 		
 		return "index";
