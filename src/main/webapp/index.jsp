@@ -72,23 +72,23 @@
 
 
 #message_wrap{
-	width: 1450px;
+	width: 100%;
 	height: 800px;
 	background-color: black;
 	padding-top: 200px;
 	margin: auto;
 }
 #message{
-	width: 900px;
+	width: 1100px;
 	//font-family:Jua;
 	//font-family: 'Indie Flower', cursive;
-	height: 400px;
+	height: 500px;
 	margin: auto;
 	background-color: white; //#b0f5b0;
 	text-align: center;
-	font-size: 80px;
+	font-size: 110px;
 	font-weight: 900;
-	line-height: 400px;
+	line-height: 500px;
 	display: none;
 	
 	
@@ -97,7 +97,7 @@
 }
 
 #message span{
-	font-size:80px;
+	font-size:130px;
 	//font-family:Jua;
 	//color: #563124;
 	font-weight: 900;
@@ -376,19 +376,28 @@ $(document).ready( function(){
 			*/
 			
 			if( $(this).scrollTop() > $deviceOST){ 		//스크롤이 OST를 넘어서면 실행
-				$device.find("img").addClass("grow-img");	//$device 즉 ".section01"에서 img를 찾아서 addClass를 한 코드		
+				$device.find("img").addClass("grow-img",function(){   	//$device 즉 ".section01"에서 img를 찾아서 addClass를 한 코드
+					setTimeout(function(){
+					$device.find("#book_text").find("h1").show( "blind", 500 ,function(){
+						$device.find("#book_text").find("p").show( "blind", 500,function(){
+							$device.find("#book_text").find("input").show( "blind", 500 );
+						} );
+					});
+					},1500);
+				});			
 				
 			}
 			
 			if($(window).scrollTop() > $deviceOST2){
-				$device2.find("img").addClass("grow-img");
-				
+				$device2.find("img").addClass("grow-img", function(){
+					setTimeout(function(){
+					$device2.find("#book_text").find("h1").show( "slide", 1000 );
+					$device2.find("#book_text").find("p").show( "slide", 2000 );
+					$device2.find("#book_text").find("input").show( "slide", 2000 );
+					},1000);
+				});	
 			}
-			if($(window).scrollTop() > $deviceOST2+300){
-				$device2.find("#book_text").find("h1").show( "slide", 1000 );
-				$device2.find("#book_text").find("p").show( "slide", 2000 );
-				$device2.find("#book_text").find("input").show( "slide", 2000 );
-			}
+			
 			if($(window).scrollTop() > $deviceOST3){
 				$device3.find("img").addClass("grow-img");
 			}
@@ -399,6 +408,19 @@ $(document).ready( function(){
 				$device4.find("#book_text").find("h1").show( "clip", 1000 );
 				$device4.find("#book_text").find("p").show( "clip", 2000 );
 				$device4.find("#book_text").find("input").show( "clip", 2000 );
+			}
+			if($(window).scrollTop() > $deviceOST4+600){
+				$("#members").find("h1").show("slide", 1000 );
+			}
+			if($(window).scrollTop() > $deviceOST4+1000){
+				$(".leehojin").show("slide", 500, function(){
+					$(".limyeongbin").show("slide", 500, function(){
+						$(".kimjunsou").show("slide", 500, function(){
+							$(".kimsoyoung").show("slide", 500);
+						});
+					});
+				});
+				
 			}
 		});
 		
@@ -463,15 +485,15 @@ $(document).ready( function(){
 
 	<img class ="" alt="" src="https://newsimg.hankookilbo.com/cms/articlerelease/2020/04/21/202004211422083541_3.jpg">	
 	<div id ="book_text">
-		<h1>Books</h1>
-		<p>Koala의 책은 매일매일 업데이트 됩니다</p>
-		<p>신규도서 찾을때는 Koala!</p>
-		<input type="button" value = "책 찾으러가기">
+		<h1 style="display: none;">Books</h1>
+		<p style="display: none;">Koala의 책은 매일매일 업데이트 됩니다</p>
+		<p style="display: none;">신규도서 찾을때는 Koala!</p>
+		<input type="button" value = "책 찾으러가기" style ="display: none;">
 	</div>	
 </div>
 
 <div id ="section_wrap" class ="section02" >
-	<div id ="book_text"  ">
+	<div id ="book_text"  >
 		
 		<h1 style="color: green; display: none;">Store</h1>
 		<p style="display: none;">Koala는 오프라인으로도 만날수있어요</p>
@@ -488,10 +510,10 @@ $(document).ready( function(){
 	<div id="book_img"></div>
 	
 	<div id ="book_text">
-		<h1 style="color:#e98484;">Delivery</h1>
-		<p>Koala는 구매 즉시 배송이 시작됩니다</p>
-		<p>책 읽는 시간은 길게, 기다리는 시간은 짧게!</p>
-		<input type="button" value = "책 구매하러가기" style="background-color: #f0baba;">
+		<h1 style="color:#e98484; ">Delivery</h1>
+		<p >Koala는 구매 즉시 배송이 시작됩니다</p>
+		<p >책 읽는 시간은 길게, 기다리는 시간은 짧게!</p>
+		<input type="button" value = "책 구매하러가기" style="background-color: #f0baba; ">
 	</div>	
 
 </div>
@@ -509,33 +531,41 @@ $(document).ready( function(){
 
 
 <div id ="members">
-	<h1>임원진 소개</h1>
+	<h1 style="display: none;">임원진 소개</h1>
 </div>
 
 <div id ="member_wrap">
-	<div id="member" style="margin-left:120px; ">
-		<img alt="" src="https://file.namu.moe/file/17aab671deedb3a743a473a1a8e9ea26793fbf3171d50e43b13a82adf65b5ccf6a651e1a13dd4c8ee92499f2dc68486e">
+<div style="width:390px; ">
+	<div id="member" class="leehojin" style=" display: none;" >
+		<img src="https://file.namu.moe/file/17aab671deedb3a743a473a1a8e9ea26793fbf3171d50e43b13a82adf65b5ccf6a651e1a13dd4c8ee92499f2dc68486e">
 		<h1>이호진</h1>
 		<p>이사장</p>
 	</div>
+</div>
 	
-	<div id="member">
-		<img alt="" src="https://cdn.ilyoseoul.co.kr/news/photo/200801/15672_2267_0701.gif">
+<div style="width:335px; ">
+	<div id="member" class="limyeongbin" style="display: none;">
+		<img src="https://cdn.ilyoseoul.co.kr/news/photo/200801/15672_2267_0701.gif">
 		<h1>임영빈</h1>
 		<p>이사장</p>
 	</div>
-	
-	<div id="member">
-		<img alt="" src="https://w.namu.la/s/98b4366530146d0c870345731bfdb5322c416c8c1dd3e6fcc761ab9e2eb8c6a9a51486b4b2ce577b14daf61d3a7422f0d1befe4a5b39ee821a7ec1df802c4b992be95213a25a6a470e47742e6e56bb6d7145dfb95d7f1cc8cc0fb91a6d8e19ccfd3713eaed3c4a2e30db6331240b724f">
+</div>
+
+<div style="width:335px; ">
+	<div id="member" class="kimjunsou" style="display: none;">
+		<img src="https://w.namu.la/s/98b4366530146d0c870345731bfdb5322c416c8c1dd3e6fcc761ab9e2eb8c6a9a51486b4b2ce577b14daf61d3a7422f0d1befe4a5b39ee821a7ec1df802c4b992be95213a25a6a470e47742e6e56bb6d7145dfb95d7f1cc8cc0fb91a6d8e19ccfd3713eaed3c4a2e30db6331240b724f">
 		<h1>김준서</h1>
 		<p>이사장</p>
 	</div>
+</div>
 	
-	<div id="member" style="margin-right: 120px;">
-		<img alt="" src="https://images.squarespace-cdn.com/content/v1/5f98dd49fc08965e7b06cfac/1618506418948-HR75F331VLD3NM6NGA37/download.jpg?format=750w">
+<div style="width:390px; ">
+	<div id="member" class="kimsoyoung" style="margin-right: 120px; display: none;">
+		<img src="https://images.squarespace-cdn.com/content/v1/5f98dd49fc08965e7b06cfac/1618506418948-HR75F331VLD3NM6NGA37/download.jpg?format=750w">
 		<h1>김소영</h1>
 		<p>이사장</p>
 	</div>
+</div>
 </div>
 
 
