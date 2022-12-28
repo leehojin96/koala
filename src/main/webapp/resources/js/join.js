@@ -113,7 +113,7 @@ function formSubmit() {
 			if (response.status) {
 				alert('회원가입 성공!');
 				//로그인 페이지로 이동
-				location.href="/user/myPage";
+				location.href="/koala/login";
 			} else {
 				if (response.message !== undefined) {
 					alert(response.message);

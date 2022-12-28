@@ -228,7 +228,7 @@ header .menu .menu_wrap .mainmenu a {
 						<c:when test="${id == null }">
 							<span><a href="/koala/login">로그인</a></span>
 							<span>|</span>
-							<span><a href="#">회원가입 </a></span>
+							<span><a href="/koala/user/join">회원가입 </a></span>
 						</c:when>
 						
 						
