@@ -130,7 +130,13 @@ public class BooksViewController {
 		
 		return "detail"; 
 	}
+	
+	// 도서 0권 view
+		@RequestMapping(value = "/books/error", method = RequestMethod.GET)
+		public String booksErrorView() {
 
+			return "booksError"; 
+		}
 	
 
 }

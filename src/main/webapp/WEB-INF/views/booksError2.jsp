@@ -751,7 +751,7 @@ margin-right: 10px;
 
 			<div id="selectType">
 			
-			<span id="selectState1"></span>
+			<span id="selectState1"> 도서를 지원하지 않습니다....</span>
 			<span id="selectState2"></span>
 			<span id="selectState3"></span>
 				
@@ -760,7 +760,7 @@ margin-right: 10px;
 
 			<div id="bookEmpty">
 
-				<!-- 도서 빈칸 -->
+				
 
 			</div>
 

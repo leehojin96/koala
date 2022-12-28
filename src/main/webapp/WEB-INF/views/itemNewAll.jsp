@@ -44,7 +44,7 @@
 									$("#paging").html(dataPageHtml);
 								},
 								error : function() {
-									alert(arror);
+									window.location.href = "/koala/books/error";
 								}
 							});
 							$("#selectState1").html("신간 도서");
