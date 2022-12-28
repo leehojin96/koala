@@ -22,7 +22,11 @@ public class KoalaController {
 		return "index";
 	}
 	
-	
+	@RequestMapping(value = "/indexPoster", method = RequestMethod.GET)
+	public String indexPoster() {
+		
+		return "indexPoster";
+	}
 
 	
 

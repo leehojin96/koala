@@ -134,7 +134,7 @@ margin: 0px auto;
 	list-style: none;
 	display: flex;
 	text-align: center;
-	width: 1300px;
+	width: 1250px;
 	flex-flow: wrap;
 	border-bottom: 1px solid gray;
 }
@@ -184,6 +184,19 @@ display: none;
 #selectState1 , #selectState2 , #selectState3{
 margin-right: 10px;
 }
+
+section .right_menu{
+		position:fixed;
+		right:5%;
+		
+	}
+	
+	section .right_menu img{
+		width:60px;
+		height:60px;
+		filter: drop-shadow(0px 3px 5px #81c147);
+	}
+	
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
@@ -193,6 +206,9 @@ margin-right: 10px;
 <body>
 	
 <section>
+<div class="right_menu">
+		<a href="<c:url value='/mypageenter' />"><img src="https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_header_my@2x.png"></a>
+	</div>
 		<div id="categoryDiv">
 			<ul id="selectTop">
 				<li class="selectBtn"><input type="radio" class="selectInput"

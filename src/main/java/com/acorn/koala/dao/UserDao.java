@@ -21,6 +21,7 @@ public class UserDao {
 		 Connection con = null;
 		 PreparedStatement pst = null;
 		 ResultSet rs = null;
+		 System.out.println("id : "+id+" pw : "+pw);
 		 try {
 			 con=ds.getConnection();
 			 pst = con.prepareStatement(sql);

@@ -60,11 +60,11 @@
 			Kakao.API.request({
 				url : '/v1/user/unlink',
 				success : function(response) {
-					location.href = "/koalas/kakaoLogout";
+					location.href = "/koala/kakaoLogout";
 
 				},
 				fail : function(error) {
-					console.log(error)
+					console.log("error : "+error)
 				},
 			})
 			Kakao.Auth.setAccessToken(undefined);
@@ -230,17 +230,24 @@ header .menu .menu_wrap .mainmenu a {
 							<span>|</span>
 							<span><a href="#">회원가입 </a></span>
 						</c:when>
-
+						
+						
 						<c:when test="${id != null && logintype == '0' }">
+						<span><a href="/koala/mypageenter">마이페이지</a></span>
+						<span>|</span>
 							<span><a href="/koala/logout">로그아웃</a></span>
 						</c:when>
 
 						<c:when test="${id != null && logintype == '1' }">
+						<span><a href="/koala/mypageenter">마이페이지</a></span>
+						<span>|</span>
 							<span><a style="cursor: pointer" onclick="kakaoLogout()">카카오
 									로그아웃</a></span>
 						</c:when>
 
 						<c:when test="${id != null && logintype == '2' }">
+						<span><a href="/koala/mypageenter">마이페이지</a></span>
+						<span>|</span>
 							<span><a style="cursor: pointer" onclick="naverLogout()"
 								id="btn_logout">네이버 로그아웃</a></span>
 						</c:when>
@@ -264,7 +271,7 @@ header .menu .menu_wrap .mainmenu a {
 									<li><a href="#">서브메뉴1</a></li>
 									<li><a href="#">서브메뉴2</a></li>
 								</ul></li>
-
+<!--  
 							<li class="mainmenu"><a href="#">메뉴3</a>
 								<ul class="submenu">
 									<li><a href="#">서브메뉴1</a></li>
@@ -275,7 +282,7 @@ header .menu .menu_wrap .mainmenu a {
 								<ul class="submenu">
 									<li><a href="#">서브메뉴1</a></li>
 									<li><a href="#">서브메뉴2</a></li>
-								</ul></li>
+								</ul></li>-->
 						</ul>
 					</div>
 

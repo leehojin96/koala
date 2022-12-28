@@ -42,7 +42,7 @@ public class LoginController {
 			LoginService service = new LoginService(dao);
 			int result = service.loginUser(id, pw);
 			
-			if(result == 1 ){	
+			if(result == 1 ){
 				HttpSession session = request.getSession();
 				session.setAttribute("id", id);
 				session.setAttribute("type", login_type);
