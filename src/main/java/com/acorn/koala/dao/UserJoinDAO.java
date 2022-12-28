@@ -1,6 +1,7 @@
 package com.acorn.koala.dao;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,9 +18,8 @@ import com.acorn.koala.dto.UserDTO;
 
 
 
-@Repository("userDAO")
 
-//@Component
+@Repository("userDAO")
 public class UserJoinDAO {
 	
 	@Autowired
