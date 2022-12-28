@@ -147,7 +147,10 @@ li{
 		moveSlide(currentIdx-1);
 	});
 	
+	
+	
 	var timer = undefined;
+	
 	function autoSlide(){
 		if(timer ==undefined){
 			timer = setInterval(function(){
@@ -157,6 +160,19 @@ li{
 	}
 	
 	autoSlide();
+	
+	function stopSlide(){
+		clearInterval(timer);
+		timer = undefined;
+	}
+	
+	slides.addEventListener('mouseenter',function(){
+		stopSlide();
+	});
+	
+	slides.addEventListener('mouseleave',function(){
+		autoSlide();
+	});
 	
 	
 	
