@@ -757,11 +757,14 @@ margin-right: 10px;
 				
 
 			</div>
+			<div>
+			<p id ="selectState4"></p>
+			</div>
+			
 
 			<div id="bookEmpty">
 
 				<!-- 도서 빈칸 -->
-
 			</div>
 
 
@@ -778,7 +781,20 @@ margin-right: 10px;
 		</div>
 		</div>
 	</section>
+<!-- 책 마우스 확대/축소 애니메이션 -->
+	<script>
+		function zoomIn(event) {
+			event.target.style.transform = "scale(1.1)";
+			event.target.style.zIndex = 1;
+			event.target.style.transition = "all 0.5s";
+		}
 
+		function zoomOut(event) {
+			event.target.style.transform = "scale(1)";
+			event.target.style.zIndex = 0;
+			event.target.style.transition = "all 0.5s";
+		}
+	</script>
 
 </body>
 </html>
