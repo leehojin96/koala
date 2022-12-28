@@ -445,7 +445,6 @@ $(document).ready( function(){
 	<div id = "message">
 	<div></div>
 		Rest with <span>'Koala'</span>
-		<p>Design by ⓒKoala</p>
 	</div>
 </div>
 

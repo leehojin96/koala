@@ -1,99 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
-
-<style>
-
-*{
-	margin: 0;
-	padding: 0;
-}
-
-li{
-	list-style: none;
-}
-
-.slide_wrap{
-	position: relative;
-	width: 660px;
-	margin: 0 auto;
-	height: 200px;
-	overflow:hidden;	
-}
-
-.slides{
-	position: absolute;
-	left: 0; top: 0;
+var slides = document.querySelector('.slides');
 	
-}
-
-.slides.animated{
-	transition: 0.5s ease-out;
-}
-
-.slides li{
-	width: 200px;
-	height: 200px;
-	background: #ccc;
-	float: left;
-}
-
-.slides li:not(:last-child){
-	margin-right: 30px;
-}
-
-.controls{
-	text-align: center;
-	margin-top: 50px;
-}
-
-.contrals span{
-	width: 50px;
-	height: 50px;
-	background-color: black;
-
-}
-
-</style>
-</head>
-<body>
-
-
-<div class ="slide_wrap">
-	<ul class = "slides">
 	
-		<li>slide 01</li>
-		<li>slide 02</li>
-		<li>slide 03</li>
-		<li>slide 04</li>
-		<li>slide 05</li>
-	</ul>
-</div>
-
-<p class ="controls">
-	<span class="prev">prev</span>
-	<span class="next">next</span>
-</p>
-
-<script>
-
-	var slides = document.querySelector('.slides');
-	
-	//console.log(slides);
 	var	slide = document.querySelectorAll('.slides li');
-	//console.log(slide.length);
+	
 	var currentIdx = 0;
 	var slideCount = slide.length;
-	//console.log(slideCount);
+	
 	var slideWidth = 200;
-	var slideMargin = 30;
+	var slideMargin = 40;
 	var prevBtn = document.querySelector('.prev');
 	var nextBtn = document.querySelector('.next');
 	
@@ -155,7 +70,7 @@ li{
 		if(timer ==undefined){
 			timer = setInterval(function(){
 				moveSlide(currentIdx +1);
-			},3000);
+			},2000);
 		}
 	}
 	
@@ -179,7 +94,7 @@ li{
 	function moveSlide(num){
 		slides.style.left = -num *(slideWidth + slideMargin)+'px';
 		currentIdx = num;
-		console.log(currentIdx,slideCount)
+		//console.log(currentIdx,slideCount)
 		if(currentIdx ==slideCount || currentIdx== -slideCount){
 			
 			setTimeout(function(){
@@ -195,9 +110,3 @@ li{
 		
 	}
 	
-</script>
-
-
-
-</body>
-</html>

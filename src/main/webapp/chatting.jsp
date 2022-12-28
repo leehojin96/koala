@@ -1,119 +1,136 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="utf-8">
+<title>채팅</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<script>
-
-
-	//
-	$(document).ready(function(){
-		alert("ready");
-		gettext();
-		
-		$("#chatting").click(function(){
-			alert("click");
-			//$(".div1").css("display","");
-			$("#hidden_wrap").css("display","block");
-			
-		});
-	});
-	
-	
-	function gettext(){
-		$.ajax({
-			type:"GET",
-			url:"/koala/chat",
-			success: function(data){
-				alert("success");
-				console.log(data);
-
-			},error:function(){
-				alert("error");
-				
-			}
-		});
-		
-	}
-	
-	
-	
-	
-	
-	function showChat(){
-		
-		
-	}
-	
-	/*
-	function popup(){
-        var url = "popup.html";
-        var name = "popup test";
-        var option = "width = 500, height = 500, top = 100, left = 200, location = no"
-        window.open(url, name, option);
+<script type="text/javascript">
+    
+   
+     var wsocket;
+    
+  
+    function connect() {
+     
+        wsocket = new WebSocket(
+                "ws://localhost:8090/webchat/chat-ws");
+        
+      
+        wsocket.onopen = onOpen;
+        wsocket.onmessage = onMessage;
+        wsocket.onclose = onClose;
+        
     }
-	*/
+    
+    
+    function disconnect() {
+        wsocket.close();
+    }
+        
+    
+     
+    function onOpen(evt) {
+      //  appendMessage("연결되었습니다.");
+      alert("연결되었습니다");
+    }
+     
+    function onMessage(evt) {
+        var data = evt.data;
+        if (data.substring(0, 4) == "msg:") {
+        	appendRecvMessage(data.substring(4));
+        }
+    }
+    
+     
+    function onClose(evt) {
+      // appendMessage("연결을 끊었습니다.");
+      alert("연결을 끊었습니다");
+    }
+    
+   
+    function send() {    	         
+        var nickname = $("#nickname").val();        
+        var msg = $("#message").val();       
+        wsocket.send("msg:"+nickname+":" + msg);        
+        $("#message").val("");
+        
+         
+        //채팅창에 자신이 쓴 메시지 추가 
+        appendSendMessage(msg);
+        
+    }
 
-	
+    
+    //받는 메시지 채팅창에 추가
+    function appendRecvMessage(msg) {          
+        $("#chatMessageArea").append( "<div class='recv'>" + msg+"</div>");        
+        scrollTop();
+    }
 
+    
+    function  scrollTop(){
+    	  var chatAreaHeight = $("#chatArea").height();         
+          var maxScroll = $("#chatMessageArea").height() - chatAreaHeight;  
+          $("#chatArea").scrollTop(maxScroll);
+    }
+    
+    //보내는 메시지 채팅창에 추가
+    function appendSendMessage(msg) {     
+        $("#chatMessageArea").append( "<div class='send' > " + msg+  "</div>"); 
+        scrollTop();
+        
+    }
 
+ 
+  
+   $(document).ready( function(){    
+	 
+           $('#message').keypress(function(event){
+		   var keycode =  event.keyCode  ;		            
+		  
+		       if(keycode == '13'){		    	  
+		                send(); 
+		       }  		 
+		            event.stopPropagation();  // 상위로 이벤트 전파 막음
+		        });
+       
+		        $('#sendBtn').click(function() { send(); });
+		        $('#enterBtn').click(function() { connect(); });
+		        $('#exitBtn').click(function() { disconnect(); });
+	   
+	   
+   });
 </script>
 <style>
-
-
-#chatting{
-	position: fixed;
-	right: 20px;
-	bottom: 20px;
-	background-color: red;
-	width: 50px;
-	height: 50px;
-	
-}
-#chatting img{
-	width: 40px;
-	height: 40px;
-	
+#chatArea {
+    width: 200px; height: 100px; overflow-y: auto; border: 1px solid black;
 }
 
-#hidden_wrap{
-	width: 250px;
-	height: 400px;
-	background-color: gray;
-	position: relative;
-	display: none;
-}
-
-#box{
-	position: absolute;
-	bottom: 10px;
-	
-}
-	
-
-
+.send{
+    border:1px solid green; 
+    text-align:right;
+    padding:10px;
+    
+ }
+ 
+ .recv{
+    border:1px solid yellow;
+    color:blue;
+    text-align:left;
+    padding:10px;
+ }
 </style>
 </head>
 <body>
-
-<a href = "javascript:popup()" target = "_blank">팝업</a>
-
-<a href="https://www.google.com" target="_blank">구글</a>
-
-<div id = "chatting" onclick ="chatting()">
-	
-</div>
-
-<div id="hidden_wrap">
-	<div id ="box">
-		<input type = "text"> <input type = "button" value = "전송">
-	</div>
-	
-</div>
-
+    이름:<input type="text" id="nickname">
+    <input type="button" id="enterBtn" value="입장">
+    <input type="button" id="exitBtn" value="나가기">
+    
+    <h1>대화 영역</h1>
+    <div id="chatArea"><div id="chatMessageArea"></div></div>
+    <br/>
+    <input type="text" id="message">
+    <input type="button" id="sendBtn" value="전송">
 </body>
 </html>

@@ -111,6 +111,17 @@ public class BoarderController2 {
 	
 	
 	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index( Model m) {
+		KoalaService s = new KoalaService(dao);
+		
+		ArrayList<BoarderDTO> list2 = s.selectBoard();
+		m.addAttribute("list2",list2);
+		
+		return "index";
+	}
+	
+	
 	
 
 }
