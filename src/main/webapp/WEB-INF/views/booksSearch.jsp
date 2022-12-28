@@ -52,7 +52,7 @@
 									$("#selectState1").html("'"+query+"' 검색 결과 ("+data_totalBooks+")");
 								},
 								error : function() {
-									alert(arror);
+									window.location.href = "/koala/books/error";
 								}
 							});
 							
@@ -186,7 +186,7 @@
 							$("#selectState3").html(""+a);
 						});
 					});
-	
+	//도서 클릭시 실행 함수
 	function detail(isbn) {
 		window.location.href = "/koala/books/Detail?isbn=" + isbn;
 	}

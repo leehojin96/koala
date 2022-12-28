@@ -29,7 +29,7 @@
 								url : "/koala/books/ItemNewAll",
 								data : {start : start, categoryId : categoryId},
 								success : function(data) {
-									
+									$("#selectState4").html("");
 									//console.log(data);
 									
 									let data_item = data.list;
@@ -44,7 +44,8 @@
 									$("#paging").html(dataPageHtml);
 								},
 								error : function() {
-									alert(arror);
+									$("#bookEmpty").html("");
+									$("#selectState4").html("도서를 지원하지 않습니다... ");
 								}
 							});
 							$("#selectState1").html("신간 도서");
@@ -136,7 +137,7 @@
 								if(this.value == '>'){
 									//마지막 part일 경우 마지막 페이지로
 									if(1 > totalPage/6 - startPart){
-										start = totalPage;
+										start = totalPage - totalPage%1;
 										showList(start, categoryId);
 										window.scrollTo(0, 0);
 										
@@ -156,6 +157,7 @@
 							$(".Middle").hide();
 							categoryId = this.value;
 							start = 1;
+							startPart = 0;
 							window.scrollTo(0,0); 	
 							showList(start,categoryId);
 							$("."+this.value).show();
@@ -172,6 +174,7 @@
 						$(document).on('click', ".selectMiddle", function() {
 							categoryId = this.value;
 							start = 1;
+							startPart = 0;
 							window.scrollTo(0,0); 	
 							showList(start,categoryId);
 							let a = $("input[id="+this.value+"Middle]:checked").next().text();

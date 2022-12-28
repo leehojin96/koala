@@ -50,7 +50,7 @@
 											$("#paging").html(dataPageHtml);
 										},
 										error : function() {
-											alert(arror);
+											$("#selectState4").html("도서를 지원하지 않습니다... ");
 										}
 									});
 							$("#selectState1").html("베스트 셀러 ");
