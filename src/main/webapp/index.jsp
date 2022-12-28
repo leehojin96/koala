@@ -25,13 +25,10 @@
 #section_wrap{
 	display: flex;
 	margin: auto;
-	width: 1450px;
-	//font-family: Jua;
+	width: 1450px;	
 	height:750px;
-	//background-color: red;
 	background-position : center;
 	background-size: cover;
-	//border: 1px solid black;
 }
 
 #top{
@@ -41,7 +38,6 @@
 
 
 #nav_wrap{
-	//background-color:white;
 	display: none;
 	margin: auto;
 	width: 1450px;
@@ -76,10 +72,11 @@
 
 
 #message_wrap{
-	width: 100%;
-	height: 1000px;
-	//background-color: red;
-	
+	width: 1450px;
+	height: 800px;
+	background-color: black;
+	padding-top: 200px;
+	margin: auto;
 }
 #message{
 	width: 900px;
@@ -87,13 +84,14 @@
 	//font-family: 'Indie Flower', cursive;
 	height: 400px;
 	margin: auto;
-	background-color: #b0f5b0;
+	background-color: white; //#b0f5b0;
 	text-align: center;
 	font-size: 80px;
 	font-weight: 900;
 	line-height: 400px;
-	margin-top: 13%;
 	display: none;
+	
+	
 
 	
 }
@@ -101,7 +99,7 @@
 #message span{
 	font-size:80px;
 	//font-family:Jua;
-	color: #563124;
+	//color: #563124;
 	font-weight: 900;
 	
 	
@@ -255,7 +253,7 @@
 	height: 300px;
 	//background-color: red;
 	text-align: center;
-	font-size: 60px;
+	font-size: 40px;
 	margin: auto;
 }
 
@@ -300,7 +298,7 @@ $(document).ready( function(){
 	//시작시 나타났다 사라지는 화면
 	$("#message").show("fold",2000,function(){
 		setTimeout(function(){
-			$("#message").css("margin-top","11%");
+			//$("#message").css("margin-top","11%");
 			$("#message").hide("explode",2000, function(){
 				$("#message_wrap").css("display","none");
 				$("#nav_wrap").css("display","flex");
@@ -353,7 +351,7 @@ $(document).ready( function(){
 		
 		
 		//이미지 나오게하기
-		var $offset = 1500;		//그림이 나오는걸 눈으로 볼수있게 section의 값보다 살짝 밑에서 효과를 보이기위한 값(변수)
+		var $offset = 1300;		//그림이 나오는걸 눈으로 볼수있게 section의 값보다 살짝 밑에서 효과를 보이기위한 값(변수)
 		
 		var $device =$(".section01"); 	//첫번째 section				//이건제가 해보고싶었는데 실패한거 신경쓰지 말것 {$(".section01"),$(".section02"),$(".section03")};
 		var $device2 =$(".section02");	//두번째 section
@@ -367,7 +365,7 @@ $(document).ready( function(){
 		
 		
 		$(window).scroll( function (){	
-			/* 이것도 내가 실패한거 나중에는 성공시킨다.
+			/* 이것도 내가 실패한거 나중에 해볼게요
 			
 			$contents.each( function(content){
 				if( $(window).scrollTop() > $deviceOST){ //스크롤이 $deviceOST를 넘어설때 실행
@@ -423,7 +421,9 @@ $(document).ready( function(){
 
 <div id ="message_wrap">
 	<div id = "message">
+	<div></div>
 		Rest with <span>'Koala'</span>
+		<p>Design by ⓒKoala</p>
 	</div>
 </div>
 
