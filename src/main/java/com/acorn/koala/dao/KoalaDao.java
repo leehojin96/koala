@@ -1,4 +1,4 @@
-package com.acorn.koala.boarder;
+package com.acorn.koala.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +11,9 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.acorn.koala.dto.BoarderDTO;
+import com.acorn.koala.dto.CommentsDTO;
 
 @Component
 public class KoalaDao {

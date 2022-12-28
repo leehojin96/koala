@@ -1,8 +1,12 @@
-package com.acorn.koala.boarder;
+package com.acorn.koala.service;
 
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.acorn.koala.dao.KoalaDao;
+import com.acorn.koala.dto.BoarderDTO;
+import com.acorn.koala.dto.CommentsDTO;
 
 public class KoalaService {
 

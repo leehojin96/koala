@@ -19,6 +19,7 @@ public class ChangePwController {
 	@Autowired
 	ChangePwDao dao;
 	
+	//비밀번호 변경
 	@RequestMapping(value = "/chpw", method = RequestMethod.POST)
 	public String finder(String newpwd, String id, HttpServletResponse response) throws IOException {
 		response.setContentType("text/html;charset=utf-8");

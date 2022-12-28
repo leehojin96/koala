@@ -1,4 +1,4 @@
-package com.acorn.koala.boarder;
+package com.acorn.koala.dto;
 
 public class CommentsDTO {
 	

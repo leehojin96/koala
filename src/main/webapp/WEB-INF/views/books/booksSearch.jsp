@@ -1,69 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="header.jsp"%>
+<%@ include file="../header.jsp"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-	$(document)
-			.ready(
+	$(document).ready(
 					function() {
-
+						
+						//검색 String						
+						let query = '${param.query}' ;
+						
 						//페이지 번호
 						let start = 1;
 						let startPart = 0;
 						let totalPage;
-
+						
 						//카테고리 번호
 						let categoryId = 0;
+						
+						//데이터 권수 변수
+						//let data_totalBooks=0;
 
 						//메인 함수
-						function showList(start, categoryId) {
+						function showList(start,categoryId) {
 							//alert("showList() 실행");
-							$
-									.ajax({
-										type : "GET",
-										url : "/koala/books/Bestseller",
-										data : {
-											start : start,
-											categoryId : categoryId
-										},
-										success : function(data) {
+							$.ajax({
+								type : "GET",
+								url : "/koala/books/Search",
+								data : {start : start, categoryId : categoryId, query:query},
+								success : function(data) {	
+									
+									//console.log(data);
+									
+									let data_item = data.list;
+									let data_totalBooks = data.totalCnt;
+									console.log(data_totalBooks);
+									
+									let dataHtml = toHtml(data_item);
 
-											console.log(data);
-
-											let data_item = data.list;
-											let data_totalBooks = data.totalCnt;
-
-											let dataHtml = toHtml(data_item);
-
-											$("#bookEmpty").html(dataHtml);
-
-											let dataPageHtml = pageNumberCreate(data_totalBooks);
-
-											$("#paging").html(dataPageHtml);
-										},
-										error : function() {
-											$("#selectState4").html("도서를 지원하지 않습니다... ");
-										}
-									});
-							$("#selectState1").html("베스트 셀러 ");
+									$("#bookEmpty").html(dataHtml);
+									
+									let dataPageHtml = pageNumberCreate(data_totalBooks);
+									
+									$("#paging").html(dataPageHtml);
+									$("#selectState1").html("'"+query+"' 검색 결과 ("+data_totalBooks+")");
+								},
+								error : function() {
+									window.location.href = "/koala/books/error";
+								}
+							});
+							
 						}
 
+						
 						//ArrayList<BooksDto> 타입 -> 반복분 통해 한권씩 데이터 뽑아내고 html 형식으로 변환
 						function toHtml(data) {
 							//alert("toHtml" + data);
-
+							
 							let str = "";
 							for (let i = 0; i < data.length; i++) {
 								let item = data[i];
-								str += "<a href="
+									str += "<a href="
 										+ "javascript:detail('" + item.isbn + "') "
 										+ "onmouseenter='zoomIn(event)' onmouseleave='zoomOut(event)'>" // 마우스 호버 애니메이션
 										+ "<div id='book'>"
@@ -79,7 +82,7 @@
 							}
 							return str;
 						}
-
+						
 						//권수에 따라 페이지 번호 생성
 						function pageNumberCreate(data_totalBooks) {
 							totalPage = data_totalBooks / 50;
@@ -180,13 +183,10 @@
 							window.scrollTo(0,0); 	
 							showList(start,categoryId);
 							let a = $("input[id="+this.value+"Middle]:checked").next().text();
-							$("#selectState2").html(""+a);
+							$("#selectState3").html(""+a);
 						});
-
-						
 					});
-	
-	//도서 클릭시
+	//도서 클릭시 실행 함수
 	function detail(isbn) {
 		window.location.href = "/koala/books/Detail?isbn=" + isbn;
 	}
@@ -197,12 +197,11 @@
 </head>
 <body>
 
-
+	
+	<%@ include file="booksList.jsp"%>
 	
 
-	<%@ include file="booksList.jsp"%>
-
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../footer.jsp"%>
 
 </body>
 </html>
