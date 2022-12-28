@@ -18,7 +18,7 @@ public class ChangePwDao {
 	
 	
 	public void pwChange(String npw, String id) {
-		String sql="update koala_member_tbl set pw=? where id=? ";
+		String sql="update tbl_user2 set userPassword=? where userID=? ";
 		 Connection con = null;
 		 PreparedStatement pst = null;
 
@@ -30,6 +30,9 @@ public class ChangePwDao {
 			pst.setString(2, id);
 			
 			pst.executeUpdate();
+			
+			pst.close();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

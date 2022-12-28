@@ -17,7 +17,7 @@ public class UserDao {
 	 
 	 
 	 public int login(String id, String pw){
-		 String sql="select pw from koala_member_tbl where id=?";
+		 String sql="select userPassword from tbl_user2 where userID=?";
 		 Connection con = null;
 		 PreparedStatement pst = null;
 		 ResultSet rs = null;
@@ -39,12 +39,66 @@ public class UserDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			
+			try {
+				rs.close();
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 		}
 		return -2;
 		 
 	 }
 	 
-	 
+	 public void loginLog(String id) {
+		 
+		 logFormat();
+		 
+		 String sql="insert into tbl_login_log values(?,sysdate)";
+		 Connection con = null;
+		 PreparedStatement pst = null;
+
+		 
+		 try {
+			con=ds.getConnection();
+			pst = con.prepareStatement(sql);
+			pst.setString(1, id);
+			pst.executeUpdate();
+			
+			pst.close();
+			con.close();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+	 }
 	
+	public void logFormat() {
+		 String sql="ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY-MM-DD HH24:MI'";
+		 Connection con = null;
+		 PreparedStatement pst = null;
+		 
+		 try {
+			con=ds.getConnection();
+			pst = con.prepareStatement(sql);
+			pst.executeUpdate();
+			
+			pst.close();
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	 
 
 }

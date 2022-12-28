@@ -15,8 +15,8 @@ public class FindDao {
 	 @Autowired
 	  DataSource ds;
 	 
-	 public String idFind(String name, String date, String email, String phone) {
-		 String sql="select replace(id,substr(id,5,15),'****') from koala_member_tbl where name=? and birth=? and email=? and phone=?";
+	 public String idFind(String name, String date, String email, String phone)  {
+		 String sql="select replace(userID,substr(userID,5,20),'****') from tbl_user2 where userName=? and birth=? and email=? and phoneNumber=?";
 		 Connection con = null;
 		 PreparedStatement pst = null;
 		 ResultSet rs = null;
@@ -33,13 +33,26 @@ public class FindDao {
 			if(rs.next()) {
 				String userid = rs.getString(1);
 				return userid;
+				
+				
 			}else {
 				return null;
 			}
 			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		 
 		 
@@ -48,7 +61,7 @@ public class FindDao {
 	 }
 	 
 	 public String pwFind(String id, String name, String date, String email, String phone) {
-		 String sql="select pw from koala_member_tbl where id=? and name=? and birth=? and email=? and phone=?";
+		 String sql="select userPassword from tbl_user2 where userID=? and userName=? and birth=? and email=? and phoneNumber=?";
 		 Connection con = null;
 		 PreparedStatement pst = null;
 		 ResultSet rs = null;
@@ -79,4 +92,6 @@ public class FindDao {
 		return null;
 		 
 	 }
+	 
+	
 }

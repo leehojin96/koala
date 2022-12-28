@@ -378,7 +378,7 @@
 <div class="pwfind_wrap">
 	<div class="find_wrap">
 	
-	<form name="frm2" action="/koalass/finder" method="post">
+	<form name="frm2" action="<c:url value='/finder' />" method="post">
 		<div class="title">
 			<label>아이디</label> 
 		</div>
@@ -401,7 +401,7 @@
 		</div>
 		
 		<div class="cont">
-			<input type="text" name="date" placeholder="생년월일 8자리를 입력해 주세요."> 
+			<input type="text" name="date" placeholder="생년월일 8자리를 입력해 주세요." maxlength="8"> 
 		</div>
 		
 		<div class="title">
@@ -424,7 +424,7 @@
 		</div>
 		<div class="cont">
 			<p>
-				<input type="text" name="phone1"> <span>-</span> <input type="text" name="phone2"> <span>-</span> <input type="text" name="phone3">
+				<input type="text" name="phone1"maxlength="3"> <span>-</span> <input type="text" name="phone2" maxlength="4"> <span>-</span> <input type="text" name="phone3"maxlength="4">
 			</p>
 		</div>
 		

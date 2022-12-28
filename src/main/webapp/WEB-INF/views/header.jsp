@@ -19,7 +19,7 @@ $(document).ready(function(){
 				{height:"280px"},300		
 			);
 		$(".header_section").stop().animate(
-				{height:"280px"},300		
+				{height:"280px"},300	
 			);
 		$(".header_wrap").stop().animate(
 				{height:"280px"},300		

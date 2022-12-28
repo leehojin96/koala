@@ -41,13 +41,13 @@ public class LoginController {
 	
 			LoginService service = new LoginService(dao);
 			int result = service.loginUser(id, pw);
-
-			
 			
 			if(result == 1 ){	
 				HttpSession session = request.getSession();
 				session.setAttribute("id", id);
 				session.setAttribute("type", login_type);
+				
+				dao.loginLog(id);
 				
 				if(rememberId) {
 					//쿠키생성, 저장
@@ -86,7 +86,7 @@ public class LoginController {
 		
 		PrintWriter script = response.getWriter();
 		script.println("<script>alert('로그아웃 되었습니다.'); </script>");
-		script.println("<script>location.href = '/koalass/index'; </script>");
+		script.println("<script>location.href = '/koala/index'; </script>");
 		script.flush();	// 얘 하니까 안뜨던 alert가 뜨지만 return이 안먹어서 location.hrtf로 보냄..
 
 		return null;

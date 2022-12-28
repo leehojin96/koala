@@ -15,6 +15,7 @@ public class KoalaController {
 		
 		String userid = (String) session.getAttribute("id");
 		String logintype = (String) session.getAttribute("type");
+
 		
 		request.setAttribute("userid", userid);
 		request.setAttribute("logintype", logintype);

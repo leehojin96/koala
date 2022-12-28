@@ -10,12 +10,14 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.acorn.koala.dto.UserMypageDto;
+
 @Component
 public class KaKaoDao {
 	 @Autowired
 	  DataSource ds;
 	 
-	 public int kakaoidCheck(String id) {
+	 public int kakaoidCheck(String id)  {
 		 String sql="select * from koala_kakao_tbl where id=?";
 		 Connection con = null;
 		 PreparedStatement pst = null;
@@ -23,6 +25,7 @@ public class KaKaoDao {
 		 
 		 try {
 			con=ds.getConnection();
+			System.out.println(con);
 			pst = con.prepareStatement(sql);
 			pst.setString(1, id);
 			rs=pst.executeQuery();
@@ -32,14 +35,22 @@ public class KaKaoDao {
 			} else {
 				return 0;
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
-		
-		 
 		return -1;
-		 
 	 }
 	 
 	 public void KakaoJoin(String id, String email, String nickname, String gender) {
@@ -62,4 +73,6 @@ public class KaKaoDao {
 			e.printStackTrace();
 		}
 	 }
+	 
+
 }

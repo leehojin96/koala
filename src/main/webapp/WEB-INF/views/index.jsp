@@ -129,7 +129,7 @@
 	<section>
 	
 	<div class="right_menu">
-		<a href="#"><img src="https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_header_my@2x.png"></a>
+		<a href="<c:url value='/mypageenter' />"><img src="https://contents.kyobobook.co.kr/resources/fo/images/common/ink/btn_header_my@2x.png"></a>
 	</div>
 		
 		

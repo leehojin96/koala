@@ -24,7 +24,7 @@ public class PopUpLoginController {
 	
 	@RequestMapping(value = "/pop", method = RequestMethod.GET)
 	public String pop(HttpServletRequest request) {
-		 HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		
 		String userid = (String) session.getAttribute("id");
 		String logintype = (String) session.getAttribute("type");

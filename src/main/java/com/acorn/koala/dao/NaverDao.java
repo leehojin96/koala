@@ -36,6 +36,16 @@ public class NaverDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pst.close();
+				con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		return -1;
 	 }
@@ -58,6 +68,10 @@ public class NaverDao {
 			pst.setString(7, mobile);
 			
 			pst.executeUpdate();
+			
+			rs.close();
+			pst.close();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

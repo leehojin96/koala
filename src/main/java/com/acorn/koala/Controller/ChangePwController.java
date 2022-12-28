@@ -25,8 +25,7 @@ public class ChangePwController {
 		
 		ChangePwService service = new ChangePwService(dao);
 		service.pwChangeService(newpwd, id);
-		
-		PrintWriter script = response.getWriter();
+	
 		
 		
 		return "redirect:index";

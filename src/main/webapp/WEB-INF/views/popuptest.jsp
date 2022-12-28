@@ -33,7 +33,7 @@ function buy(){
 </script>
 
 <style>
-	.popup_wrap{
+.popup_wrap{
     position: fixed;
     top: 0;
     right: 0;
