@@ -20,11 +20,17 @@ public class BooksViewController {
 
 	@Autowired
 	ApiBooks apiBooks;
+	
+	// 베스트셀러 뷰
+		@RequestMapping(value = "/books", method = RequestMethod.GET)
+		public String booksView() {
+			return "books"; 
+		}
 
 	// 베스트셀러 뷰
 	@RequestMapping(value = "/Bestseller", method = RequestMethod.GET)
 	public String bestsellerView() {
-		return "bestseller"; // views/books.jsp 이동
+		return "bestseller";
 	}
 
 	// 베스트셀러 리스트
@@ -43,7 +49,7 @@ public class BooksViewController {
 	// 신간도서 뷰
 	@RequestMapping(value = "/ItemNewAll ", method = RequestMethod.GET)
 	public String itemNewAllView() {
-		return "itemNewAll"; // views/itemNewAll.jsp 이동
+		return "itemNewAll"; 
 	}
 
 	// 신간도서 리스트
@@ -62,7 +68,7 @@ public class BooksViewController {
 	// 신간 인기 도서 뷰
 	@RequestMapping(value = "/ItemNewSpecial", method = RequestMethod.GET)
 	public String itemNewSpecialView() {
-		return "itemNewSpecial"; // views/itemNewAll.jsp 이동
+		return "itemNewSpecial"; 
 	}
 
 	// 신간 인기 도서 리스트
@@ -82,7 +88,7 @@ public class BooksViewController {
 	@RequestMapping(value = "/Search", method = RequestMethod.GET)
 	public String booksSearchView(String query, Model m) {
 
-		return "booksSearch"; // view 이름
+		return "booksSearch"; 
 	}
 
 	// 검색 도서 리스트
@@ -99,9 +105,9 @@ public class BooksViewController {
 
 	// 도서 디테일 뷰
 	@RequestMapping(value = "/books/Detail", method = RequestMethod.GET)
-	public String booksDetailView(String isbn13, Model m) {
+	public String booksDetailView(String isbn, Model m) {
 		
-		String result = apiBooks.getDetail(isbn13);
+		String result = apiBooks.getDetail(isbn);
 		
 		BooksDetailDto booksDetail = apiBooks.fromJSONtoItems2(result);
 		
@@ -110,6 +116,9 @@ public class BooksViewController {
 		m.addAttribute("author", booksDetail.getAuthor());
 		m.addAttribute("pubDate", booksDetail.getPubDate());
 		m.addAttribute("description", booksDetail.getDescription());
+		m.addAttribute("isbn", booksDetail.getIsbn());
+		m.addAttribute("isbn13", booksDetail.getIsbn13());
+		m.addAttribute("itemId", booksDetail.getItemId());
 		m.addAttribute("priceSales", booksDetail.getPriceSales());
 		m.addAttribute("priceStandard", booksDetail.getPriceStandard());
 		m.addAttribute("mileage", booksDetail.getMileage());
@@ -119,7 +128,7 @@ public class BooksViewController {
 		m.addAttribute("publisher", booksDetail.getPublisher());
 		
 		
-		return "detail"; // view 이름
+		return "detail"; 
 	}
 
 	

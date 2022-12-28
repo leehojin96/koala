@@ -23,6 +23,9 @@
 						
 						//카테고리 번호
 						let categoryId = 0;
+						
+						//데이터 권수 변수
+						//let data_totalBooks=0;
 
 						//메인 함수
 						function showList(start,categoryId) {
@@ -31,12 +34,13 @@
 								type : "GET",
 								url : "/koala/books/Search",
 								data : {start : start, categoryId : categoryId, query:query},
-								success : function(data) {
+								success : function(data) {	
 									
 									//console.log(data);
 									
 									let data_item = data.list;
 									let data_totalBooks = data.totalCnt;
+									console.log(data_totalBooks);
 									
 									let dataHtml = toHtml(data_item);
 
@@ -45,11 +49,13 @@
 									let dataPageHtml = pageNumberCreate(data_totalBooks);
 									
 									$("#paging").html(dataPageHtml);
+									$("#selectState1").html("'"+query+"' 검색 결과 ("+data_totalBooks+")");
 								},
 								error : function() {
 									alert(arror);
 								}
 							});
+							
 						}
 
 						
@@ -60,8 +66,8 @@
 							let str = "";
 							for (let i = 0; i < data.length; i++) {
 								let item = data[i];
-								str += "<a href="
-										+ "'javascript:detail("+item.isbn+");'"
+									str += "<a href="
+										+ "javascript:detail('" + item.isbn + "') "
 										+ "onmouseenter='zoomIn(event)' onmouseleave='zoomOut(event)'>" // 마우스 호버 애니메이션
 										+ "<div id='book'>"
 										+ "<div id='bookImg'>"
@@ -162,8 +168,12 @@
 							showList(start,categoryId);
 							$("."+this.value).show();
 							$("#"+this.value+"Middle").prop('checked',true);
-							$("#selectState1").html($("#"+this.value+"Top").next().text()+" >");
-							$("#selectState2").html("전체");
+							$("#selectState2").html(" > "+$("#"+this.value+"Top").next().text());
+							if(categoryId == '0'){								
+							$("#selectState3").html("");
+							}else{
+								$("#selectState3").html(" > 전체");
+							}
 						});
 						
 						//소분류 카테고리 클릭시
@@ -173,12 +183,12 @@
 							window.scrollTo(0,0); 	
 							showList(start,categoryId);
 							let a = $("input[id="+this.value+"Middle]:checked").next().text();
-							$("#selectState2").html(""+a);
+							$("#selectState3").html(""+a);
 						});
 					});
 	
-	function detail(isbn13) {
-		window.location.href = "/koala/books/Detail?isbn13=" + isbn13;
+	function detail(isbn) {
+		window.location.href = "/koala/books/Detail?isbn=" + isbn;
 	}
 	
 </script>

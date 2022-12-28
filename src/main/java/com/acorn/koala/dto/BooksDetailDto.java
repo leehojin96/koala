@@ -8,6 +8,9 @@ public class BooksDetailDto {
 	String author;
 	String pubDate;
 	String description;
+	Object isbn;
+	Object isbn13;
+	Object itemId;
 	int priceSales;
 	int priceStandard;
 	int mileage;
@@ -23,6 +26,9 @@ public class BooksDetailDto {
 		this.author = json.getString("author");
 		this.pubDate = json.getString("pubDate");
 		this.description = json.getString("description");
+		this.isbn = json.get("isbn");
+		this.isbn13 = json.get("isbn13");
+		this.itemId = json.get("itemId");
 		this.priceSales = json.getInt("priceSales");
 		this.priceStandard = json.getInt("priceStandard");
 		this.mileage = json.getInt("mileage");
@@ -35,14 +41,21 @@ public class BooksDetailDto {
 	
 	
 
-	public BooksDetailDto(String title, String link, String author, String pubDate, String description, int priceSales,
-			int priceStandard, int mileage, String cover, int categoryId, String categoryName,String publisher,int customerReviewRank) {
+	
+
+
+	public BooksDetailDto(String title, String link, String author, String pubDate, String description, Object isbn,Object isbn13,Object itemId,
+			int priceSales, int priceStandard, int mileage, String cover, int categoryId, String categoryName,
+			String publisher, int customerReviewRank) {
 		super();
 		this.title = title;
 		this.link = link;
 		this.author = author;
 		this.pubDate = pubDate;
 		this.description = description;
+		this.isbn = isbn;
+		this.isbn13 = isbn13;
+		this.itemId = itemId;
 		this.priceSales = priceSales;
 		this.priceStandard = priceStandard;
 		this.mileage = mileage;
@@ -52,6 +65,9 @@ public class BooksDetailDto {
 		this.publisher = publisher;
 		this.customerReviewRank = customerReviewRank;
 	}
+
+
+
 
 
 
@@ -206,14 +222,92 @@ public class BooksDetailDto {
 
 
 
+
+
+
+	public Object getIsbn() {
+		return isbn;
+	}
+
+
+
+
+
+
+	public void setIsbn(Object isbn) {
+		this.isbn = isbn;
+	}
+
+
+
+
+
+
+	public int getCustomerReviewRank() {
+		return customerReviewRank;
+	}
+
+
+
+
+
+
+	public void setCustomerReviewRank(int customerReviewRank) {
+		this.customerReviewRank = customerReviewRank;
+	}
+
+
+	
+
+
+
+	public Object getIsbn13() {
+		return isbn13;
+	}
+
+
+
+
+
+
+	public void setIsbn13(Object isbn13) {
+		this.isbn13 = isbn13;
+	}
+
+
+
+
+
+
+	public Object getItemId() {
+		return itemId;
+	}
+
+
+
+
+
+
+	public void setItemId(Object itemId) {
+		this.itemId = itemId;
+	}
+
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "BooksDetailDto [title=" + title + ", link=" + link + ", author=" + author + ", pubDate=" + pubDate
-				+ ", description=" + description + ", priceSales=" + priceSales + ", priceStandard=" + priceStandard
-				+ ", mileage=" + mileage + ", cover=" + cover + ", categoryId=" + categoryId + ", categoryName="
-				+ categoryName + ", publisher=" + publisher + "]";
+				+ ", description=" + description + ", isbn=" + isbn + ", isbn13=" + isbn13 + ", itemId=" + itemId
+				+ ", priceSales=" + priceSales + ", priceStandard=" + priceStandard + ", mileage=" + mileage
+				+ ", cover=" + cover + ", categoryId=" + categoryId + ", categoryName=" + categoryName + ", publisher="
+				+ publisher + ", customerReviewRank=" + customerReviewRank + "]";
 	}
 
+
+	
 
 
 	

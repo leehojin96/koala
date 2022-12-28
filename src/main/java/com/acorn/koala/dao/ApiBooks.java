@@ -42,7 +42,7 @@ public class ApiBooks {
 				+ "&"
 				+ "SearchTarget=Book"
 				+ "&"
-				+ "output=xml"//xml or json
+				+ "output=xml"//xml or JS
 				+ "&"
 				+ "Version=20131101"
 				+ "&"
@@ -61,6 +61,7 @@ public class ApiBooks {
 		
 		// "object" key를 JSONObjext 객체로 생성
 		JSONObject result = resultObj.getJSONObject("object");
+		//System.out.println(result);
 		 
 		
 		return result.toString();
@@ -109,7 +110,7 @@ public class ApiBooks {
 	//신간 인기 도서 API
 		public static String getItemNewSpecial(int start,int categoryId) {
 			
-			
+			//http://www.aladin.co.kr/ttb/api/ItemList.aspx?ttbkey=ttbst20352313001&QueryType=ItemNewSpecial&MaxResults=50&start=1&SearchTarget=Book&output=xml&Version=20131101&Cover=Big&CategoryId=0;
 			String apiURL = "http://www.aladin.co.kr/ttb/api/ItemList.aspx"
 					+ "?"
 					+ "ttbkey=ttbst20352313001"
@@ -149,7 +150,7 @@ public class ApiBooks {
 	//도서 검색 api
 	public static String getSearch(int start,int categoryId,String query) {
 		
-		
+		//http://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbst20352313001&Query=물고기&QueryType=Title&MaxResults=50&start=1&SearchTarget=Book&output=xml&Version=20131101&Cover=Big&CategoryId=0
 		String apiURL = "http://www.aladin.co.kr/ttb/api/ItemSearch.aspx"
 				+ "?"
 				+ "ttbkey=ttbst20352313001"
@@ -188,16 +189,16 @@ public class ApiBooks {
 	}
 	
 	//도서 상세 페이지
-		public static String getDetail(String isbn13) {
+		public static String getDetail(String isbn) {
 			
-			
+			//http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx?ttbkey=ttbst20352313001&itemIdType=ISBN&ItemId=9791169472807&output=xml&Version=20131101&OptResult=ebookList,usedList,reviewList&Cover=Big
 			String apiURL = "http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx"
 					+ "?"
 					+ "ttbkey=ttbst20352313001"
 					+ "&"
 					+ "itemIdType=ISBN"
 					+ "&"
-					+ "ItemId="+isbn13
+					+ "ItemId="+isbn
 					+ "&"
 					+ "output=xml"
 					+ "&"

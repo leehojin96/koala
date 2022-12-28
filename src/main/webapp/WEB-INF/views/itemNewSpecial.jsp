@@ -52,6 +52,7 @@
 											alert(arror);
 										}
 									});
+							$("#selectState1").html("신간 인기 도서");
 						}
 
 						//ArrayList<BooksDto> 타입 -> 반복분 통해 한권씩 데이터 뽑아내고 html 형식으로 변환
@@ -61,8 +62,8 @@
 							let str = "";
 							for (let i = 0; i < data.length; i++) {
 								let item = data[i];
-								str += "<a href="
-										+ "'javascript:detail("+item.isbn+");'"
+									str += "<a href="
+										+ "javascript:detail('" + item.isbn + "') "
 										+ "onmouseenter='zoomIn(event)' onmouseleave='zoomOut(event)'>" // 마우스 호버 애니메이션
 										+ "<div id='book'>"
 										+ "<div id='bookImg'>"
@@ -163,8 +164,12 @@
 							showList(start,categoryId);
 							$("."+this.value).show();
 							$("#"+this.value+"Middle").prop('checked',true);
-							$("#selectState1").html($("#"+this.value+"Top").next().text()+" >");
-							$("#selectState2").html("전체");
+							$("#selectState2").html(" > "+$("#"+this.value+"Top").next().text());
+							if(categoryId == '0'){								
+							$("#selectState3").html("");
+							}else{
+								$("#selectState3").html(" > 전체");
+							}
 						});
 						
 						//소분류 카테고리 클릭시
@@ -177,8 +182,8 @@
 							$("#selectState2").html(""+a);
 						});
 					});
-	function detail(isbn13) {
-		window.location.href = "/koala/books/Detail?isbn13=" + isbn13;
+	function detail(isbn) {
+		window.location.href = "/koala/books/Detail?isbn=" + isbn;
 	}
 	
 	

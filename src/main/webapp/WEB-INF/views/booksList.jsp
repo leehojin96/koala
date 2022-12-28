@@ -71,9 +71,9 @@ to{opacity: 1;}}
 #bookImg {
 	width: 200px;
 	height: 300px;
-	border-radius: 20px 5px 5px 20px;
+	border-radius: 15px 15px 15px 15px;
 	overflow: hidden;
-	box-shadow: 5px 5px #333333;
+	box-shadow: 5px 5px 5px 5px #8b8b8b;
 	margin-bottom: 20px;
 }
 
@@ -187,21 +187,7 @@ margin-right: 10px;
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-/*
-$(document).ready(function() {
-		$("#categoryDiv").mouseenter(function() {
-			$("#categoryDiv").stop().animate(
-					{height:"150px"},300,'swing'		
-				);
-		});
-		
-		$("#categoryDiv").mouseleave(function(){
-			$("#categoryDiv").stop().animate(
-					{height:"50px"},500	
-				);
-		});
-});
-*/
+
 </script>
 </head>
 <body>
@@ -767,7 +753,7 @@ $(document).ready(function() {
 			
 			<span id="selectState1"></span>
 			<span id="selectState2"></span>
-			<span id="selectState2"></span>
+			<span id="selectState3"></span>
 				
 
 			</div>

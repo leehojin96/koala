@@ -7,7 +7,8 @@ public class BooksDto {
 	String title;
 	String author;
 	String cover;
-	Object isbn13;
+	Object isbn;
+	
 	int priceStandard;
 	
 
@@ -15,19 +16,19 @@ public class BooksDto {
 		this.title = json.getString("title");
 		this.author = json.getString("author");
 		this.cover = json.getString("cover");
-		this.isbn13 = json.get("isbn13");
+		this.isbn = json.get("isbn");
 		this.priceStandard = json.getInt("priceStandard");
 	}
 
 
 
 
-	public BooksDto(String title, String author, String cover, Object isbn13, int priceStandard) {
+	public BooksDto(String title, String author, String cover, Object isbn, int priceStandard) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.cover = cover;
-		this.isbn13 = isbn13;
+		this.isbn = isbn;
 		this.priceStandard = priceStandard;
 	}
 
@@ -85,14 +86,14 @@ public class BooksDto {
 
 
 	public Object getIsbn() {
-		return isbn13;
+		return isbn;
 	}
 
 
 
 
-	public void setIsbn(Object isbn13) {
-		this.isbn13 = isbn13;
+	public void setIsbn(Object isbn) {
+		this.isbn = isbn;
 	}
 
 
@@ -100,7 +101,7 @@ public class BooksDto {
 
 	@Override
 	public String toString() {
-		return "BooksDto [title=" + title + ", author=" + author + ", cover=" + cover + ", isbn13=" + isbn13
+		return "BooksDto [title=" + title + ", author=" + author + ", cover=" + cover + ", isbn=" + isbn
 				+ ", priceStandard=" + priceStandard + "]";
 	}
 
