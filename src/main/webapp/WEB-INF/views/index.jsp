@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="${path}/resources/js/chat.js"></script>
 
 <script>
 
@@ -202,6 +203,37 @@ h1 a{
 	text-decoration: none;
 	color: black;
 }
+
+#chatArea {
+    width: 500px; 
+    height: 180px; 
+    overflow-y: auto; 
+    border: 1px solid black;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.send{
+    border:1px solid gray; 
+    text-align:right;
+    padding:10px;
+    
+ }
+ 
+ .recv{
+    border:1px solid yellow;
+    color:blue;
+    text-align:left;
+    padding:10px;
+ }
+ 
+ #write_message{
+ 	width: 500px; 
+ 	height: 30px;
+ 	//background-color: red;
+ 	margin: auto;
+ }
 </style>
 </head>
 <body>
@@ -415,23 +447,17 @@ h1 a{
 	</div>
 	
 	
-	<div id ="chatting" style="width:50%; height:300px;; background-color: yellow; ">
+	<div id ="chatting" style="width:50%; height:300px; ">
 	
-		이름:<input type="text" id="nickname">
-		
-	    <input type="button" id="enterBtn" value="입장">
-	    <input type="button" id="exitBtn" value="나가기">
-	    
-	    
-	    <div id="chatArea"><div id="chatMessageArea"></div></div>
+		<div id="chatArea"><div id="chatMessageArea"></div></div>
 	    <br/>
 	    
-	    
-	    <input type="text" id="message">
-	    <input type="button" id="sendBtn" value="전송">
-	
+	    <div id ="write_message">
+	    	<input type="text" id="message" class="enterBtn" style="width:80%; height: 100%;">
+	    	<input type="button" id="sendBtn" value="전송" style="width: 17%; height: 34px; background-color: white; border: 0.5px solid black; border-radius: 4px;">
+		</div>
 	</div>
-
+	
 	
 
 </div>
