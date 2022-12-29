@@ -88,7 +88,7 @@ function toHtml(data){
 	for(let i=0; i<data.length; i++){
 	let item = data[i];
 	
-	 str += "<tr><td><p>"+item.userID+" :<span>  "+item.comments+"</span></p></td><td id = "+"'daytd'"+">"+item.comments_dy+"</td></tr>";
+	 str += "<tr><td><p>"+item.userID+" :<span><br>  "+item.comments+"</span></p></td><td id = "+"'daytd'"+">"+item.comments_dy+"</td></tr>";
 	
 	}
 	return str;

@@ -5,6 +5,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		<!--  루트 컨텍스트: 다른 모든 웹 구성 요소에 표시되는 공유 리소스를 정의합니다. -->
+	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
