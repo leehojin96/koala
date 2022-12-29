@@ -60,7 +60,6 @@ public class BooksViewController {
 		String result = apiBooks.getBestseller(start, categoryId);
 
 		HashMap<String, Object> map = apiBooks.fromJSONtoItems(result);
-		System.out.println();
 
 		return map;
 	}
@@ -121,7 +120,7 @@ public class BooksViewController {
 
 	// 검색 도서 이동
 	@RequestMapping(value = "/Search", method = RequestMethod.GET)
-	public String booksSearchView(String query, Model m,HttpServletRequest request) {
+	public String booksSearchView(String query,HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		
 		String userid = (String) session.getAttribute("id");

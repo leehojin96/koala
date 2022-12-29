@@ -90,11 +90,11 @@ public class UserController {
         String toMail = userEmail;
         String title = "코알라북 회원가입 인증 이메일 입니다.";
         String content = 
-                "코알라북 회원가입을 축하합니다!" +
-                "<br>"+
-                "인증 번호는 " + checkNum + "입니다." + 
-                "<br>" +
-                "회원가입 인증을 완료해주세요.";
+                "KOALA BOOK 회원가입을 축하합니다!!" +
+                "\n"+"\n"+
+                "인증 번호는 " +"\s"+ checkNum +"\s"+"\s"+ "입니다." + 
+                "\n"+"\n"+
+                "회원가입 인증을 완료해주세요!";
         
         	SimpleMailMessage message= new SimpleMailMessage();
             message.setFrom(setFrom);
