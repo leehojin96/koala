@@ -18,7 +18,7 @@ $(document).ready( function(){
 
 
 	
-	var userID = "${list[1] }";
+	var userID = "${userID }";
 	var w_number = ${list[0] };
 	//var comments = $("#comments").val();
 	
@@ -48,7 +48,7 @@ $(document).ready( function(){
 	$("#add_comments").click( function(){
 		//alert("click");
 		
-		var userID = "${list[1] }";
+		var userID = "${userID }";
 		var w_number = ${list[0] };
 		var comments = $("#comments").val();
 
@@ -88,7 +88,7 @@ function toHtml(data){
 	for(let i=0; i<data.length; i++){
 	let item = data[i];
 	
-	 str += "<tr><td><p>"+item.userID+" :<span><br>  "+item.comments+"</span></p></td><td id = "+"'daytd'"+">"+item.comments_dy+"</td></tr>";
+	 str += "<tr><td><p>"+item.userID+"  :<span>"+item.comments+"</span></p></td><td id = "+"'daytd'"+">"+item.comments_dy+"</td></tr>";
 	
 	}
 	return str;
@@ -200,7 +200,7 @@ section{
 	margin-left: 80px;
 }
 #show_comments span{
-	margin-left: 20px;
+	margin-left: 10px;
 }
 
 #show_comments  td{
@@ -252,7 +252,7 @@ String[] list =  (String[])request.getAttribute("list");
 		<h1>의견쓰기</h1>
 
 		<div id ="write_comments" style = " width: 95%; margin-top: 20px; border: 1px solid black; height: 161px; position: relative;">
-			<span style="margin-left: 17px; margin-top: 10px; display: block;">${list[1] }</span>
+			<span style="margin-left: 17px; margin-top: 10px; display: block;">${userID }</span>
 			
 			<textarea id = "comments" name = "comments" placeholder="댓글을 작성해주세요" style="width: 454px; height: 87px; margin: 0px; "></textarea>
 			<button id="add_comments">등록</button>
