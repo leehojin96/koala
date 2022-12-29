@@ -1,5 +1,5 @@
     
-   
+
      var wsocket;
     
   
@@ -40,9 +40,11 @@
       alert("연결을 끊었습니다");
     }
     
+  
    
     function send() {    	         
-        var nickname = "임영빈"      
+        var nickname = $("#chat_userID").val();    //"임영빈"
+        console.log( "userid ="+nickname);      
         var msg = $("#message").val();       
         wsocket.send("msg:"+nickname+":" + msg);        
         $("#message").val("");

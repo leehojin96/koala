@@ -24,7 +24,7 @@
 
 	function connect() {
 
-		wsocket = new WebSocket("ws://localhost:8090/chatt/chat-ws");
+		wsocket = new WebSocket("ws://localhost:8090/koala/chat-ws2");
 
 		wsocket.onopen = onOpen;
 		wsocket.onmessage = onMessage;
@@ -253,12 +253,12 @@ p{ border-bottom: 1px solid gray; font-size: 18px;
 <body>
 	<div class="wrap1">
 		<div class="title">
-			<h2></h2><img src="<spring:uri value='/resources/image/logo.png'/>">
+			<h2></h2><img src="<spring:url value=''/>">
 			<input type="button" id="exitBtn" value="상담종료">
 
 		</div>
 		<div class="wrap2">
-			<input type="text" id="nickname" placeholder="이름을 입력하세요"> <input
+			<input type="text" id="nickname" placeholder=${userID }> <input
 				type="button" id="enterBtn" value="상담연결">
 			<p id="todayVal"></p>
 
