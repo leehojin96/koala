@@ -425,7 +425,7 @@ $(document).ready( function(){
 		});
 		
 		$("#books").click(function() {
-			window.location.href = "/koala/books";
+			window.location.href = "/koala/Bestseller";
 		});
 
 });

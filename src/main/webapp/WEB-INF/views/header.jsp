@@ -278,8 +278,6 @@ header .menu .menu_wrap .mainmenu a {
 
 							<li class="mainmenu"><a href="/koala/board">게시판</a>
 								<ul class="submenu">
-									<li><a href="#">서브메뉴1</a></li>
-									<li><a href="#">서브메뉴2</a></li>
 								</ul></li>
 <!--  
 							<li class="mainmenu"><a href="#">메뉴3</a>
