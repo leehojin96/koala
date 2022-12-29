@@ -1,11 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"
 	trimDirectiveWhitespaces="true"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>채팅</title>
- <%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>  
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -253,7 +253,8 @@ p{ border-bottom: 1px solid gray; font-size: 18px;
 <body>
 	<div class="wrap1">
 		<div class="title">
-			<h2></h2><img src="<spring:uri value='/resources/image/logo.png'/>">
+			<h2>KOALA TALK</h2>
+			<!--  <img src="https://ibb.co/WyGFHkK">-->
 			<input type="button" id="exitBtn" value="상담종료">
 
 		</div>
