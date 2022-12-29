@@ -209,20 +209,21 @@ h1 a{
     height: 180px; 
     overflow-y: auto; 
     border: 1px solid black;
-    border-radius: 20px;
+    
     margin: auto;
     margin-top: 20px;
+    
 }
 
 .send{
-    border:1px solid gray; 
+    border-bottom :1px solid gray; 
     text-align:right;
     padding:10px;
     
  }
  
  .recv{
-    border:1px solid yellow;
+    border-bottom :1px solid gray; 
     color:blue;
     text-align:left;
     padding:10px;
@@ -238,7 +239,7 @@ h1 a{
 </head>
 <body>
 <%@ include file ="header.jsp" %>
-
+<input type ="text" value ="${userid }" style="display: none;" id ="chat_userID">
 
 
 <section>
@@ -418,7 +419,7 @@ h1 a{
 
 </div>
 
-<h1 style="margin: 30px 0px 0px 50px;"> < 게시판, 소통의 광장 ></h1>
+<h1 style="margin: 30px 0px 30px 50px;"> < 게시판, 소통의 광장 ></h1>
 
 <div id ="section_02">
 
@@ -461,6 +462,8 @@ h1 a{
 	
 
 </div>
+
+
 	
 
 

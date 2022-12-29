@@ -125,16 +125,17 @@ public class KoalaDao {
 		Connection conn =null;
 		PreparedStatement pstmt = null;
 
-		String sql = " insert into board values(writenum_seq.nextval,'userID',?,?,?,sysdate)";
+		String sql = " insert into board values(writenum_seq.nextval,?,?,?,?,sysdate)";
 		
 		try {
 			conn = ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 	        //rs = pstmt.executeQuery();
 	        //System.out.println(dto.getTitle());
-			pstmt.setString(1, dto.getTitle());
-			pstmt.setString(2, dto.getPassward());
-			pstmt.setString(3, dto.getContent());
+			pstmt.setString(1, dto.getUserID());
+			pstmt.setString(2, dto.getTitle());
+			pstmt.setString(3, dto.getPassward());
+			pstmt.setString(4, dto.getContent());
 			pstmt.executeUpdate();
 			
 			System.out.println("insert complete");
