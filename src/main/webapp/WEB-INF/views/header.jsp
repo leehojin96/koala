@@ -105,7 +105,7 @@ header {
 }
 
 .header_logo img {
-	width: 300px;
+	width: 290px;
 	height: 160px;
 }
 
@@ -183,6 +183,7 @@ header .header_section .header_sl .searchbar img {
 
 header .menu {
 	margin-top: 15px;
+	margin-right: 180px;
 }
 
 header .header_sl .menu ul {
@@ -222,7 +223,7 @@ header .menu .menu_wrap .mainmenu a {
 	<header>
 		<div class="header_wrap">
 			<div class="header_logo">
-				<a href="/koala/index"><img src="https://ifh.cc/g/BKg92h.jpg"></a>
+				<a href="/koala/index"><img src="https://i.ibb.co/j5RbKT0/Kakao-Talk-20221229-151143932.jpg"></a>
 			</div>
 
 			<div class="header_section">
@@ -268,14 +269,14 @@ header .menu .menu_wrap .mainmenu a {
 
 					<div class="menu">
 						<ul class="menu_wrap">
-							<li class="mainmenu"><a href="/koala/books">도서</a>
+							<li class="mainmenu"><a href="#">도서</a>
 								<ul class="submenu">
 									<li><a href="/koala/Bestseller">베스트셀러</a></li>
 									<li><a href="/koala/ItemNewAll">신간 도서</a></li>
 									<li><a href="/koala/ItemNewSpecial">신간 인기 도서</a></li>
 								</ul></li>
 
-							<li class="mainmenu"><a href="#">메뉴2</a>
+							<li class="mainmenu"><a href="/koala/board">게시판</a>
 								<ul class="submenu">
 									<li><a href="#">서브메뉴1</a></li>
 									<li><a href="#">서브메뉴2</a></li>

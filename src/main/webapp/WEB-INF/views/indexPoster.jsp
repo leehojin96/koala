@@ -43,9 +43,9 @@
 	width: 1450px;
 }
 #logo{
-	width:200px;
-	height:110px;
-	background-image: url("https://ifh.cc/g/BKg92h.jpg");
+	width:270px;
+	height:135px;
+	background-image: url("https://i.ibb.co/j5RbKT0/Kakao-Talk-20221229-151143932.jpg");
 	background-position: center;
 	background-size: cover;
 	margin: 0px 100px 0px 100px;
