@@ -36,19 +36,13 @@ public class MyPageController {
 		
 		HttpSession session = request.getSession();
 		
-		String userid = (String) session.getAttribute("id");
-		String logintype = (String) session.getAttribute("type");
-
+		String userID = (String) session.getAttribute("userID");
+		String logintype = (String) session.getAttribute("logintype");
 		
 		
-		request.setAttribute("id", userid);
-		request.setAttribute("logintype", logintype);
-		
-		
-			if(userid == null ) {
+			if(userID == null ) {
 				return "redirect:login";
-			} else if(userid != null && logintype.equals("0")) {
-				request.setAttribute("id", userid);
+			} else if(userID != null && logintype.equals("0")) {
 				return "mypageenter";
 			} else {
 				PrintWriter script = response.getWriter();
@@ -94,17 +88,15 @@ public class MyPageController {
 		
 		HttpSession session = request.getSession();
 		
-		String userid = (String) session.getAttribute("id");
-		String logintype = (String) session.getAttribute("type");
-		request.setAttribute("id", userid);
-		request.setAttribute("logintype", logintype);
+		String userID = (String) session.getAttribute("userID");
+		String logintype = (String) session.getAttribute("logintype");
 		
 		
 		
-		if(userid != null && logintype.equals("0") ) {	// 로그인함
+		if(userID != null && logintype.equals("0") ) {	// 로그인함
 			
 			MypageService service = new MypageService(mdao);
-			UserMypageDto user = service.MypageInfo(userid);
+			UserMypageDto user = service.MypageInfo(userID);
 			
 			
 			
@@ -130,7 +122,7 @@ public class MyPageController {
 			
 			
 			return "mypagee";
-		} else if(userid == null) {		// 로그인함
+		} else if(userID == null) {		// 로그인함
 			
 			
 			return "redirect:login";
