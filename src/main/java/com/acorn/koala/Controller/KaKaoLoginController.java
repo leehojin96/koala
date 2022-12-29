@@ -33,14 +33,14 @@ public class KaKaoLoginController {
 		if(result == 0) {
 			service.kakaoJoin(id, email, nickname, gender);
 			HttpSession session = request.getSession();
-			session.setAttribute("id", id);
-			session.setAttribute("type", login_type);
+			session.setAttribute("userID", id);
+			session.setAttribute("logintype", login_type);
 			
 		} else if(result == 1) {
 			// 가입 이미 되어있다면 세션에 id 등록
 			HttpSession session = request.getSession();
-			session.setAttribute("id", id);
-			session.setAttribute("type", login_type);
+			session.setAttribute("userID", id);
+			session.setAttribute("logintype", login_type);
 		}
 		
 		return "redirect:index";

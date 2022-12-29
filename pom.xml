@@ -78,21 +78,12 @@
       </dependency>
 
 
-<<<<<<< HEAD
 		<!-- chatting -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-websocket</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-=======
-      <!-- chatting -->
-      <dependency>
-         <groupId>org.springframework</groupId>
-         <artifactId>spring-websocket</artifactId>
-         <version>${org.springframework-version}</version>
-      </dependency>
->>>>>>> branch 'master' of https://github.com/leehojin96/koala.git
 
 
       <dependency>

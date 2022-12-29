@@ -23,14 +23,8 @@ public class PopUpLoginController {
 	
 	
 	@RequestMapping(value = "/pop", method = RequestMethod.GET)
-	public String pop(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String pop() {
 		
-		String userid = (String) session.getAttribute("id");
-		String logintype = (String) session.getAttribute("type");
-		
-		request.setAttribute("userid", userid);
-		request.setAttribute("logintype", logintype);
 		
 		return "popuptest";
 	}
@@ -52,8 +46,8 @@ public class PopUpLoginController {
 		
 		if(result == 1 ){	
 			HttpSession session = request.getSession();
-			session.setAttribute("id", id);
-			session.setAttribute("type", login_type);
+			session.setAttribute("userID", id);
+			session.setAttribute("logintype", login_type);
 			
 			PrintWriter script = response.getWriter();
 			script.println("<script> opener.location.reload(); self.close(); </script>");

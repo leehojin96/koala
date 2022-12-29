@@ -28,14 +28,8 @@ public class KoalaController {
 		
 		ArrayList<BoarderDTO> list2 = s.selectBoard();
 		m.addAttribute("list2",list2);
-		HttpSession session = request.getSession();
 		
-		String userid = (String) session.getAttribute("id");
-		String logintype = (String) session.getAttribute("type");
-
 		
-		request.setAttribute("userid", userid);
-		request.setAttribute("logintype", logintype);
 		return "index";
 	}
 	
