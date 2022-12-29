@@ -20,7 +20,7 @@ function delect_form(val){
 		
 		$.ajax({
 			method: 'POST',
-			url: '/user/userDelete',   
+			url: '/koala/user/userDelete',   
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ function delect_form(val){
 			success: function(response) {
 				if (response.status == true) {
 					alert("회원탈퇴가 완료되었습니다");
-					location.href="/user/join";  // 메인으로 변경하기
+					location.href="/koala/index";  // 메인으로 변경하기
 				} else {
 					alert("비밀번호를 정확히 입력해주세요.");
 				}

@@ -141,13 +141,29 @@
 		}
 	}
 	
+	$(document).ready(function() {
+
+		//회원탈퇴 버튼 클릭
+		$("#del_btn").on("click", function() {
+			$(".box1").show();
+		});
+
+		//회원탈퇴 여부 모달에서 취소버튼 클릭
+		$(".box_btn2").on("click", function() {
+			$(".box1").hide();
+		});
+	});
+
+	
+	
+	
 	function log_popup(){
 		window.open("http://localhost:8090/<c:url value='/logpopup?id=${id}' />","Koala Book Log","width=850, height=650, toolbar=no, menubar=no, scrollbar=yes");
 	}
 
-	function unregister(){
-		
-		
+'./'
+
+	
 	}
 
 </script>
@@ -491,12 +507,12 @@
     	margin-right:20px;
 	}
 	
-	.info_wrap .container .unregister{
+	.info_wrap .container .deleteUser{
 		margin-top:45px;
 		text-align:center;
 	}
 	
-	.info_wrap .container .unregister button{
+	.info_wrap .container .deleteUser button{
 		width:140px;
 		height:45px;
 		border:1px solid green;
@@ -935,6 +951,19 @@
 					<div class="log_inner">
 						로그인 기록
 						
+						
+					<input type="hidden" id="hiddenUserInfo" value="0">
+						<input type="hidden" id="hideUserId" value="0">
+							<div class="box1" id="box1">
+								<div class="box2">
+									<h4>회원탈퇴를 하면 서비스를 더 이상 이용할수 없습니다 회원탈퇴를 진행하겠습니까?</h4>
+										<button class="box_btn1" onClick="location.href='/user/delete'">확인</button>
+										<button class="box_btn2">취소</button>
+								</div>
+							</div>	
+					<button id="del_btn">회원탈퇴</button>
+						
+						
 						<button onclick="log_popup()">전체보기</button>
 					</div>
 				</div>
@@ -942,14 +971,7 @@
 				
 			</div>
 			
-			<div class="unregister">
-					<button onclick="unregister()">회원 탈퇴</button>
-			</div>
-			
-		</div>
 	
-
-	</div>
 	
 	
 	<div class="phone_popup">

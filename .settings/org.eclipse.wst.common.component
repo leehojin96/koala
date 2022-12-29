@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
                                 	
     
+=======
+                            	
+>>>>>>> refs/heads/so2.0
     
     
     
@@ -8,8 +12,12 @@
     
     
     <wb-module deploy-name="koala-1.0.0-BUILD-SNAPSHOT">
+<<<<<<< HEAD
                                                                         
         
+=======
+                                                                
+>>>>>>> refs/heads/so2.0
         
         
         
@@ -17,8 +25,12 @@
         
         
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+<<<<<<< HEAD
                                                                 		
         
+=======
+                                                        		
+>>>>>>> refs/heads/so2.0
         
         
         
@@ -26,11 +38,28 @@
         
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+<<<<<<< HEAD
+=======
+                                                        		
+        
+        
+        
+        
+        
+        
+>>>>>>> refs/heads/so2.0
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+<<<<<<< HEAD
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
                                                                 		
         
+=======
+                
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+                                                        		
+>>>>>>> refs/heads/so2.0
         
         
         
@@ -38,8 +67,12 @@
         
         
         <property name="java-output-path" value="target/classes"/>
+<<<<<<< HEAD
                                                                         
         
+=======
+                                                                
+>>>>>>> refs/heads/so2.0
         
         
         
@@ -47,8 +80,12 @@
         
         
         <property name="context-root" value="koala"/>
+<<<<<<< HEAD
                                                                 	
     
+=======
+                                                        	
+>>>>>>> refs/heads/so2.0
     
     
     
@@ -56,8 +93,12 @@
     
     
     </wb-module>
+<<<<<<< HEAD
                                 
 
+=======
+                            
+>>>>>>> refs/heads/so2.0
 
 
 
