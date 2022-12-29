@@ -130,11 +130,6 @@ function savecontent(){
 	
 }
 
-function cancle(){
-	
-	window.location.href="/koala/board";
-	
-}
 	
 </script>
 </head>
@@ -174,7 +169,7 @@ function cancle(){
 	<tr>
 		<td colspan="4" style = "text-align: center; border: 0px; padding-top: 20px;">
 			<button type = "button" id = "save" onclick ="savecontent()">등록</button>
-			<button type = "button" id ="cancle" onclick = "cancle()">취소</button>
+			<button type = "button" id ="cancle" onclick = "history.back()">취소</button>
 		</td>
 	</tr>
 	

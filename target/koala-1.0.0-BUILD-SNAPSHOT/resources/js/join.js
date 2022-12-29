@@ -30,7 +30,7 @@ function CheckUserID() {
 	};
 	$.ajax({
 		method: 'POST',
-<<<<<<< HEAD
+		
 		url: '/koala/user/verify',    // AJAX 통신 시도할 URL 주소,컨트롤러
 		headers: {
 			'Accept': 'application/json',   //컨트롤러에서  @RequestBody 불러올 때
@@ -115,92 +115,7 @@ function formSubmit() {
 				alert('회원가입 성공!');
 				//로그인 페이지로 이동
 				location.href="/koala/login";
-=======
-		url: '/user/verify',    // AJAX 통신 시도할 URL 주소,컨트롤러
-		headers: {
-			'Accept': 'application/json',   //컨트롤러에서  @RequestBody 불러올 때
-			'Content-Type': 'application/json',    //사용해야하는 요청데이터를 정의하는영역(Request Header), (Accept / Content-Type -> 제이슨의 MIME 타입)
-		}, 
-		data: JSON.stringify(data),    //js함수를 제이슨문자열로변환하는 제이슨내함수
-		async: false,
-		success: function(response) {
-			if (response.status == true) {
-				verifyUserID.value = '';
-				alert("이미 존재하는 아이디입니다.");
-			} else {
-				verifyUserID.value = userID.value;
-				alert("사용 가능한 아이디입니다.");
-				
-			}
-		},
-		error: function(reason) {
-			console.error(reason);
-		},
-	});
-}
 
-// 데이터 전송
-function formSubmit() {
-	// 각 입력 폼 조건 검증 function안에 function
-	let conditions = [
-		CheckVerifyUserID(),
-		CheckUserPassword(),
-		checkUserPasswordConfirm(),
-		checkUserName(),
-		checkUserBirth(),
-		checkUserEmail(),
-		checkUserPhone(),
-		checkUserAddress(),
-		checkVerifyConfirmYn(),
-	];
-	
-	// 성공한 개수
-	let completeConditions = conditions.filter(function(condition) {
-		return condition === true;
-	});
-	
-	// 하나라도 문제가 있으면 submit 종료
-	if (conditions.length !== completeConditions.length) {
-		return false;
-	}
-	
-	// 사용자 아이디 중복체크 여부
-	if (verifyUserID.value == false) {
-		let error = userForm.querySelector('#error-userID');
-		
-		error.textContent = '아이디를 중복체크 해주세요.';
-		
-		return false;
-	}
-	
-	// 데이터 작성
-	let data = {
-		userID: userID.value,
-		userPassword: userPassword.value,
-		userName: userName.value,
-		email: `${userEmailName.value}@${userEmailDomain.value}`,
-		phoneNumber: `${userPhoneNumber1.value}-${userPhoneNumber2.value}-${userPhoneNumber3.value}`,
-		birth: userBirth.value,
-		addr1: userAddr1.value,
-		addr2: userAddr2.value,
-		addr3: userAddr3.value,
-	};
-	
-	$.ajax({
-		method: 'POST',
-		url: '/user/create',
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json',
-		},
-		data: JSON.stringify(data),
-		async: false,
-		success: function(response) {
-			if (response.status) {
-				alert('회원가입 성공!');
-				//로그인 페이지로 이동
-				location.href="/user/myPage";
->>>>>>> refs/heads/ver3.1
 			} else {
 				if (response.message !== undefined) {
 					alert(response.message);

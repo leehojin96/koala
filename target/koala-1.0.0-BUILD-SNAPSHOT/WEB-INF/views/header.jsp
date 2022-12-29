@@ -70,6 +70,12 @@
 			Kakao.Auth.setAccessToken(undefined);
 		}
 	}
+	
+	function chatPopupOpen() {
+		var popUrl = "/koala/chat";
+        var popOption = "scrollbars=no,resizable=no,status=no,menubar=no,width=550, height=710, top=0,left=0";
+        window.open(popUrl,"chatt", popOption);
+	}
 </script>
 
 <style>
@@ -225,34 +231,37 @@ header .menu .menu_wrap .mainmenu a {
 							src="https://www.data4library.kr/resources/img/background/g_home_icon.gif"
 							class="home_icon">home</a> </span> <span>|</span>
 					<c:choose>
-						<c:when test="${id == null }">
+						<c:when test="${userID == null }">
 							<span><a href="/koala/login">로그인</a></span>
 							<span>|</span>
 							<span><a href="/koala/user/join">회원가입 </a></span>
 						</c:when>
 						
 						
-						<c:when test="${id != null && logintype == '0' }">
+						<c:when test="${userID != null && logintype == '0' }">
 						<span><a href="/koala/mypageenter">마이페이지</a></span>
 						<span>|</span>
 							<span><a href="/koala/logout">로그아웃</a></span>
+							<span>|</span> <span><a href="javascript:chatPopupOpen();">고객센터</a></span>
 						</c:when>
 
-						<c:when test="${id != null && logintype == '1' }">
+						<c:when test="${userID != null && logintype == '1' }">
 						<span><a href="/koala/mypageenter">마이페이지</a></span>
 						<span>|</span>
 							<span><a style="cursor: pointer" onclick="kakaoLogout()">카카오
 									로그아웃</a></span>
+									<span>|</span> <span><a href="javascript:chatPopupOpen();">고객센터</a></span>
 						</c:when>
 
-						<c:when test="${id != null && logintype == '2' }">
+						<c:when test="${userID != null && logintype == '2' }">
 						<span><a href="/koala/mypageenter">마이페이지</a></span>
 						<span>|</span>
 							<span><a style="cursor: pointer" onclick="naverLogout()"
 								id="btn_logout">네이버 로그아웃</a></span>
+								<span>|</span> <span><a href="javascript:chatPopupOpen();">고객센터</a></span>
 						</c:when>
 					</c:choose>
-					<span>|</span> <span><a href="#">고객센터</a></span>
+					
 				</div>
 
 				<div class="header_sl">
