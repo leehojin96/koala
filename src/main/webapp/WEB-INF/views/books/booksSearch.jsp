@@ -52,7 +52,10 @@
 									$("#selectState1").html("'"+query+"' 검색 결과 ("+data_totalBooks+")");
 								},
 								error : function() {
-									window.location.href = "/koala/books/error";
+									$("#bookEmpty").html("");
+									$("#selectState1").html("'"+query+"' 검색 결과 (0)");
+									$("#selectState4").html("도서를 지원하지 않습니다... ");
+									$("#paging").html("");
 								}
 							});
 							

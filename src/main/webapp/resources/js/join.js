@@ -30,6 +30,7 @@ function CheckUserID() {
 	};
 	$.ajax({
 		method: 'POST',
+		
 		url: '/koala/user/verify',    // AJAX 통신 시도할 URL 주소,컨트롤러
 		headers: {
 			'Accept': 'application/json',   //컨트롤러에서  @RequestBody 불러올 때
@@ -114,6 +115,7 @@ function formSubmit() {
 				alert('회원가입 성공!');
 				//로그인 페이지로 이동
 				location.href="/koala/login";
+
 			} else {
 				if (response.message !== undefined) {
 					alert(response.message);

@@ -26,29 +26,15 @@ public class BooksViewController {
 	
 	// 도서 종합 이동
 		@RequestMapping(value = "/books", method = RequestMethod.GET)
-		public String booksView(HttpServletRequest request) {
-			HttpSession session = request.getSession();
+		public String booksView() {
 			
-			String userid = (String) session.getAttribute("id");
-			String logintype = (String) session.getAttribute("type");
-
-			
-			request.setAttribute("userid", userid);
-			request.setAttribute("logintype", logintype);
 			return "/books/books"; 
 		}
 
 	// 베스트셀러 이동
 	@RequestMapping(value = "/Bestseller", method = RequestMethod.GET)
-	public String bestsellerView(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String bestsellerView() {
 		
-		String userid = (String) session.getAttribute("id");
-		String logintype = (String) session.getAttribute("type");
-
-		
-		request.setAttribute("userid", userid);
-		request.setAttribute("logintype", logintype);
 		return "/books/bestseller";
 	}
 
@@ -60,22 +46,14 @@ public class BooksViewController {
 		String result = apiBooks.getBestseller(start, categoryId);
 
 		HashMap<String, Object> map = apiBooks.fromJSONtoItems(result);
-		System.out.println();
 
 		return map;
 	}
 
 	// 신간도서 이동
 	@RequestMapping(value = "/ItemNewAll", method = RequestMethod.GET)
-	public String itemNewAllView(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String itemNewAllView() {
 		
-		String userid = (String) session.getAttribute("id");
-		String logintype = (String) session.getAttribute("type");
-
-		
-		request.setAttribute("userid", userid);
-		request.setAttribute("logintype", logintype);
 		return "/books/itemNewAll"; 
 	}
 
@@ -94,15 +72,8 @@ public class BooksViewController {
 
 	// 신간 인기 도서 이동
 	@RequestMapping(value = "/ItemNewSpecial", method = RequestMethod.GET)
-	public String itemNewSpecialView(HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String itemNewSpecialView() {
 		
-		String userid = (String) session.getAttribute("id");
-		String logintype = (String) session.getAttribute("type");
-
-		
-		request.setAttribute("userid", userid);
-		request.setAttribute("logintype", logintype);
 		return "/books/itemNewSpecial"; 
 	}
 
@@ -121,15 +92,8 @@ public class BooksViewController {
 
 	// 검색 도서 이동
 	@RequestMapping(value = "/Search", method = RequestMethod.GET)
-	public String booksSearchView(String query, Model m,HttpServletRequest request) {
-		HttpSession session = request.getSession();
+	public String booksSearchView(String query) {
 		
-		String userid = (String) session.getAttribute("id");
-		String logintype = (String) session.getAttribute("type");
-
-		
-		request.setAttribute("userid", userid);
-		request.setAttribute("logintype", logintype);
 		return "/books/booksSearch"; 
 	}
 
@@ -147,7 +111,7 @@ public class BooksViewController {
 
 	// 도서 상세 이동
 	@RequestMapping(value = "/books/Detail", method = RequestMethod.GET)
-	public String booksDetailView(String isbn, Model m,HttpServletRequest request) {
+	public String booksDetailView(String isbn, Model m) {
 		
 		String result = apiBooks.getDetail(isbn);
 		
@@ -168,15 +132,7 @@ public class BooksViewController {
 		m.addAttribute("categoryId", booksDetail.getCategoryId());
 		m.addAttribute("categoryName", booksDetail.getCategoryName());
 		m.addAttribute("publisher", booksDetail.getPublisher());
-		
-		HttpSession session = request.getSession();
-		
-		String userid = (String) session.getAttribute("id");
-		String logintype = (String) session.getAttribute("type");
 
-		
-		request.setAttribute("userid", userid);
-		request.setAttribute("logintype", logintype);
 		return "/books/detail"; 
 	}
 	

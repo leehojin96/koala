@@ -33,8 +33,8 @@ public class NaverLoginController {
 		if(result==0) {
 			service.naverJoin(id, name, email, gender, birthday, birthyear, mobile);
 			HttpSession session = request.getSession();
-			session.setAttribute("id", id);
-			session.setAttribute("type", login_type);
+			session.setAttribute("userID", id);
+			session.setAttribute("logintype", login_type);
 			
 			
 			
@@ -43,8 +43,8 @@ public class NaverLoginController {
 		} else {
 			// 가입 이미 되어있다면 세션에 id 등록
 			HttpSession session = request.getSession();
-			session.setAttribute("id", id);
-			session.setAttribute("type", login_type);
+			session.setAttribute("userID", id);
+			session.setAttribute("logintype", login_type);
 			
 		}
 		return "redirect:index";

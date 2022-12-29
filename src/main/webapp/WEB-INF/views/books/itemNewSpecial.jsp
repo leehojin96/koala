@@ -49,7 +49,9 @@
 											$("#paging").html(dataPageHtml);
 										},
 										error : function() {
-											window.location.href = "/koala/books/error";
+											$("#bookEmpty").html("");
+											$("#selectState4").html("도서를 지원하지 않습니다... ");
+											$("#paging").html("");
 										}
 									});
 							$("#selectState1").html("신간 인기 도서");
@@ -140,7 +142,7 @@
 								if(this.value == '>'){
 									//마지막 part일 경우 마지막 페이지로
 									if(1 > totalPage/6 - startPart){
-										start = totalPage;
+										start = totalPage - totalPage%1;
 										showList(start, categoryId);
 										window.scrollTo(0, 0);
 										

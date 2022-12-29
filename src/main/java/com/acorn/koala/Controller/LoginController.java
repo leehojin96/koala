@@ -25,7 +25,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		if(session.getAttribute("id") != null) {
+		if(session.getAttribute("userID") != null) {
 			return "redirect:index";
 		}
 		return "login";
@@ -44,8 +44,8 @@ public class LoginController {
 			
 			if(result == 1 ){
 				HttpSession session = request.getSession();
-				session.setAttribute("id", id);
-				session.setAttribute("type", login_type);
+				session.setAttribute("userID", id);
+				session.setAttribute("logintype", login_type);
 				
 				dao.loginLog(id);
 				

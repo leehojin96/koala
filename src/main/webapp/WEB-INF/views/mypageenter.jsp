@@ -81,7 +81,7 @@
 		</div>
 		<form method="post" action="<c:url value='/mypageenter' />"  onsubmit="">
 			<div class="login">
-				<input type="text" name="id" readonly value="${id }" class="id_input">
+				<input type="text" name="id" readonly value="${userID }" class="id_input">
 				<input type="password" name="pw" placeholder="Enter PW">
 			</div>
 		

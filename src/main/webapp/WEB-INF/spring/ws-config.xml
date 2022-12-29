@@ -15,7 +15,11 @@
   <websocket:handlers>
       <websocket:mapping handler="chatHandler" path="/chat-ws" />
   </websocket:handlers>
+  <websocket:handlers>
+      <websocket:mapping handler="chatHandler2" path="/chat-ws2" />
+</websocket:handlers>
+  <bean id="chatHandler" class="com.acorn.koala.Controller.ChatWebSocketHandler" />
+  <bean id="chatHandler2" class="com.acorn.koala.Controller.ChatWebSocketHandler2" />
 
-  <bean id="chatHandler" class="com.acorn.koala.webchat.ChatWebSocketHandler" />
 
 </beans>

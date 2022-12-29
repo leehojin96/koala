@@ -25,6 +25,7 @@
 				alert("비밀번호가 다릅니다.");
 			}
 		}else{
+			//alert("click");
 			window.location.href="/koala/showDetail?w_number=" + w_number;
 		}
 

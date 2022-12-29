@@ -46,6 +46,7 @@
 								error : function() {
 									$("#bookEmpty").html("");
 									$("#selectState4").html("도서를 지원하지 않습니다... ");
+									$("#paging").html("");
 								}
 							});
 							$("#selectState1").html("신간 도서");

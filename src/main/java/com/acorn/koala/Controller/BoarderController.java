@@ -3,6 +3,7 @@ package com.acorn.koala.Controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,15 +43,17 @@ public class BoarderController {
 	
 	//게시글 등록
 	@RequestMapping(value = "/insertContent", method = RequestMethod.POST)
-	public String insertContent(String w_number, String userID, String title, String passward,String content,String writeday) {
+	public String insertContent( HttpServletRequest request,String w_number, String userID, String title, String passward,String content,String writeday) {
 		
+		HttpSession session = request.getSession();
+		userID = (String)session.getAttribute("id");
 		
 		
 		KoalaService s = new KoalaService(dao);
 		BoarderDTO dto = new BoarderDTO(w_number,userID,title,passward,content,writeday);
 		s.insertContent(dto);
 		
-		return "board";
+		return "redirect:board";
 		
 	}
 	
@@ -63,7 +66,10 @@ public class BoarderController {
 	//댓글 등록
 	@ResponseBody
 	@RequestMapping(value = "/add_comments", method = RequestMethod.POST)
-	public ArrayList<CommentsDTO> add_comments(String userID, String w_number, String comments) {
+	public ArrayList<CommentsDTO> add_comments(HttpServletRequest request, String userID, String w_number, String comments) {
+		
+		HttpSession session = request.getSession();
+		userID = (String)session.getAttribute("id");
 		
 		
 		KoalaService s = new KoalaService(dao);
@@ -103,10 +109,15 @@ public class BoarderController {
 	@RequestMapping(value = "/showDetail", method = RequestMethod.GET)
 	public String showDetail(HttpServletRequest httpServletRequest, Model m) {
 		
+		HttpSession session = httpServletRequest.getSession();
+		String userID = (String)session.getAttribute("id");
+		
 		String w_number = httpServletRequest.getParameter("w_number");
 		KoalaService s = new KoalaService(dao);
 		String[] list = s.showDetail(w_number);
 		m.addAttribute("list",list);
+		
+		m.addAttribute("userID",userID);
 		
 		
 		//////////////////////////////////////////////////
@@ -116,6 +127,8 @@ public class BoarderController {
 		
 		return "showDetail";
 	}
+	
+	
 	
 	
 	
