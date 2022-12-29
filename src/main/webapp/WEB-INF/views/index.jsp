@@ -13,6 +13,70 @@
 
 <script>
 
+
+
+$(document).ready(function(){
+	//alert("ready");
+	
+	var start = 0;
+	var categoryId=0;
+	
+	$.ajax({
+		type : "GET",
+		url : "/koala/books/Bestseller",
+		data : {
+			start : start,
+			categoryId : categoryId
+		},
+		success : function(data) {
+			console.log(data);
+			
+			
+			var dataHtml = HtmlBestseller(data);
+			$("#section_01").html(dataHtml);
+		},
+		error : function() {
+			alert("error");
+		}
+		
+		
+	});
+	
+	function HtmlBestseller(data){
+		/*
+		var bestSeller = "";
+		console.log( "data=" + data);
+		
+		var BestList = data.list;
+		
+		
+		for(var i=0; i< 6; i++){
+			
+			var best = BestList[i];
+			 console.log(best);
+			bestSeller += "<div id ='six_books'>"
+						+"<div id ='img_div'>"
+						+"<img id ='book_cover' src='" +best.cover+ "'></div>"
+						+"<div id ='ranking_div'>" +i+1+ "</div>"
+						+"<div id ='info_div'>"
+						+"<h2>" +best.title + "</h2>"
+						+"<p>" +best.author + "</p>"
+						+"<span>★( " +"별점ㅇㅇㅇㅇㅇㅇㅇ" + " )</span></div></div>";
+			
+			//bestSeller += "여깅ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ";
+		}
+		return bestSeller;
+		*/
+		
+	}
+	
+	
+});
+
+
+
+
+
 var w_number;
 var passward;
 
@@ -162,11 +226,15 @@ section{
 	display: flex;
 }
 
-#six_books img{
+#book_cover{
 	margin-top: 50px;
 	width: 100px;
 	height: 130px;
 	//border: 1px solid black;
+	//padding: 5px;
+	background-size: cover;
+	background-position: center;
+	//display: none;
 	
 }
 
@@ -251,12 +319,12 @@ h1 a{
 	<div class ="slide_wrap">
 		<ul class = "slides">
 		
-			<li>slide 01</li>
-			<li>slide 02</li>
-			<li>slide 03</li>
-			<li>slide 04</li>
-			<li>slide 05</li>
-			<li>slide 06</li>
+			<li style="background-image: url('https://image.aladin.co.kr/product/30792/44/cover/k082831462_1.jpg');"></li>
+			<li style="background-image: url('https://image.aladin.co.kr/product/30792/44/cover/k052831462_1.jpg');"></li>
+			<li style="background-image: url('https://image.aladin.co.kr/img/noimg_b.gif');"></li>
+			<li style="background-image: url('https://image.aladin.co.kr/product/30792/35/cover/8952246772_1.jpg');"></li>
+			<li style="background-image: url('https://image.aladin.co.kr/product/30792/20/cover/k742831461_1.jpg');"></li>
+			<li style="background-image: url('https://image.aladin.co.kr/product/30792/5/cover/k632831461_1.jpg');"></li>
 		</ul>
 	</div>
 	<div class = "prev">
@@ -276,12 +344,13 @@ h1 a{
 	<div class ="slide_wrap2">
 		<ul class = "slides2">
 		
-			<li>slide 01</li>
-			<li>slide 02</li>
-			<li>slide 03</li>
-			<li>slide 04</li>
-			<li>slide 05</li>
-			<li>slide 06</li>
+			<li style="background-image: url('https://image.aladin.co.kr/product/30791/89/cover/k502831461_1.jpg');"></li>
+			<li style="background-image: url('https://image.aladin.co.kr/product/30792/44/cover/k082831462_1.jpg');"></li>
+			<li style="background-image: url('https://image.aladin.co.kr/product/30791/82/cover/k552831461_1.jpg');"></li>
+			<li style="background-image: url('https://image.aladin.co.kr/product/30791/67/cover/k222831461_1.jpg');"></li>
+			<li style="background-image: url('https://image.aladin.co.kr/product/30791/64/cover/k252831461_1.jpg');"></li>
+			<li style="background-image: url('https://image.aladin.co.kr/product/30791/55/cover/k082831461_1.jpg');"></li>
+
 		</ul>
 	</div>
 	<div class = "prev2">
@@ -299,119 +368,80 @@ h1 a{
 
 <div id ="section_01">
 
-	<div id ="six_books">
-	
-		<!-- 이미지url -->
-		<div id ="img_div">
-			<img src="https://cdn.icon-icons.com/icons2/265/PNG/512/JPG_29711.png">
-		</div>
-		<!-- 랭킹 들어갈 div-->
-		<div id ="ranking_div">1</div>
-		
-		<!-- 제목, 저자, 별정 들어갈 div -->
-		<div id ="info_div">
-			<h2>너는 내운명</h2>
-			<p>임영빈</p>
-			<span>★( 7 )</span>
-		</div>
-		
 
+	<div id ="six_books">
+		<div id ="img_div">
+			<img id="book_cover" src="https://image.aladin.co.kr/product/30763/42/cover/k522830559_1.jpg">
+		</div>
+		<div id ="ranking_div">1</div>
+		<div id ="info_div">
+			<h2>주술회전 21</h2>
+			<p>아쿠타미 게게</p>
+			<span>★( 9.5 )</span>
+		</div>
 	</div>
 	
 	<div id ="six_books">
-	
-		<!-- 이미지url -->
 		<div id ="img_div">
-			<img src="https://cdn.icon-icons.com/icons2/265/PNG/512/JPG_29711.png">
+			<img id="book_cover" src="https://image.aladin.co.kr/product/30744/13/cover/k382830255_1.jpg">
 		</div>
-		<!-- 랭킹 들어갈 div-->
-		<div id ="ranking_div">1</div>
-		
-		<!-- 제목, 저자, 별정 들어갈 div -->
+		<div id ="ranking_div">2</div>
 		<div id ="info_div">
-			<h2>너는 내운명</h2>
-			<p>임영빈</p>
-			<span>★( 7 )</span>
+			<h2>도쿄 리벤저스 29</h2>
+			<p>와쿠이 켄</p>
+			<span>★( 9.4 )</span>
 		</div>
-		
-
 	</div>
 	
 	<div id ="six_books">
-	
-		<!-- 이미지url -->
 		<div id ="img_div">
-			<img src="https://cdn.icon-icons.com/icons2/265/PNG/512/JPG_29711.png">
+			<img id="book_cover" src="https://image.aladin.co.kr/product/30048/51/cover/8936438832_2.jpg">
 		</div>
-		<!-- 랭킹 들어갈 div-->
-		<div id ="ranking_div">1</div>
-		
-		<!-- 제목, 저자, 별정 들어갈 div -->
+		<div id ="ranking_div">3</div>
 		<div id ="info_div">
-			<h2>너는 내운명</h2>
-			<p>임영빈</p>
-			<span>★( 7 )</span>
+			<h2>아버지의 해방일지</h2>
+			<p>정지아</p>
+			<span>★( 9.2 )</span>
 		</div>
-		
-
 	</div>
 	
 	<div id ="six_books">
-	
-		<!-- 이미지url -->
 		<div id ="img_div">
-			<img src="https://cdn.icon-icons.com/icons2/265/PNG/512/JPG_29711.png">
+			<img id="book_cover" src="https://image.aladin.co.kr/product/30749/50/cover/k442830356_1.jpg">
 		</div>
-		<!-- 랭킹 들어갈 div-->
-		<div id ="ranking_div">1</div>
-		
-		<!-- 제목, 저자, 별정 들어갈 div -->
+		<div id ="ranking_div">4</div>
 		<div id ="info_div">
-			<h2>너는 내운명</h2>
-			<p>임영빈</p>
-			<span>★( 7 )</span>
+			<h2>사계 : 소설 청사과 낙원</h2>
+			<p>그루</p>
+			<span>★( 8.8 )</span>
 		</div>
-		
-
 	</div>
 	
 	<div id ="six_books">
-	
-		<!-- 이미지url -->
 		<div id ="img_div">
-			<img src="https://cdn.icon-icons.com/icons2/265/PNG/512/JPG_29711.png">
+			<img id="book_cover" src="https://image.aladin.co.kr/product/30771/24/cover/8934967587_1.jpg">
 		</div>
-		<!-- 랭킹 들어갈 div-->
-		<div id ="ranking_div">1</div>
-		
-		<!-- 제목, 저자, 별정 들어갈 div -->
+		<div id ="ranking_div">5</div>
 		<div id ="info_div">
-			<h2>너는 내운명</h2>
-			<p>임영빈</p>
-			<span>★( 7 )</span>
+			<h2>전지적 독자 시점</h2>
+			<p>싱숑</p>
+			<span>★( 9.2 )</span>
 		</div>
-		
-
 	</div>
 	
 	<div id ="six_books">
-	
-		<!-- 이미지url -->
 		<div id ="img_div">
-			<img src="https://cdn.icon-icons.com/icons2/265/PNG/512/JPG_29711.png">
+			<img id="book_cover" src="https://image.aladin.co.kr/product/30396/94/cover/k392830163_1.jpg">
 		</div>
-		<!-- 랭킹 들어갈 div-->
-		<div id ="ranking_div">1</div>
-		
-		<!-- 제목, 저자, 별정 들어갈 div -->
+		<div id ="ranking_div">6</div>
 		<div id ="info_div">
-			<h2>너는 내운명</h2>
-			<p>임영빈</p>
-			<span>★( 7 )</span>
+			<h2>만일 내가 인생을 다시 산다면</h2>
+			<p>김혜남</p>
+			<span>★( 8.1 )</span>
 		</div>
-		
-
 	</div>
+
+	
 	
 	
 
