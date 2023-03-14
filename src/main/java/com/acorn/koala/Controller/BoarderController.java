@@ -46,7 +46,7 @@ public class BoarderController {
 	public String insertContent( HttpServletRequest request,String w_number, String userID, String title, String passward,String content,String writeday) {
 		
 		HttpSession session = request.getSession();
-		userID = (String)session.getAttribute("id");
+		userID = (String)session.getAttribute("userID");
 		
 		
 		KoalaService s = new KoalaService(dao);
@@ -69,7 +69,9 @@ public class BoarderController {
 	public ArrayList<CommentsDTO> add_comments(HttpServletRequest request, String userID, String w_number, String comments) {
 		
 		HttpSession session = request.getSession();
-		userID = (String)session.getAttribute("id");
+		userID = (String)session.getAttribute("userID");
+		
+		System.out.println("세션에서 넘어온 아이디"+userID);
 		
 		
 		KoalaService s = new KoalaService(dao);
@@ -82,7 +84,7 @@ public class BoarderController {
 
 		//댓글 저장하기
 		ArrayList<CommentsDTO> list = s.show_comments(w_number);
-		System.out.println(list);
+		System.out.println("여기에러"+list);
 		
 		return list;
 		}else {

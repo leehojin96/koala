@@ -51,6 +51,8 @@ $(document).ready( function(){
 		var userID = "${userID }";
 		var w_number = ${list[0] };
 		var comments = $("#comments").val();
+		
+		console.log(userID);
 
 		
 		$.ajax({

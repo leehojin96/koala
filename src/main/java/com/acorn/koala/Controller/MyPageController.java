@@ -28,7 +28,10 @@ public class MyPageController {
 
 	@Autowired
 	UserDao dao;
-
+	
+	//주석
+	
+	/*주석*/
 	
 	@RequestMapping(value = "/mypageenter", method = RequestMethod.GET)
 	public String mypage( HttpServletRequest request, HttpServletResponse response) throws IOException {

@@ -152,6 +152,7 @@ img{
 
 			},
 			error : function(reason) {
+				//alert(userEmail);
 				alert("이메일 전송을 실패하였습니다.");
 			}
 		});
